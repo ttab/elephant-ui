@@ -29,7 +29,7 @@ export function ButtonExample() {
         </Code>
 
         <div>
-        <Button variant="destructive">Descructive</Button>
+        <Button variant="destructive">Destructive</Button>
         </div>
         <Code>
         {`<Button variant="descructive">

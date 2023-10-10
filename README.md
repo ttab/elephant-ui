@@ -16,7 +16,7 @@ See available components at [shadcn/UI documentation](https://ui.shadcn.com/docs
 
 ## Showcasing components during development
 
-Add compoent examples and usage in `src/showroom/components` and import into ``src/showroom/app.tsx`.
+Add component examples and usage in `src/showroom/components` and import into ``src/showroom/app.tsx`.
 
 Run `npm run dev` and open given url in your local browser to see example of how we could have a local testbed while developing.
 
