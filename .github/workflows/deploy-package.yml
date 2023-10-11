@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     name: Build and publish Github package
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     permissions:
       packages: write
       contents: read
