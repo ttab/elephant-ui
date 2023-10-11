@@ -2,7 +2,7 @@
   "name": "@ttab/elephant-ui",
   "description": "UI package created around Shadcn/ui, primarily for the Elephant project.",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "type": "module",
   "files": [
