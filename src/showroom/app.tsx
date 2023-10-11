@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { ButtonExample } from './components/button'
 
 export function App() {

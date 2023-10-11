@@ -1,5 +1,3 @@
-import * as React from 'react'
-
 import { Mail } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Header } from '../header'
@@ -12,50 +10,40 @@ export function ButtonExample() {
     <div>
       <Button>Button</Button>
     </div>
-    <Code>
-      {`<Button>
+    <Code code={`<Button>
   Secondary
-</Button>`}
-    </Code>
+</Button>`} />
 
     <div>
       <Button variant="secondary">Secondary</Button>
     </div>
-    <Code>
-      {`<Button variant="secondary">
+    <Code code={`<Button variant="secondary">
   Secondary
-</Button>`}
-    </Code>
+</Button>`} />
 
     <div>
       <Button variant="destructive">Destructive</Button>
     </div>
-    <Code>
-      {`<Button variant="descructive">
+    <Code code={`<Button variant="descructive">
   Descructive
-</Button>`}
-    </Code>
+</Button>`} />
 
     <div>
       <Button variant="outline">Outline</Button>
     </div>
-    <Code>
-      {`<Button variant="outline">
+    <Code code={`<Button variant="outline">
   Outline
-</Button>`}
-    </Code>
+</Button>`} />
 
     <div>
       <Button>
         <Mail className="mr-2 h-4 w-4" /> Login&nbsp;with&nbsp;email&nbsp;icon
       </Button>
     </div>
-    <Code>
-      {`import { Mail } from 'lucide-react'
+    <Code code={`import { Mail } from 'lucide-react'
 <Button>
   <Mail className="mr-2 h-4 w-4" />
     Login with email icon
-</Button>`}
-    </Code>
+</Button>`} />
   </>
 }
