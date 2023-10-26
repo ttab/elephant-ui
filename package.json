@@ -20,6 +20,11 @@
       "import": "./dist/icons.es.js",
       "require": "./dist/icons.cjs.js",
       "types": "./dist/components/icons/index.d.ts"
+    },
+    "./utils": {
+      "import": "./dist/utils.es.js",
+      "require": "./dist/utils.cjs.js",
+      "types": "./dist/lib/utils/index.d.ts"
     }
   },
   "sideEffects": false,

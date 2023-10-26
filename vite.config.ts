@@ -21,6 +21,7 @@ export default defineConfig({
       entry: {
         "index": resolve(__dirname, './src/index.ts'),
         "icons": resolve(__dirname, './src/components/icons/index.ts'),
+        "utils": resolve(__dirname, './src/lib/utils.ts')
       },
       formats: ['es', 'cjs'],
       fileName: (format, entryName) => `${entryName}.${format}.js`,
