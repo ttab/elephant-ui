@@ -18,13 +18,22 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: resolve(__dirname, './src/index.ts'),
+      entry: {
+        "index": resolve(__dirname, './src/index.ts'),
+        "icons": resolve(__dirname, './src/components/icons/index.ts'),
+      },
       formats: ['es', 'cjs'],
-      fileName: (ext) => `elephant-ui.${ext}.js`,
+      fileName: (format, entryName) => `${entryName}.${format}.js`,
       name: 'ElephantUI'
     },
     rollupOptions: {
-      external: [...Object.keys(peerDependencies), ...Object.keys(dependencies)], output: { preserveModules: true, exports: 'named' }
+      external: [
+        ...Object.keys(peerDependencies),
+        ...Object.keys(dependencies)],
+      output: {
+        preserveModules: true,
+        exports: 'named'
+      }
     },
 
     target: 'esnext',
