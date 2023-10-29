@@ -25,13 +25,15 @@
       "import": "./dist/utils.es.js",
       "require": "./dist/utils.cjs.js",
       "types": "./dist/lib/utils/index.d.ts"
-    }
+    },
+    "./styles/layout-base.css": "./dist/styles/layout-base.css",
+    "./styles/preset": "./dist/styles/preset.ts"
   },
   "sideEffects": false,
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "build:styles": "postcss ./src/index.css -o ./dist/style.css",
+    "build:styles": "postcss ./src/styles/index.css -o ./dist/style.css",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -71,6 +73,7 @@
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
-    "vite-plugin-dts": "^3.6.0"
+    "vite-plugin-dts": "^3.6.0",
+    "vite-plugin-static-copy": "^0.17.0"
   }
 }

@@ -3,6 +3,7 @@ import { resolve } from 'path'
 import { peerDependencies, dependencies } from './package.json'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts';
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
   plugins: [
@@ -10,6 +11,18 @@ export default defineConfig({
     dts({
       include: ['./src/**/*'],
     }),
+    viteStaticCopy({
+      targets: [
+        {
+          src: './src/styles/layout-base.css',
+          dest: './styles'
+        },
+        {
+          src: './src/styles/preset.ts',
+          dest: './styles'
+        }
+      ]
+    })
   ],
   resolve: {
     alias: {
