@@ -15,7 +15,7 @@ export function AlertExample() {
       </Alert>
     </div>
 
-    <Code code={`import { Waves } from "lucide-react"
+    <Code code={`import { Waves } from "@ttab/elephant-ui/icons"
 <Alert>
   <Waves className="h-4 w-4" />
   <AlertTitle>Alert!</AlertTitle>

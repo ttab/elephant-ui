@@ -7,17 +7,51 @@ See [shadcn/UI documentation](https://ui.shadcn.com/docs/components/) for usage 
 
 Install in your project using `npm i @ttab/elephant-ui`
 
+## Build styles
+In the project in which you are using `elephant-ui` add the following:
+
+`tailwind.config.ts`
+```js
+import preset from '@ttab/elephant-ui/styles/preset'
+export default {
+  presets: [preset],
+  content: [
+    './src/**/*.{html,tsx}',
+    './node_modules/@ttab/elephant-ui/src/components/ui/*.tsx'
+  ],
+  theme: {
+    extend: {}
+  },
+  plugins: []
+} satisfies Config
+
+```
+This will add the needed preset from `elephant-ui` and add the needed paths to the `content` array.
+
+`input.css`
+```css
+@import '@ttab/elephant-ui/dist/styles/layout-base.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+```
+This will import the needed base styles from `elephant-ui` and add the needed `tailwind` directives.
+
 ## Import
 ```typescript
 // Components
 import { Button } from '@ttab/elephant-ui'
-// Icons from lucide-react
+// Icons
 import { Waves } from '@ttab/elephant-ui/icons'
 // Utils
 import { cn } from '@ttab/elephant-ui/lib/utils'
 ```
+## Icons
+Icons are from [lucide-react](https://lucide.dev/icons/).
 
-## Adding components
+## Adding additional components
 See available components at [shadcn/UI documentation](https://ui.shadcn.com/docs/components/).
 
 1. Use for example `npx shadcn-ui@latest add accordion` to add an accordion.

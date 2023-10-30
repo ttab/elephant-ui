@@ -24,8 +24,8 @@ export function ButtonExample() {
     <div>
       <Button variant="destructive">Destructive</Button>
     </div>
-    <Code code={`<Button variant="descructive">
-  Descructive
+    <Code code={`<Button variant="destructive">
+  Destructive
 </Button>`} />
 
     <div>
@@ -40,7 +40,7 @@ export function ButtonExample() {
         <Mail className="mr-2 h-4 w-4" /> Login&nbsp;with&nbsp;email&nbsp;icon
       </Button>
     </div>
-    <Code code={`import { Mail } from 'lucide-react'
+    <Code code={`import { Mail } from '@ttab/elephant-ui/icons'
 <Button>
   <Mail className="mr-2 h-4 w-4" />
     Login with email icon
