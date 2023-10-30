@@ -14,7 +14,9 @@ export function PopoverExample() {
     </div>
     <Code code={`<Popover>
   <PopoverTrigger>Open</PopoverTrigger>
-  <PopoverContent>Place content for the popover here.</PopoverContent>
+  <PopoverContent>
+    Place content for the popover here.
+  </PopoverContent>
 </Popover>`} />
   </>
 }
