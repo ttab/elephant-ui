@@ -19,7 +19,9 @@ export function AlertExample() {
 <Alert>
   <Waves className="h-4 w-4" />
   <AlertTitle>Alert!</AlertTitle>
-  <AlertDescription>Place content of alertment here!</AlertDescription>
+  <AlertDescription>
+    Place content of alertment here!
+  </AlertDescription>
 </Alert>`} />
   </>
 }

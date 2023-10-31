@@ -13,4 +13,4 @@ export function Code({ code }: { code: string | string[] }) {
       {code}
     </SyntaxHighlighter>
   </div>
-} 
+}
