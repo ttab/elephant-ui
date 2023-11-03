@@ -13,5 +13,16 @@ export {
   SheetHeader,
   SheetFooter,
   SheetTitle,
-  SheetDescription,
+  SheetDescription
 } from '@/components/ui/sheet'
+export {
+  Command,
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandItem,
+  CommandShortcut,
+  CommandSeparator,
+  CommandEmpty,
+  CommandGroup
+} from '@/components/ui/command'
