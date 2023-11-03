@@ -2,14 +2,14 @@ import { defineConfig } from 'vite'
 import { resolve } from 'path'
 import { peerDependencies, dependencies } from './package.json'
 import react from '@vitejs/plugin-react'
-import dts from 'vite-plugin-dts';
+import dts from 'vite-plugin-dts'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 export default defineConfig({
   plugins: [
     react(),
     dts({
-      include: ['./src/**/*'],
+      include: ['./src/**/*']
     }),
     viteStaticCopy({
       targets: [
@@ -26,15 +26,15 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": resolve(__dirname, "./src")
+      '@': resolve(__dirname, './src')
     }
   },
   build: {
     lib: {
       entry: {
-        "index": resolve(__dirname, './src/index.ts'),
-        "icons": resolve(__dirname, './src/components/icons/index.ts'),
-        "utils": resolve(__dirname, './src/lib/utils.ts')
+        index: resolve(__dirname, './src/index.ts'),
+        icons: resolve(__dirname, './src/components/icons/index.ts'),
+        utils: resolve(__dirname, './src/lib/utils.ts')
       },
       formats: ['es', 'cjs'],
       fileName: (format, entryName) => `${entryName}.${format}.js`,

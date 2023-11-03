@@ -13,5 +13,5 @@ export {
   SheetHeader,
   SheetFooter,
   SheetTitle,
-  SheetDescription,
+  SheetDescription
 } from '@/components/ui/sheet'

@@ -11,10 +11,10 @@ import {
   SheetFooter,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet"
+  SheetTrigger
+} from '@/components/ui/sheet'
 
-export function SheetExample() {
+export function SheetExample(): JSX.Element {
   return <>
     <Header>Sheet</Header>
 

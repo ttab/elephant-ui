@@ -36,6 +36,8 @@
     "declarationMap": true
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "tailwind.config.ts",
+    "vite.config.ts"
   ]
 }
