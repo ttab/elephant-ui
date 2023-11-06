@@ -15,3 +15,15 @@ export {
   SheetTitle,
   SheetDescription
 } from '@/components/ui/sheet'
+export {
+  Command,
+  CommandDialog,
+  CommandInput,
+  CommandList,
+  CommandItem,
+  CommandShortcut,
+  CommandSeparator,
+  CommandEmpty,
+  CommandGroup
+} from '@/components/ui/command'
+export { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
