@@ -6,20 +6,20 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-  CommandShortcut,
-} from "@/components/ui/command"
+  CommandShortcut
+} from '@/components/ui/command'
 import {
   Calculator,
   Calendar,
   CreditCard,
   Settings,
   Smile,
-  User,
-} from "lucide-react"
+  User
+} from 'lucide-react'
 import { Header } from '../header'
 import { Code } from '../code'
 
-export function CommandExample() {
+export function CommandExample(): JSX.Element {
   return <>
     <Header>Command</Header>
 
