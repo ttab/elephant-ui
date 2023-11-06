@@ -15,3 +15,4 @@ export {
   SheetTitle,
   SheetDescription,
 } from '@/components/ui/sheet'
+export { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
