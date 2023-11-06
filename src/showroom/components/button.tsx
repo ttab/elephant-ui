@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Header } from '../header'
 import { Code } from '../code'
 
-export function ButtonExample() {
+export function ButtonExample(): JSX.Element {
   return <>
     <Header>Button</Header>
 

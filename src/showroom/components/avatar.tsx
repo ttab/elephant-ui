@@ -1,12 +1,12 @@
 import {
   Avatar,
   AvatarFallback,
-  AvatarImage,
+  AvatarImage
 } from '@/components/ui/avatar'
 import { Header } from '../header'
 import { Code } from '../code'
 
-export function AvatarExample() {
+export function AvatarExample(): JSX.Element {
   return <>
     <Header>Avatar</Header>
 
