@@ -26,3 +26,4 @@ export {
   CommandEmpty,
   CommandGroup
 } from '@/components/ui/command'
+export { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
