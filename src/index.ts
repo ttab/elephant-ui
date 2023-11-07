@@ -27,3 +27,19 @@ export {
   CommandGroup
 } from '@/components/ui/command'
 export { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+export {
+  Table,
+  TableHead,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableRow
+} from '@/components/ui/table'
+export {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
