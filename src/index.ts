@@ -1,4 +1,5 @@
-export { Button, buttonVariants, type ButtonProps } from '@/components/ui/button'
+export { Button, type ButtonProps } from '@/components/ui/button'
+export { default as buttonVariants } from '@/components/ui/buttonVariants'
 export { Input, type InputProps } from '@/components/ui/input'
 export { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
 export { Checkbox } from '@/components/ui/checkbox'
@@ -27,3 +28,19 @@ export {
   CommandGroup
 } from '@/components/ui/command'
 export { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+export {
+  Table,
+  TableHead,
+  TableBody,
+  TableCell,
+  TableHeader,
+  TableRow
+} from '@/components/ui/table'
+export {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
