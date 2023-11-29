@@ -1,4 +1,5 @@
 import { type Config } from 'tailwindcss'
+import { fontFamily } from 'tailwindcss/defaultTheme'
 export default {
   content: [
     './src/**/*.{ts,tsx}'
@@ -12,6 +13,9 @@ export default {
       }
     },
     extend: {
+      fontFamily: {
+        sans: ['inter', ...fontFamily.sans]
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
