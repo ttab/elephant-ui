@@ -2,7 +2,6 @@ export { Button, type ButtonProps } from '@/components/ui/button'
 export { default as buttonVariants } from '@/components/ui/buttonVariants'
 export { Input, type InputProps } from '@/components/ui/input'
 export { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
-export { Checkbox } from '@/components/ui/checkbox'
 export { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'
 export {
   Sheet,
@@ -71,3 +70,13 @@ export {
   TooltipContent,
   TooltipProvider
 } from '@/components/ui/tooltip'
+export {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent
+} from '@/components/ui/tabs'
+export {
+  Calendar
+} from '@/components/ui/calendar'
+export { Label } from '@/components/ui/label'

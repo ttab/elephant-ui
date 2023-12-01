@@ -4,6 +4,14 @@ import { InputExample } from './components/input'
 import { PopoverExample } from './components/popover'
 import { SheetExample } from './components/sheet'
 import { CommandExample } from './components/command'
+import { AvatarExample } from './components/avatar'
+import { DropdownMenuExample } from './components/dropdown-menu'
+import { SelectExample } from './components/select'
+import { SeparatorExample } from './components/separator'
+import { BadgeExample } from './components/badge'
+import { TooltipExample } from './components/tooltip'
+import { TabsExample } from './components/tabs'
+import { CalendarExample } from './components/calendar'
 
 export function App(): JSX.Element {
   return <div className="grid grid-cols-2 gap-4 gap-y-8 max-w-[900px] m-10">
@@ -13,5 +21,13 @@ export function App(): JSX.Element {
     <AlertExample />
     <SheetExample />
     <CommandExample />
+    <AvatarExample />
+    <DropdownMenuExample />
+    <SelectExample />
+    <SeparatorExample />
+    <BadgeExample />
+    <TooltipExample />
+    <TabsExample />
+    <CalendarExample />
   </div >
 }
