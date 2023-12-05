@@ -15,6 +15,10 @@ export function AvatarExample(): JSX.Element {
         <AvatarImage src="https://github.com/ttab.png" alt="TT" />
         <AvatarFallback>ELE</AvatarFallback>
       </Avatar>
+
+      <Avatar>
+        <AvatarFallback>ELE</AvatarFallback>
+      </Avatar>
     </div>
 
     <Code code={`import {

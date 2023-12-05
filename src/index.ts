@@ -71,3 +71,13 @@ export {
   TooltipContent,
   TooltipProvider
 } from '@/components/ui/tooltip'
+export {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent
+} from '@/components/ui/tabs'
+export {
+  Calendar
+} from '@/components/ui/calendar'
+export { Label } from '@/components/ui/label'
