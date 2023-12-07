@@ -24,8 +24,7 @@
       "require": "./dist/utils.cjs.js",
       "types": "./dist/lib/utils.d.ts"
     },
-    "./styles/layout-base.css": "./dist/styles/layout-base.css",
-    "./styles/preset": "./dist/styles/preset.ts"
+    "./styles/*": "./dist/styles/*"
   },
   "sideEffects": false,
   "scripts": {

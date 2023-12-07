@@ -1,5 +1,9 @@
 import { type Config } from 'tailwindcss'
-import { fontFamily } from 'tailwindcss/defaultTheme'
+import defaultTheme from 'tailwindcss/defaultTheme'
+import tailwindAnimate from 'tailwindcss-animate'
+
+const fontFamily = defaultTheme.fontFamily
+
 export default {
   content: [
     './src/**/*.{ts,tsx}'
@@ -72,5 +76,5 @@ export default {
       }
     }
   },
-  plugins: [require('tailwindcss-animate')]
+  plugins: [tailwindAnimate]
 } satisfies Config
