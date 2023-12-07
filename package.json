@@ -25,7 +25,10 @@
       "types": "./dist/lib/utils.d.ts"
     },
     "./styles/layout-base.css": "./dist/styles/layout-base.css",
-    "./styles/preset": "./dist/styles/preset.ts"
+    "./styles/preset": "./dist/styles/preset.ts",
+    "./styles/inter.css": "./dist/styles/inter.css",
+    "./styles/inter-latin-400-normal.woff2": "./dist/styles/inter-latin-400-normal.woff2",
+    "./styles/inter-latin-400-normal.woff": "./dist/styles/inter-latin-400-normal.woff"
   },
   "sideEffects": false,
   "scripts": {

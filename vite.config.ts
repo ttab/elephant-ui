@@ -20,6 +20,14 @@ export default defineConfig({
         {
           src: './src/styles/preset.ts',
           dest: './styles'
+        },
+        {
+          src: './src/styles/inter.css',
+          dest: './styles'
+        },
+        {
+          src: 'node_modules/@fontsource/inter/files/inter-latin-400-normal.{woff,woff2}',
+          dest: './styles'
         }
       ]
     })
