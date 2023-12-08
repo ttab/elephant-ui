@@ -38,6 +38,7 @@
   },
   "include": [
     "./src/**/*",
+    "postcss.config.js",
     "tailwind.config.ts",
     "vite.config.ts"
   ]

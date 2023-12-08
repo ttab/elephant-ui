@@ -1,4 +1,4 @@
-@import '@fontsource/inter';
+@import "./inter.css";
 
 @layer base {
   :root {
