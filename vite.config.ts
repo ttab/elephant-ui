@@ -4,6 +4,23 @@ import { peerDependencies, dependencies } from './package.json'
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
+import { type Plugin } from 'rollup'
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from './src/styles/preset'
+
+/*
+* Resolve tailwind preset to json file
+*/
+function resolveTailwindPreset(): Plugin {
+  return {
+    name: 'TailwindPresetResolver',
+    async generateBundle(this) {
+      const resolvedTailwindConfig = JSON.stringify(resolveConfig(tailwindConfig), null, 2)
+      const outputFile = 'styles/presetResolved.json'
+      this.emitFile({ type: 'asset', fileName: outputFile, source: resolvedTailwindConfig })
+    }
+  }
+}
 
 export default defineConfig({
   plugins: [
@@ -11,6 +28,7 @@ export default defineConfig({
     dts({
       include: ['./src/**/*']
     }),
+    resolveTailwindPreset(),
     viteStaticCopy({
       targets: [
         {
