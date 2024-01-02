@@ -13,6 +13,7 @@ import { TooltipExample } from './components/tooltip'
 import { TabsExample } from './components/tabs'
 import { CalendarExample } from './components/calendar'
 import { TypographyExample } from './components/typography'
+import { ScrollAreaExample } from './components/scroll-area'
 
 export function App(): JSX.Element {
   return <div className="grid grid-cols-2 gap-4 gap-y-8 max-w-[900px] m-10">
@@ -31,5 +32,6 @@ export function App(): JSX.Element {
     <TooltipExample />
     <TabsExample />
     <CalendarExample />
+    <ScrollAreaExample />
   </div >
 }

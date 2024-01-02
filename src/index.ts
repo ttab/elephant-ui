@@ -81,3 +81,4 @@ export {
   Calendar
 } from '@/components/ui/calendar'
 export { Label } from '@/components/ui/label'
+export { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
