@@ -82,3 +82,16 @@ export {
 } from '@/components/ui/calendar'
 export { Label } from '@/components/ui/label'
 export { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
+
+export {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogClose,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription
+} from '@/components/ui/dialog'
