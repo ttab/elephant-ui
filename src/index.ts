@@ -5,6 +5,30 @@ export { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
 export { Checkbox } from '@/components/ui/checkbox'
 export { Popover, PopoverTrigger, PopoverContent } from '@/components/ui/popover'
 export {
+  Dialog,
+  DialogPortal,
+  DialogOverlay,
+  DialogClose,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription
+} from '@/components/ui/dialog'
+export {
+  Drawer,
+  DrawerPortal,
+  DrawerOverlay,
+  DrawerTrigger,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerFooter,
+  DrawerTitle,
+  DrawerDescription
+} from '@/components/ui/drawer'
+export {
   Sheet,
   SheetPortal,
   SheetOverlay,
