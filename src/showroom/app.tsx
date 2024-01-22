@@ -16,6 +16,7 @@ import { TypographyExample } from './components/typography'
 import { ScrollAreaExample } from './components/scroll-area'
 import { DrawerExample } from './components/drawer'
 import { DialogExample } from './components/dialog'
+import { SwitchExample } from './components/switch'
 import { TextareaExample } from './components/textarea'
 
 export function App(): JSX.Element {
@@ -38,6 +39,7 @@ export function App(): JSX.Element {
     <TabsExample />
     <CalendarExample />
     <ScrollAreaExample />
+    <SwitchExample />
     <TextareaExample />
   </div >
 }
