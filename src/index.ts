@@ -94,7 +94,6 @@ export {
 } from '@/components/ui/calendar'
 export { Label } from '@/components/ui/label'
 export { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
-
 export {
   Dialog,
   DialogPortal,
@@ -107,3 +106,4 @@ export {
   DialogTitle,
   DialogDescription
 } from '@/components/ui/dialog'
+export { Switch } from '@/components/ui/switch'
