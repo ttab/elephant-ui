@@ -17,6 +17,7 @@ import { ScrollAreaExample } from './components/scroll-area'
 import { DrawerExample } from './components/drawer'
 import { DialogExample } from './components/dialog'
 import { SwitchExample } from './components/switch'
+import { TextareaExample } from './components/textarea'
 
 export function App(): JSX.Element {
   return <div className="grid grid-cols-2 gap-4 gap-y-8 max-w-[900px] m-10">
@@ -39,5 +40,6 @@ export function App(): JSX.Element {
     <CalendarExample />
     <ScrollAreaExample />
     <SwitchExample />
+    <TextareaExample />
   </div >
 }
