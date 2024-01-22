@@ -107,3 +107,4 @@ export {
   DialogTitle,
   DialogDescription
 } from '@/components/ui/dialog'
+export { Textarea } from '@/components/ui/textarea'
