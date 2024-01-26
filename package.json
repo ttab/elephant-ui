@@ -86,6 +86,6 @@
     "typescript": "^5.0.2",
     "vite": "^5.0.12",
     "vite-plugin-dts": "^3.7.2",
-    "vite-plugin-static-copy": "^1.0.0"
+    "vite-plugin-static-copy": "^1.0.1"
   }
 }
