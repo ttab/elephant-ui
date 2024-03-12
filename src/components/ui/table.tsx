@@ -55,7 +55,7 @@ React.HTMLAttributes<HTMLTableRowElement>
   <tr
     ref={ref}
     className={cn(
-      'border-y transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted',
+      'border-y transition-colors hover:bg-muted data-[state=selected]:bg-muted',
       className
     )}
     {...props}
