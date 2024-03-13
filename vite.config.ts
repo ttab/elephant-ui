@@ -44,7 +44,7 @@ export default defineConfig({
           dest: './styles'
         },
         {
-          src: 'node_modules/@fontsource/inter/files/inter-latin-{300,400,500,700,800}-normal.{woff,woff2}',
+          src: 'node_modules/@fontsource/inter/files/inter-latin-{300,400,500,600,700,800}-normal.{woff,woff2}',
           dest: './styles'
         }
       ]
