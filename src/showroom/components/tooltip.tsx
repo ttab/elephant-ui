@@ -1,8 +1,5 @@
 import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger
+  Tooltip
 } from '@/components/ui/tooltip'
 
 import { Header } from '../header'
@@ -13,22 +10,13 @@ export function TooltipExample(): JSX.Element {
     <Header>Tooltip</Header>
 
     <div>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger>Hover</TooltipTrigger>
-          <TooltipContent>
-            <p>Add to library</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <Tooltip content='Add to library'>
+        <p>Hover</p>
+      </Tooltip>
     </div>
     <Code code={`<TooltipProvider>
-  <Tooltip>
-    <TooltipTrigger>Hover</TooltipTrigger>
-    <TooltipContent>
-      <p>Add to library</p>
-    </TooltipContent>
-  </Tooltip>
-</TooltipProvider>`} />
+  <Tooltip content='Add to library'>
+    <p>Hover</p>
+  </Tooltip>`} />
   </>
 }

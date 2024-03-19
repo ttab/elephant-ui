@@ -78,10 +78,7 @@ export {
   Separator
 } from '@/components/ui/separator'
 export {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-  TooltipProvider
+  Tooltip
 } from '@/components/ui/tooltip'
 export {
   Tabs,
