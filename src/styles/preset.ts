@@ -14,7 +14,10 @@ export default {
       center: true,
       padding: '2rem',
       screens: {
-        '2xl': '1400px'
+        '2xl': '1400px',
+        fhd: '1920px',
+        qhd: '2560px',
+        uhd: '3840px'
       }
     },
     extend: {
