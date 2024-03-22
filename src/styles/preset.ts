@@ -10,6 +10,12 @@ export default {
     './src/**/*.{ts,tsx}'
   ],
   theme: {
+    screens: {
+      '2xl': '1400px',
+      fhd: '1920px',
+      qhd: '2560px',
+      uhd: '3840px'
+    },
     container: {
       center: true,
       padding: '2rem',
