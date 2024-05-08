@@ -8,10 +8,10 @@ export function ButtonExample(): JSX.Element {
     <Header>Button</Header>
 
     <div>
-      <Button>Button</Button>
+      <Button>Primary button</Button>
     </div>
     <Code code={`<Button>
-  Secondary
+  Primary
 </Button>`} />
 
     <div>
