@@ -17,8 +17,8 @@ const SheetClose = SheetPrimitive.Close
 const SheetPortal = SheetPrimitive.Portal
 
 const SheetOverlay = React.forwardRef<
-React.ElementRef<typeof SheetPrimitive.Overlay>,
-React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
+  React.ElementRef<typeof SheetPrimitive.Overlay>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
@@ -52,12 +52,12 @@ const sheetVariants = cva(
 
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-  VariantProps<typeof sheetVariants> {}
+  VariantProps<typeof sheetVariants> { }
 
 const SheetContent = React.forwardRef<
-React.ElementRef<typeof SheetPrimitive.Content>,
-SheetContentProps
->(({ side = 'right', className, children, ...props }, ref) => (
+  React.ElementRef<typeof SheetPrimitive.Content>,
+  SheetContentProps & { defaultClose?: boolean }
+>(({ side = 'right', className, children, defaultClose = false, ...props }, ref) => (
   <SheetPortal>
     <SheetOverlay />
     <SheetPrimitive.Content
@@ -66,12 +66,15 @@ SheetContentProps
       {...props}
     >
       {children}
-      <SheetPrimitive.Close className="absolute right-2 top-2 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
-        <Button variant='ghost' className='w-9 px-0'>
-          <X />
-        </Button>
-        <span className="sr-only">Close</span>
-      </SheetPrimitive.Close>
+
+      {defaultClose &&
+        <SheetPrimitive.Close className="absolute right-2 top-2 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+          <Button variant='ghost' className='w-9 px-0'>
+            <X />
+          </Button>
+          <span className="sr-only">Close</span>
+        </SheetPrimitive.Close>
+      }
     </SheetPrimitive.Content>
   </SheetPortal>
 ))
@@ -106,8 +109,8 @@ const SheetFooter = ({
 SheetFooter.displayName = 'SheetFooter'
 
 const SheetTitle = React.forwardRef<
-React.ElementRef<typeof SheetPrimitive.Title>,
-React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
+  React.ElementRef<typeof SheetPrimitive.Title>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Title
     ref={ref}
@@ -118,8 +121,8 @@ React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
 SheetTitle.displayName = SheetPrimitive.Title.displayName
 
 const SheetDescription = React.forwardRef<
-React.ElementRef<typeof SheetPrimitive.Description>,
-React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
+  React.ElementRef<typeof SheetPrimitive.Description>,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Description
     ref={ref}
