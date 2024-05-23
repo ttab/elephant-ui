@@ -105,3 +105,4 @@ export {
 } from '@/components/ui/dialog'
 export { Switch } from '@/components/ui/switch'
 export { Textarea } from '@/components/ui/textarea'
+export { Skeleton } from '@/components/ui/skeleton'
