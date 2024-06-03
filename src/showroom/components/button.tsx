@@ -29,7 +29,7 @@ export function ButtonExample(): JSX.Element {
 </Button>`} />
 
     <div>
-      <Button variant="outline" className="hover:bg-accent2">Outline</Button>
+      <Button variant="outline">Outline</Button>
     </div>
     <Code code={`<Button variant="outline">
   Outline
