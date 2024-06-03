@@ -60,6 +60,10 @@ export default {
           DEFAULT: 'hsl(var(--accent))',
           foreground: 'hsl(var(--accent-foreground))'
         },
+        accent2: {
+          DEFAULT: 'hsl(var(--accent2))',
+          foreground: 'hsl(var(--accent2-foreground))'
+        },
         popover: {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))'
