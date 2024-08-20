@@ -106,3 +106,4 @@ export {
 export { Switch } from '@/components/ui/switch'
 export { Textarea } from '@/components/ui/textarea'
 export { Skeleton } from '@/components/ui/skeleton'
+export { ComboBox } from '@/components/ui/combobox'
