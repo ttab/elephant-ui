@@ -32,6 +32,7 @@ interface DefaultValueOption {
   value: string
   icon?: LucideIcon
   avatar?: React.ReactNode
+  indicator?: string
   iconProps?: {
     size?: number
     fill?: string
@@ -244,11 +245,12 @@ function ComboBoxList({
                   }
                 </div>
                 <div
-                  className='flex space-x-2 items-center grow'
+                  className='flex space-x-4 items-center grow'
                   onMouseDown={() => setOpen(false)}
                 >
-                  {option?.icon && <option.icon size={18} {...option.iconProps} />}
-                  {option?.avatar && <ComboBoxAvatar avatar={option.avatar} />}
+                  {option?.indicator && (!option.icon && !option.avatar) && <div className='w-2 h-2 rounded-full' style={{ backgroundColor: option?.indicator }} />}
+                  {option?.icon && (!option.avatar && !option.indicator) && <option.icon size={18} {...option.iconProps} />}
+                  {option?.avatar && (!option.icon && !option.indicator) && <ComboBoxAvatar avatar={option.avatar} />}
                   <div className="grow">
                     {option.label}
                   </div>
