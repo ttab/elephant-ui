@@ -26,7 +26,7 @@ import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
 
-interface DefaultValueOption {
+export interface DefaultValueOption {
   payload?: unknown
   label: string
   value: string
