@@ -251,7 +251,7 @@ function ComboBoxList({
                   {option?.indicator && (!option.icon && !option.avatar) && <div className='w-2 h-2 rounded-full' style={{ backgroundColor: option?.indicator }} />}
                   {option?.icon && (!option.avatar && !option.indicator) && <option.icon size={18} {...option.iconProps} />}
                   {option?.avatar && (!option.icon && !option.indicator) && <ComboBoxAvatar avatar={option.avatar} />}
-                  <div className="grow">
+                  <div className="grow w-full">
                     {option.label}
                   </div>
                   <CommandShortcut>{option.info || ''}</CommandShortcut>
