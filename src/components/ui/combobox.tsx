@@ -109,6 +109,26 @@ export function ComboBox({
     ? `${selected[0].label} +${selected.length - 1}`
     : selected.length ? selected[0].label : undefined
 
+  const handleSelect = (clickedOption: DefaultValueOption): void => {
+    if (max) {
+      if (max < 0 || max > options.length) {
+        max = 0
+      }
+    }
+    const alreadySelected = selected.find(selOption => selOption.value === clickedOption.value)
+    if (max > 0 && !alreadySelected && selected.length >= max) {
+      return
+    }
+    let newOptions
+    if (alreadySelected) {
+      newOptions = [...selected].filter(selOption => selOption.value !== clickedOption.value)
+    } else {
+      newOptions = [...selected, clickedOption]
+    }
+    setSelectedOptions(newOptions)
+    onSelect(clickedOption)
+  }
+
   if (isDesktop) {
     return (
         <Popover open={open} onOpenChange={handleOpenChange}>
@@ -133,25 +153,7 @@ export function ComboBox({
               options={_options}
               selectedOptions={selected}
               setOpen={handleOpenChange}
-              onSelect={(clickedOption) => {
-                if (max) {
-                  if (max < 0 || max > options.length) {
-                    max = 0
-                  }
-                }
-                const alreadySelected = selected.find(selOption => selOption.value === clickedOption.value)
-                if (max > 0 && !alreadySelected && selected.length >= max) {
-                  return
-                }
-                let newOptions
-                if (alreadySelected) {
-                  newOptions = [...selected].filter(selOption => selOption.value !== clickedOption.value)
-                } else {
-                  newOptions = [...selected, clickedOption]
-                }
-                setSelectedOptions(newOptions)
-                onSelect(clickedOption)
-              }}
+              onSelect={(clickedOption) => handleSelect(clickedOption)}
               label={triggerLabel}
               hideInput={hideInput}
               closeOnSelect={closeOnSelect}
@@ -160,8 +162,9 @@ export function ComboBox({
         </Popover>
     )
   }
+
   return (
-    <Drawer open={open} onOpenChange={setOpen}>
+    <Drawer open={open} onOpenChange={handleOpenChange}>
       <DrawerTrigger asChild>
         <Button variant='outline' className={cn(
           'w-[150px] justify-start px-2 font-sans font-normal text-muted-foreground whitespace-nowrap text-ellipsis'
@@ -175,7 +178,7 @@ export function ComboBox({
             options={_options}
             selectedOptions={selected}
             setOpen={handleOpenChange}
-            onSelect={onSelect}
+            onSelect={(clickedOption) => handleSelect(clickedOption)}
             label={triggerLabel}
             hideInput={hideInput}
             closeOnSelect={closeOnSelect}
