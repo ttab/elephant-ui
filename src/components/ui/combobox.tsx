@@ -194,7 +194,7 @@ export function ComboBox({
 }
 
 const ComboBoxAvatar = ({ avatar }: { avatar: React.ReactNode }): React.ReactNode => {
-  return <div className='h-6 w-6'>{avatar}</div>
+  return <div className='h-3 w-3'>{avatar}</div>
 }
 
 interface ComboBoxListProps {
@@ -237,29 +237,28 @@ function ComboBoxList({
                   }
                 }}
               >
-                <div className='flex items-center w-full'>
-                  <div className="w-fit flex gap-4">
+                <div className='grid items-center grid-cols-6 gap-3'>
+                  <div className='col-span-1'>
                     {selectedOptions.find(o => o.label === option.label)
                       ? <SquareCheck size={18} strokeWidth={1.75} className="mr-4 group-hover/checkbox:opacity-50" />
                       : <Square size={18} strokeWidth={1.75} className="mr-4 opacity-0 group-hover/checkbox:opacity-50" />
                     }
                   </div>
-                  <div className='flex-col h-full w-4'>
-                    {option?.color && (!option.icon && !option.avatar) && <div className={`w-2 h-2 grow-0 shrink-0 rounded-full ${option.color}`} />}
+                  <div className='col-span-1 justify-self-center'>
+                    {option?.color && (!option.icon && !option.avatar) && <div className={`items-center w-2.5 h-2.5 grow-0 shrink-0 rounded-full ${option.color}`} />}
                     {option?.icon && (!option.avatar && !option.color) && <option.icon size={18} {...option.iconProps} />}
                     {option?.avatar && (!option.icon && !option.color) && <ComboBoxAvatar avatar={option.avatar} />}
                   </div>
                   <div
-                    className='flex space-x-4 items-center grow'
                     onMouseDown={() => setOpen(false)}
+                    className='col-span-4'
                   >
-                    <div className="grow">
+                    <div>
                       {option.label}
                     </div>
                     <CommandShortcut>{option.info || ''}</CommandShortcut>
                   </div>
                 </div>
-
               </CommandItem>
             ))}
           </CommandGroup>
