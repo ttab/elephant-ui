@@ -32,7 +32,6 @@ export interface DefaultValueOption {
   value: string
   icon?: LucideIcon
   avatar?: React.ReactNode
-  indicator?: string
   iconProps?: {
     size?: number
     fill?: string
@@ -238,24 +237,29 @@ function ComboBoxList({
                   }
                 }}
               >
-                <div className="w-6">
-                  {selectedOptions.find(o => o.label === option.label)
-                    ? <SquareCheck size={18} strokeWidth={1.75} className="mr-4 group-hover/checkbox:opacity-50" />
-                    : <Square size={18} strokeWidth={1.75} className="mr-4 opacity-0 group-hover/checkbox:opacity-50" />
-                  }
-                </div>
-                <div
-                  className='flex space-x-4 items-center grow'
-                  onMouseDown={() => setOpen(false)}
-                >
-                  {option?.indicator && (!option.icon && !option.avatar) && <div className='w-2 h-2 rounded-full' style={{ backgroundColor: option?.indicator }} />}
-                  {option?.icon && (!option.avatar && !option.indicator) && <option.icon size={18} {...option.iconProps} />}
-                  {option?.avatar && (!option.icon && !option.indicator) && <ComboBoxAvatar avatar={option.avatar} />}
-                  <div className="grow w-full">
-                    {option.label}
+                <div className='flex items-center w-full'>
+                  <div className="w-fit flex gap-4">
+                    {selectedOptions.find(o => o.label === option.label)
+                      ? <SquareCheck size={18} strokeWidth={1.75} className="mr-4 group-hover/checkbox:opacity-50" />
+                      : <Square size={18} strokeWidth={1.75} className="mr-4 opacity-0 group-hover/checkbox:opacity-50" />
+                    }
                   </div>
-                  <CommandShortcut>{option.info || ''}</CommandShortcut>
+                  <div className='flex-col h-full w-4'>
+                    {option?.color && (!option.icon && !option.avatar) && <div className={`w-2 h-2 grow-0 shrink-0 rounded-full ${option.color}`} />}
+                    {option?.icon && (!option.avatar && !option.color) && <option.icon size={18} {...option.iconProps} />}
+                    {option?.avatar && (!option.icon && !option.color) && <ComboBoxAvatar avatar={option.avatar} />}
+                  </div>
+                  <div
+                    className='flex space-x-4 items-center grow'
+                    onMouseDown={() => setOpen(false)}
+                  >
+                    <div className="grow">
+                      {option.label}
+                    </div>
+                    <CommandShortcut>{option.info || ''}</CommandShortcut>
+                  </div>
                 </div>
+
               </CommandItem>
             ))}
           </CommandGroup>
