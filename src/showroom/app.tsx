@@ -19,6 +19,7 @@ import { DialogExample } from './components/dialog'
 import { SwitchExample } from './components/switch'
 import { TextareaExample } from './components/textarea'
 import { SkeletonExample } from './components/skeleton'
+import { ComboBoxExample } from './components/combobox'
 
 export function App(): JSX.Element {
   return <div className="grid grid-cols-2 gap-4 gap-y-8 max-w-[900px] m-10">
@@ -29,6 +30,7 @@ export function App(): JSX.Element {
     <AlertExample />
     <SheetExample />
     <CommandExample />
+    <ComboBoxExample />
     <DialogExample />
     <DrawerExample />
     <AvatarExample />
