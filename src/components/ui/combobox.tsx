@@ -248,7 +248,7 @@ function ComboBoxList({
                 }}
               >
                 <div className='grid items-center grid-cols-6 gap-3'>
-                  <div className='col-span-1' data-ischeckbox>
+                  <div className='col-span-1 w-6 p-0.5' data-ischeckbox>
                     {selectedOptions.find(o => o.label === option.label)
                       ? <SquareCheck size={18} strokeWidth={1.75} className="mr-4 group-hover/checkbox:opacity-50" />
                       : <Square size={18} strokeWidth={1.75} className="mr-4 opacity-0 group-hover/checkbox:opacity-50" />
