@@ -227,6 +227,16 @@ function ComboBoxList({
                 className='group/checkbox'
                 key={option.label}
                 value={option.label}
+                onMouseDown={(e) => {
+                  if (!(e.target instanceof HTMLDivElement)) {
+                    return
+                  }
+                  if (!e.target.dataset.ischeckbox) {
+                    setTimeout(() => {
+                      setOpen(false)
+                    })
+                  }
+                }}
                 onSelect={(selectedLabel) => {
                   const newSelectedOption = options.find((option) => option.label.toLocaleLowerCase() === selectedLabel)
                   if (newSelectedOption) {
@@ -238,7 +248,7 @@ function ComboBoxList({
                 }}
               >
                 <div className='grid items-center grid-cols-6 gap-3'>
-                  <div className='col-span-1'>
+                  <div className='col-span-1' data-ischeckbox>
                     {selectedOptions.find(o => o.label === option.label)
                       ? <SquareCheck size={18} strokeWidth={1.75} className="mr-4 group-hover/checkbox:opacity-50" />
                       : <Square size={18} strokeWidth={1.75} className="mr-4 opacity-0 group-hover/checkbox:opacity-50" />
@@ -249,10 +259,7 @@ function ComboBoxList({
                     {option?.icon && (!option.avatar && !option.color) && <option.icon size={18} {...option.iconProps} />}
                     {option?.avatar && (!option.icon && !option.color) && <ComboBoxAvatar avatar={option.avatar} />}
                   </div>
-                  <div
-                    onMouseDown={() => setOpen(false)}
-                    className='col-span-4'
-                  >
+                  <div className='col-span-4'>
                     <div>
                       {option.label}
                     </div>
