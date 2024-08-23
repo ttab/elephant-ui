@@ -56,6 +56,7 @@ interface ComboBoxProps extends React.PropsWithChildren {
   closeOnSelect?: boolean
   max?: number
   sortOrder?: 'label' | 'value'
+  modal?: boolean
 }
 
 export function ComboBox({
@@ -71,7 +72,8 @@ export function ComboBox({
   hideInput,
   closeOnSelect = false,
   max = 0,
-  sortOrder = 'label'
+  sortOrder = 'label',
+  modal = false
 }: ComboBoxProps): JSX.Element {
   const [selected, setSelectedOptions] = React.useState<DefaultValueOption[]>(selectedOption)
 
@@ -135,7 +137,7 @@ export function ComboBox({
 
   if (isDesktop) {
     return (
-        <Popover open={open} onOpenChange={handleOpenChange}>
+        <Popover open={open} onOpenChange={handleOpenChange} modal={modal}>
           <PopoverTrigger asChild>
             <Button
               size={size}
