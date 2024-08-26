@@ -120,7 +120,7 @@ export function ComboBox({
     const clickedIsAlreadySelected = selected.find(selOption => selOption.value === clickedOption.value)
     let newOptions
     if (clickedIsAlreadySelected) {
-      newOptions = [...selected].filter(selOption => selOption.label !== clickedOption.label)
+      newOptions = selected.filter(selOption => selOption.label !== clickedOption.label)
     }
     if (!clickedIsAlreadySelected) {
       if (max === 1) {
