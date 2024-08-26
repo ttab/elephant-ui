@@ -113,25 +113,23 @@ export function ComboBox({
 
   const handleSelect = (clickedOption: DefaultValueOption): void => {
     if (max) {
-      if (max < 0 || max > options.length) {
-        max = 0
+      if (max <= 0 || max >= options.length) {
+        max = options.length
       }
     }
     const clickedIsAlreadySelected = selected.find(selOption => selOption.value === clickedOption.value)
     let newOptions
-    if (max > 0 && !clickedIsAlreadySelected && max && selected.length >= max) {
+    if (clickedIsAlreadySelected) {
+      newOptions = [...selected].filter(selOption => selOption.label !== clickedOption.label)
+    }
+    if (!clickedIsAlreadySelected) {
       if (max === 1) {
         newOptions = [clickedOption]
-        setSelectedOptions(newOptions)
-      }
-      return
+      } else if (!(selected.length >= max)) {
+        newOptions = [...selected, clickedOption]
+      } else return
     }
-    if (clickedIsAlreadySelected) {
-      newOptions = [...selected].filter(selOption => selOption.value !== clickedOption.value)
-    } else {
-      newOptions = [...selected, clickedOption]
-    }
-    setSelectedOptions(newOptions)
+    setSelectedOptions(newOptions || [])
     onSelect(clickedOption)
   }
 
