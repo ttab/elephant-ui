@@ -48,7 +48,7 @@ interface ComboBoxProps extends React.PropsWithChildren {
   onOpenChange?: (isOpen: boolean) => void
   options: DefaultValueOption[]
   placeholder?: string
-  selectedOption: DefaultValueOption[]
+  selectedOptions: DefaultValueOption[]
   onSelect: (option: DefaultValueOption) => void
   className?: string
   variant?: 'link' | 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | null | undefined
@@ -66,7 +66,7 @@ export function ComboBox({
   options,
   placeholder,
   onSelect,
-  selectedOption,
+  selectedOptions,
   className,
   children,
   hideInput,
@@ -75,11 +75,11 @@ export function ComboBox({
   sortOrder = 'label',
   modal = false
 }: ComboBoxProps): JSX.Element {
-  const [selected, setSelectedOptions] = React.useState<DefaultValueOption[]>(selectedOption)
+  const [selected, setSelectedOptions] = React.useState<DefaultValueOption[]>(selectedOptions)
 
   React.useEffect(() => {
-    setSelectedOptions(selectedOption)
-  }, [selectedOption])
+    setSelectedOptions(selectedOptions)
+  }, [selectedOptions])
 
   const [open, setOpen] = React.useState(false)
   const [_options, setOptions] = React.useState(options)
