@@ -225,7 +225,7 @@ function ComboBoxList({
             {options.map((option) => (
               <CommandItem
                 className='group/checkbox'
-                key={option.label}
+                key={option.value}
                 value={option.label}
                 onMouseDown={(e) => {
                   if (!(e.target instanceof HTMLDivElement)) {
