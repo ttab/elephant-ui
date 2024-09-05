@@ -21,7 +21,7 @@ export function ComboBoxExample(): JSX.Element {
     <div>
       <ComboBox
         max={3}
-        selectedOption={selectedOption}
+        selectedOptions={selectedOption}
         options={options}
         placeholder='Add a player'
         onSelect={(option) => console.log(option)}
