@@ -44,7 +44,7 @@ export interface DefaultValueOption {
 }
 
 interface ComboBoxProps extends React.PropsWithChildren {
-  size?: 'sm' | 'default' | 'lg' | 'icon'
+  size?: 'xs' | 'sm' | 'default' | 'lg' | 'icon'
   onOpenChange?: (isOpen: boolean) => void
   options: DefaultValueOption[]
   placeholder?: string
@@ -60,7 +60,7 @@ interface ComboBoxProps extends React.PropsWithChildren {
 }
 
 export function ComboBox({
-  size = 'sm',
+  size = 'default',
   variant,
   onOpenChange,
   options,
@@ -141,7 +141,7 @@ export function ComboBox({
               size={size}
               variant={variant || 'outline'}
               className={cn(
-                'w-fit h-9 text-muted-foreground font-sans font-normal whitespace-nowrap p-2',
+                'w-fit text-muted-foreground font-sans font-normal whitespace-nowrap p-2',
                 className
               )
               }
