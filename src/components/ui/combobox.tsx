@@ -245,18 +245,15 @@ function ComboBoxList({
   fetchAsyncData,
   loadingAsync
 }: ComboBoxListProps): JSX.Element {
-  const debouncedFetch = React.useCallback(
-    debounce(async (input: string) => {
-      try {
-        if (fetchAsyncData) {
-          await fetchAsyncData(input)
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error)
+  const debouncedFetch = debounce(async (input: string) => {
+    try {
+      if (fetchAsyncData) {
+        await fetchAsyncData(input)
       }
-    }, 1000)
-    , [fetchAsyncData]
-  )
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
+  }, 1000)
 
   return (
       <Command shouldFilter={fetchAsyncData && false}>
