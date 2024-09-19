@@ -25,6 +25,7 @@ import { Square, SquareCheck } from '@/components/icons'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
+import { debounce } from '@/lib/debounce'
 
 export interface DefaultValueOption {
   payload?: unknown
@@ -57,6 +58,7 @@ interface ComboBoxProps extends React.PropsWithChildren {
   max?: number
   sortOrder?: 'label' | 'value'
   modal?: boolean
+  fetchAsyncOptions?: (query: string) => Promise<DefaultValueOption[]>
 }
 
 export function ComboBox({
@@ -73,7 +75,8 @@ export function ComboBox({
   closeOnSelect = false,
   max = 0,
   sortOrder = 'label',
-  modal = false
+  modal = false,
+  fetchAsyncOptions
 }: ComboBoxProps): JSX.Element {
   const [selected, setSelectedOptions] = React.useState<DefaultValueOption[]>(selectedOptions)
 
@@ -83,6 +86,7 @@ export function ComboBox({
 
   const [open, setOpen] = React.useState(false)
   const [_options, setOptions] = React.useState(options)
+  const [loadingAsync, setloadingAsync] = React.useState(false)
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
   const selectedValues = selected.map(sel => sel.label)
@@ -137,6 +141,19 @@ export function ComboBox({
     }
   }
 
+  const fetchAsyncData = React.useCallback(async (query: string): Promise<DefaultValueOption[]> => {
+    if (fetchAsyncOptions && query.length > 0) {
+      setloadingAsync(true)
+      const asyncResults = await fetchAsyncOptions(query)
+      setloadingAsync(false)
+      setOptions(asyncResults)
+      return asyncResults
+    } else {
+      setOptions(options)
+      return options
+    }
+  }, [fetchAsyncOptions, options])
+
   if (isDesktop) {
     return (
         <Popover open={open} onOpenChange={handleOpenChange} modal={modal}>
@@ -165,6 +182,8 @@ export function ComboBox({
               label={triggerLabel}
               hideInput={hideInput}
               closeOnSelect={closeOnSelect}
+              fetchAsyncData={fetchAsyncData}
+              loadingAsync={loadingAsync}
             />
           </PopoverContent>
         </Popover>
@@ -190,6 +209,8 @@ export function ComboBox({
             label={triggerLabel}
             hideInput={hideInput}
             closeOnSelect={closeOnSelect}
+            fetchAsyncData={fetchAsyncData}
+            loadingAsync={loadingAsync}
           />
         </div>
       </DrawerContent>
@@ -209,6 +230,8 @@ interface ComboBoxListProps {
   label?: string
   hideInput?: boolean
   closeOnSelect?: boolean
+  fetchAsyncData?: (s: string) => Promise<DefaultValueOption[]>
+  loadingAsync?: boolean
 }
 
 function ComboBoxList({
@@ -218,13 +241,37 @@ function ComboBoxList({
   onSelect,
   label,
   hideInput = false,
-  closeOnSelect = false
+  closeOnSelect = false,
+  fetchAsyncData,
+  loadingAsync
 }: ComboBoxListProps): JSX.Element {
+  const debouncedFetch = React.useCallback(
+    debounce(async (input: string) => {
+      try {
+        if (fetchAsyncData) {
+          await fetchAsyncData(input)
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error)
+      }
+    }, 1000)
+    , [fetchAsyncData]
+  )
+
   return (
-      <Command>
-        {!hideInput && <CommandInput placeholder={label || ''} />}
+      <Command shouldFilter={fetchAsyncData && false}>
+        {!hideInput && (
+          <CommandInput
+            placeholder={label || ''}
+            onValueChange={(str: string) => {
+              if (fetchAsyncData) {
+                debouncedFetch(str)
+              }
+            }}
+        />)
+      }
         <CommandList>
-          <CommandEmpty>Ingenting hittades</CommandEmpty>
+          <CommandEmpty>{loadingAsync ? <div>Söker...</div> : 'Ingenting hittades'}</CommandEmpty>
           <CommandGroup>
             {options.map((option) => (
               <CommandItem
