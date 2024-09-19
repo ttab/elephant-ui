@@ -131,6 +131,10 @@ export function ComboBox({
     }
     setSelectedOptions(newOptions || [])
     onSelect(clickedOption)
+
+    if (max === 1) {
+      setOpen(false)
+    }
   }
 
   if (isDesktop) {
