@@ -87,7 +87,7 @@ export {
   TabsContent
 } from '@/components/ui/tabs'
 export {
-  Calendar
+  Calendar,
 } from '@/components/ui/calendar'
 export { Label } from '@/components/ui/label'
 export { ScrollArea, ScrollBar } from '@/components/ui/scroll-area'
@@ -109,3 +109,4 @@ export { Skeleton } from '@/components/ui/skeleton'
 export { ComboBox } from '@/components/ui/combobox'
 export { useMediaQuery } from './hooks/useMediaQuery'
 export { type DefaultValueOption } from '@/components/ui/combobox'
+export type * as CalendarTypes from 'react-day-picker'
