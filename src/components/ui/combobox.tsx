@@ -171,7 +171,7 @@ export function ComboBox({
     <Drawer open={open} onOpenChange={handleOpenChange}>
       <DrawerTrigger asChild>
         <Button variant='outline' className={cn(
-          'w-[150px] justify-start px-2 font-sans font-normal text-muted-foreground whitespace-nowrap text-ellipsis'
+          'justify-start px-2 font-sans font-normal text-muted-foreground whitespace-nowrap text-ellipsis'
         )}>
           {triggerLabel ? <>{triggerLabel}</> : <>{placeholder}</>}
         </Button>
