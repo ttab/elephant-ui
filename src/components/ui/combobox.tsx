@@ -43,6 +43,8 @@ export interface DefaultValueOption {
   info?: string
 }
 
+type SortableKeys = 'label' | 'value'
+
 interface ComboBoxProps extends React.PropsWithChildren {
   size?: 'xs' | 'sm' | 'default' | 'lg' | 'icon'
   onOpenChange?: (isOpen: boolean) => void
@@ -55,7 +57,7 @@ interface ComboBoxProps extends React.PropsWithChildren {
   hideInput?: boolean
   closeOnSelect?: boolean
   max?: number
-  sortOrder?: 'label' | 'value'
+  sortOrder?: SortableKeys
   modal?: boolean
   fetch?: (query: string) => Promise<DefaultValueOption[]>
 }
@@ -72,8 +74,8 @@ export function ComboBox({
   children,
   hideInput,
   closeOnSelect = false,
-  max = 0,
-  sortOrder = 'label',
+  sortOrder,
+  max,
   modal = false,
   fetch
 }: ComboBoxProps): JSX.Element {
@@ -89,7 +91,7 @@ export function ComboBox({
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
   const selectedValues = selected.map(sel => sel.label)
-  const optionsSort = (a: DefaultValueOption, b: DefaultValueOption): number => {
+  const optionsSort = (a: DefaultValueOption, b: DefaultValueOption, sortOrder: SortableKeys): number => {
     // Default sort first by selected/not selected, second by label
     const aSelected = selectedValues.includes(a.label)
     const bSelected = selectedValues.includes(b.label)
@@ -104,9 +106,14 @@ export function ComboBox({
 
   const handleOpenChange = (isOpen: boolean): void => {
     if (isOpen) {
-      const sortedOptions = options.sort(optionsSort)
+      const sortedOptions = sortOrder
+        ? options.sort((a, b) =>
+          optionsSort(a, b, sortOrder))
+        : options
+
       setOptions(sortedOptions)
     }
+
     onOpenChange && onOpenChange(isOpen)
     setOpen(isOpen)
   }
@@ -128,7 +135,7 @@ export function ComboBox({
     if (!clickedIsAlreadySelected) {
       if (max === 1) {
         newOptions = [clickedOption]
-      } else if (!(selected.length >= max)) {
+      } else if (!max || selected.length < max) {
         newOptions = [...selected, clickedOption]
       } else return
     }

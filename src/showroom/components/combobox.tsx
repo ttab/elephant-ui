@@ -22,6 +22,7 @@ export function ComboBoxExample(): JSX.Element {
     <div>
       <ComboBox
         max={3}
+        sortOrder='label'
         selectedOptions={selectedOption}
         options={options}
         placeholder='Add a player'
