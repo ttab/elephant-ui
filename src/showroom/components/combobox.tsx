@@ -8,6 +8,7 @@ import { KanbanIcon } from 'lucide-react'
 
 export function ComboBoxExample(): JSX.Element {
   const options = [
+    { value: 'Alejandro Davidovich Fokina', label: 'Alejandro Davidovich Fokina', icon: KanbanIcon },
     { value: 'serenawilliams', label: 'Serena Williams', color: 'bg-[#2314aa]' },
     { value: 'andymurray', label: 'Andy Murray' },
     { value: 'petesampras', label: 'Pete Sampras', avatar: <div className='w-full h-full bg-gradient-to-r from-cyan-500 to-blue-500 ... rounded-full outline-dotted items-center'/> },
@@ -29,6 +30,7 @@ export function ComboBoxExample(): JSX.Element {
       </ComboBox>
     </div>
     <Code code={`const options = [
+  { value: 'Alejandro Davidovich Fokina', label: 'Alejandro Davidovich Fokina', icon: KanbanIcon },
   { value: 'serenawilliams', label: 'Serena Williams', color: 'bg-[#2314aa]' },
   { value: 'andymurray', label: 'Andy Murray' },
   { value: 'petesampras', label: 'Pete Sampras', avatar: <div className='w-full h-full bg-gradient-to-r from-cyan-500 to-blue-500 ... rounded-full outline-dotted items-center'/> },

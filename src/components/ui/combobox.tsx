@@ -44,7 +44,7 @@ export interface DefaultValueOption {
 }
 
 interface ComboBoxProps extends React.PropsWithChildren {
-  size?: 'sm' | 'default' | 'lg' | 'icon'
+  size?: 'xs' | 'sm' | 'default' | 'lg' | 'icon'
   onOpenChange?: (isOpen: boolean) => void
   options: DefaultValueOption[]
   placeholder?: string
@@ -60,7 +60,7 @@ interface ComboBoxProps extends React.PropsWithChildren {
 }
 
 export function ComboBox({
-  size = 'sm',
+  size = 'default',
   variant,
   onOpenChange,
   options,
@@ -145,7 +145,7 @@ export function ComboBox({
               size={size}
               variant={variant || 'outline'}
               className={cn(
-                'w-fit h-9 text-muted-foreground font-sans font-normal whitespace-nowrap p-2',
+                'w-fit text-muted-foreground font-sans font-normal whitespace-nowrap p-2',
                 className
               )
               }
@@ -156,7 +156,7 @@ export function ComboBox({
               }
             </Button>
           </PopoverTrigger>
-          <PopoverContent className='w-[200px] p-0' align='start'>
+          <PopoverContent className='min-w-[200px] w-fit p-0' align='start'>
             <ComboBoxList
               options={_options}
               selectedOptions={selected}
@@ -175,7 +175,7 @@ export function ComboBox({
     <Drawer open={open} onOpenChange={handleOpenChange}>
       <DrawerTrigger asChild>
         <Button variant='outline' className={cn(
-          'w-[150px] justify-start px-2 font-sans font-normal text-muted-foreground whitespace-nowrap text-ellipsis'
+          'justify-start px-2 font-sans font-normal text-muted-foreground whitespace-nowrap text-ellipsis'
         )}>
           {triggerLabel ? <>{triggerLabel}</> : <>{placeholder}</>}
         </Button>
@@ -251,22 +251,21 @@ function ComboBoxList({
                   }
                 }}
               >
-                <div className='grid items-center grid-cols-6 gap-3'>
-                  <div className='col-span-1 w-6 p-0.5' data-ischeckbox>
+                <div className='grid grid-flow-col auto-cols-auto items-center gap-2'>
+                  <div className='w-6 p-0.5' data-ischeckbox>
                     {selectedOptions.find(o => o.label === option.label)
                       ? <SquareCheck size={18} strokeWidth={1.75} className="mr-4 group-hover/checkbox:opacity-50" />
                       : <Square size={18} strokeWidth={1.75} className="mr-4 opacity-0 group-hover/checkbox:opacity-50" />
                     }
                   </div>
-                  <div className='col-span-1 justify-self-center'>
+                {selectedOptions.some(option => option?.color || option?.icon || option?.avatar) && (
+                  <div className='w-6 justify-self-center p-0.5'>
                     {option?.color && (!option.icon && !option.avatar) && <div className={`items-center w-2.5 h-2.5 grow-0 shrink-0 rounded-full ${option.color}`} />}
                     {option?.icon && (!option.avatar && !option.color) && <option.icon size={18} {...option.iconProps} />}
                     {option?.avatar && (!option.icon && !option.color) && <ComboBoxAvatar avatar={option.avatar} />}
-                  </div>
-                  <div className='col-span-4'>
-                    <div>
+                  </div>)}
+                  <div className='pr-0.5'>
                       {option.label}
-                    </div>
                     <CommandShortcut>{option.info || ''}</CommandShortcut>
                   </div>
                 </div>
