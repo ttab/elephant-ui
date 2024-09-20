@@ -1,6 +1,5 @@
 'use client'
-
-import * as React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { type LucideIcon } from 'lucide-react'
 import {
   Command,
@@ -78,15 +77,15 @@ export function ComboBox({
   modal = false,
   fetchAsyncOptions
 }: ComboBoxProps): JSX.Element {
-  const [selected, setSelectedOptions] = React.useState<DefaultValueOption[]>(selectedOptions)
+  const [selected, setSelectedOptions] = useState<DefaultValueOption[]>(selectedOptions)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setSelectedOptions(selectedOptions)
   }, [selectedOptions])
 
-  const [open, setOpen] = React.useState(false)
-  const [_options, setOptions] = React.useState(options)
-  const [loadingAsync, setloadingAsync] = React.useState(false)
+  const [open, setOpen] = useState(false)
+  const [_options, setOptions] = useState(options)
+  const [loadingAsync, setloadingAsync] = useState(false)
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
   const selectedValues = selected.map(sel => sel.label)
@@ -141,8 +140,8 @@ export function ComboBox({
     }
   }
 
-  const fetchAsyncData = React.useCallback(async (query: string): Promise<DefaultValueOption[]> => {
-    if (fetchAsyncOptions && query.length > 0) {
+  const fetchAsyncData = useCallback(async (query: string): Promise<DefaultValueOption[]> => {
+    if (fetch && query.length > 0) {
       setloadingAsync(true)
       const asyncResults = await fetchAsyncOptions(query)
       setloadingAsync(false)
