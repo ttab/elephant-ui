@@ -57,7 +57,7 @@ interface ComboBoxProps extends React.PropsWithChildren {
   max?: number
   sortOrder?: 'label' | 'value'
   modal?: boolean
-  fetchAsyncOptions?: (query: string) => Promise<DefaultValueOption[]>
+  fetch?: (query: string) => Promise<DefaultValueOption[]>
 }
 
 export function ComboBox({
@@ -75,7 +75,7 @@ export function ComboBox({
   max = 0,
   sortOrder = 'label',
   modal = false,
-  fetchAsyncOptions
+  fetch
 }: ComboBoxProps): JSX.Element {
   const [selected, setSelectedOptions] = useState<DefaultValueOption[]>(selectedOptions)
 
@@ -143,7 +143,7 @@ export function ComboBox({
   const fetchAsyncData = useCallback(async (query: string): Promise<DefaultValueOption[]> => {
     if (fetch && query.length > 0) {
       setloadingAsync(true)
-      const asyncResults = await fetchAsyncOptions(query)
+      const asyncResults = await fetch(query)
       setloadingAsync(false)
       setOptions(asyncResults)
       return asyncResults
@@ -151,7 +151,7 @@ export function ComboBox({
       setOptions(options)
       return options
     }
-  }, [fetchAsyncOptions, options])
+  }, [fetch, options])
 
   if (isDesktop) {
     return (

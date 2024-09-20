@@ -32,7 +32,7 @@ export function ComboBoxAsyncExample(): JSX.Element {
         onSelect={(option) => {
           setSelectedOptions([...selectedOptions, option])
         }}
-        fetchAsyncOptions={fetchAsyncData}
+        fetch={fetchAsyncData}
       >
       </ComboBox>
     </div>
