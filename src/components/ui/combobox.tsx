@@ -73,8 +73,8 @@ export function ComboBox({
   children,
   hideInput,
   closeOnSelect = false,
-  max = 0,
   sortOrder,
+  max,
   modal = false
 }: ComboBoxProps): JSX.Element {
   const [selected, setSelectedOptions] = React.useState<DefaultValueOption[]>(selectedOptions)
@@ -132,7 +132,7 @@ export function ComboBox({
     if (!clickedIsAlreadySelected) {
       if (max === 1) {
         newOptions = [clickedOption]
-      } else if (!(selected.length >= max)) {
+      } else if (!max || selected.length < max) {
         newOptions = [...selected, clickedOption]
       } else return
     }
