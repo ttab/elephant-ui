@@ -5,8 +5,11 @@ import {
 
 import { Header } from '../header'
 import { Code } from '../code'
-// import { KanbanIcon } from 'lucide-react'
 import { useState } from 'react'
+
+interface MockData {
+  title: string
+}
 
 export function ComboBoxAsyncExample(): JSX.Element {
   const [options, setOptions] = useState<DefaultValueOption[]>([])
@@ -16,7 +19,7 @@ export function ComboBoxAsyncExample(): JSX.Element {
     const data = await fetch('https://jsonplaceholder.typicode.com/todos/')
       .then(async res => await res.json())
       .then(json => json)
-    const newOptions: DefaultValueOption[] = data.map(d => ({ label: d.title, value: d.title }))
+    const newOptions: DefaultValueOption[] = data.map((d: MockData) => ({ label: d.title, value: d.title }))
     setOptions(newOptions)
     return newOptions
   }
