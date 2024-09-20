@@ -20,6 +20,7 @@ import { SwitchExample } from './components/switch'
 import { TextareaExample } from './components/textarea'
 import { SkeletonExample } from './components/skeleton'
 import { ComboBoxExample } from './components/combobox'
+import { ComboBoxAsyncExample } from './components/combobox-async'
 
 export function App(): JSX.Element {
   return <div className="grid grid-cols-2 gap-4 gap-y-8 max-w-[900px] m-10">
@@ -31,6 +32,7 @@ export function App(): JSX.Element {
     <SheetExample />
     <CommandExample />
     <ComboBoxExample />
+    <ComboBoxAsyncExample />
     <DialogExample />
     <DrawerExample />
     <AvatarExample />
