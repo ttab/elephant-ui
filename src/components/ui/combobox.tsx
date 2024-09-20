@@ -71,7 +71,7 @@ export function ComboBox({
   children,
   hideInput,
   closeOnSelect = false,
-  max = 0,
+  max,
   sortOrder = 'label',
   modal = false
 }: ComboBoxProps): JSX.Element {
@@ -125,7 +125,7 @@ export function ComboBox({
     if (!clickedIsAlreadySelected) {
       if (max === 1) {
         newOptions = [clickedOption]
-      } else if (!(selected.length >= max)) {
+      } else if (!max || selected.length < max) {
         newOptions = [...selected, clickedOption]
       } else return
     }
