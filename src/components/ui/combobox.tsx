@@ -1,5 +1,5 @@
 'use client'
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { type Dispatch, useCallback, useEffect, useState } from 'react'
 import { type LucideIcon } from 'lucide-react'
 import {
   Command,
@@ -193,6 +193,7 @@ export function ComboBox({
               fetchAsyncData={fetchAsyncData}
               loadingAsync={loadingAsync}
               minSearchChars={minSearchChars}
+              setOptions={setOptions}
             />
           </PopoverContent>
         </Popover>
@@ -221,6 +222,7 @@ export function ComboBox({
             fetchAsyncData={fetchAsyncData}
             loadingAsync={loadingAsync}
             minSearchChars={minSearchChars}
+            setOptions={setOptions}
           />
         </div>
       </DrawerContent>
@@ -234,6 +236,7 @@ const ComboBoxAvatar = ({ avatar }: { avatar: React.ReactNode }): React.ReactNod
 
 interface ComboBoxListProps {
   options: DefaultValueOption[]
+  setOptions: Dispatch<React.SetStateAction<DefaultValueOption[]>>
   selectedOptions: DefaultValueOption[]
   setOpen: (open: boolean) => void
   onSelect: (option: DefaultValueOption) => void
@@ -247,6 +250,7 @@ interface ComboBoxListProps {
 
 function ComboBoxList({
   options,
+  setOptions,
   selectedOptions,
   setOpen,
   onSelect,
@@ -276,6 +280,9 @@ function ComboBoxList({
               if (fetchAsyncData) {
                 if (str.length >= minSearchChars) {
                   debouncedFetch(str)
+                }
+                if (str.length < minSearchChars) {
+                  setOptions([])
                 }
               }
             }}
