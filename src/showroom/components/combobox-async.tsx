@@ -29,12 +29,10 @@ export function ComboBoxAsyncExample(): JSX.Element {
     <div>
       <ComboBox
         max={3}
-        selectedOptions={selectedOptions}
+        selectedOptions={[]}
         options={options}
         placeholder='Add an option'
-        onSelect={(option) => {
-          setSelectedOptions([...selectedOptions, option])
-        }}
+        onSelect={(option) => console.log(option)}
         fetch={fetchAsyncData}
       >
       </ComboBox>
