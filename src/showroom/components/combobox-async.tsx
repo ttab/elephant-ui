@@ -34,6 +34,7 @@ export function ComboBoxAsyncExample(): JSX.Element {
         placeholder='Add an option'
         onSelect={(option) => console.log(option)}
         fetch={fetchAsyncData}
+        minSearchChars={2}
       >
       </ComboBox>
     </div>

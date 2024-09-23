@@ -60,6 +60,7 @@ interface ComboBoxProps extends React.PropsWithChildren {
   sortOrder?: SortableKeys
   modal?: boolean
   fetch?: (query: string) => Promise<DefaultValueOption[]>
+  minSearchChars?: number
 }
 
 export function ComboBox({
@@ -77,7 +78,8 @@ export function ComboBox({
   sortOrder,
   max,
   modal = false,
-  fetch
+  fetch,
+  minSearchChars
 }: ComboBoxProps): JSX.Element {
   const [selected, setSelectedOptions] = useState<DefaultValueOption[]>(selectedOptions)
 
@@ -148,7 +150,7 @@ export function ComboBox({
   }
 
   const fetchAsyncData = useCallback(async (query: string): Promise<DefaultValueOption[]> => {
-    if (fetch && query.length > 0) {
+    if (fetch) {
       setloadingAsync(true)
       const asyncResults = await fetch(query)
       setloadingAsync(false)
@@ -190,6 +192,7 @@ export function ComboBox({
               closeOnSelect={closeOnSelect}
               fetchAsyncData={fetchAsyncData}
               loadingAsync={loadingAsync}
+              minSearchChars={minSearchChars}
             />
           </PopoverContent>
         </Popover>
@@ -217,6 +220,7 @@ export function ComboBox({
             closeOnSelect={closeOnSelect}
             fetchAsyncData={fetchAsyncData}
             loadingAsync={loadingAsync}
+            minSearchChars={minSearchChars}
           />
         </div>
       </DrawerContent>
@@ -238,6 +242,7 @@ interface ComboBoxListProps {
   closeOnSelect?: boolean
   fetchAsyncData?: (s: string) => Promise<DefaultValueOption[]>
   loadingAsync?: boolean
+  minSearchChars?: number
 }
 
 function ComboBoxList({
@@ -249,7 +254,8 @@ function ComboBoxList({
   hideInput = false,
   closeOnSelect = false,
   fetchAsyncData,
-  loadingAsync
+  loadingAsync,
+  minSearchChars = 2
 }: ComboBoxListProps): JSX.Element {
   const debouncedFetch = debounce(async (input: string) => {
     try {
@@ -268,7 +274,9 @@ function ComboBoxList({
             placeholder={label || ''}
             onValueChange={(str: string) => {
               if (fetchAsyncData) {
-                debouncedFetch(str)
+                if (str.length >= minSearchChars) {
+                  debouncedFetch(str)
+                }
               }
             }}
         />)
