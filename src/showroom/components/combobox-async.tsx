@@ -13,13 +13,13 @@ interface MockData {
 
 export function ComboBoxAsyncExample(): JSX.Element {
   const [options, setOptions] = useState<DefaultValueOption[]>([])
-  const [selectedOptions, setSelectedOptions] = useState<DefaultValueOption[]>([])
 
-  const fetchAsyncData = async (): Promise<DefaultValueOption[]> => {
+  const fetchAsyncData = async (str: string): Promise<DefaultValueOption[]> => {
     const data = await fetch('https://jsonplaceholder.typicode.com/todos/')
       .then(async res => await res.json())
       .then(json => json)
     const newOptions: DefaultValueOption[] = data.map((d: MockData) => ({ label: d.title, value: d.title }))
+      .filter((option: DefaultValueOption) => option.label.includes(str))
     setOptions(newOptions)
     return newOptions
   }
