@@ -1,6 +1,5 @@
 'use client'
-
-import * as React from 'react'
+import React, { type Dispatch, useCallback, useEffect, useState } from 'react'
 import { type LucideIcon } from 'lucide-react'
 import {
   Command,
@@ -25,6 +24,7 @@ import { Square, SquareCheck } from '@/components/icons'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
+import { debounce } from '@/lib/debounce'
 
 export interface DefaultValueOption {
   payload?: unknown
@@ -59,6 +59,8 @@ interface ComboBoxProps extends React.PropsWithChildren {
   max?: number
   sortOrder?: SortableKeys
   modal?: boolean
+  fetch?: (query: string) => Promise<DefaultValueOption[]>
+  minSearchChars?: number
 }
 
 export function ComboBox({
@@ -75,16 +77,19 @@ export function ComboBox({
   closeOnSelect = false,
   sortOrder,
   max,
-  modal = false
+  modal = false,
+  fetch,
+  minSearchChars
 }: ComboBoxProps): JSX.Element {
-  const [selected, setSelectedOptions] = React.useState<DefaultValueOption[]>(selectedOptions)
+  const [selected, setSelectedOptions] = useState<DefaultValueOption[]>(selectedOptions)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setSelectedOptions(selectedOptions)
   }, [selectedOptions])
 
-  const [open, setOpen] = React.useState(false)
-  const [_options, setOptions] = React.useState(options)
+  const [open, setOpen] = useState(false)
+  const [_options, setOptions] = useState(options)
+  const [loadingAsync, setloadingAsync] = useState(false)
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
   const selectedValues = selected.map(sel => sel.label)
@@ -125,24 +130,37 @@ export function ComboBox({
       }
     }
     const clickedIsAlreadySelected = selected.find(selOption => selOption.value === clickedOption.value)
-    let newOptions
+    let newSelected
     if (clickedIsAlreadySelected) {
-      newOptions = selected.filter(selOption => selOption.label !== clickedOption.label)
+      newSelected = selected.filter(selOption => selOption.label !== clickedOption.label)
     }
     if (!clickedIsAlreadySelected) {
       if (max === 1) {
-        newOptions = [clickedOption]
+        newSelected = [clickedOption]
       } else if (!max || selected.length < max) {
-        newOptions = [...selected, clickedOption]
+        newSelected = [...selected, clickedOption]
       } else return
     }
-    setSelectedOptions(newOptions || [])
+    setSelectedOptions(newSelected || [])
     onSelect(clickedOption)
 
     if (max === 1) {
       setOpen(false)
     }
   }
+
+  const fetchAsyncData = useCallback(async (query: string): Promise<DefaultValueOption[]> => {
+    if (fetch) {
+      setloadingAsync(true)
+      const asyncResults = await fetch(query)
+      setloadingAsync(false)
+      setOptions(asyncResults)
+      return asyncResults
+    } else {
+      setOptions(options)
+      return options
+    }
+  }, [fetch, options])
 
   if (isDesktop) {
     return (
@@ -172,6 +190,10 @@ export function ComboBox({
               label={triggerLabel}
               hideInput={hideInput}
               closeOnSelect={closeOnSelect}
+              fetchAsyncData={fetchAsyncData}
+              loadingAsync={loadingAsync}
+              minSearchChars={minSearchChars}
+              setOptions={setOptions}
             />
           </PopoverContent>
         </Popover>
@@ -197,6 +219,10 @@ export function ComboBox({
             label={triggerLabel}
             hideInput={hideInput}
             closeOnSelect={closeOnSelect}
+            fetchAsyncData={fetchAsyncData}
+            loadingAsync={loadingAsync}
+            minSearchChars={minSearchChars}
+            setOptions={setOptions}
           />
         </div>
       </DrawerContent>
@@ -210,28 +236,60 @@ const ComboBoxAvatar = ({ avatar }: { avatar: React.ReactNode }): React.ReactNod
 
 interface ComboBoxListProps {
   options: DefaultValueOption[]
+  setOptions: Dispatch<React.SetStateAction<DefaultValueOption[]>>
   selectedOptions: DefaultValueOption[]
   setOpen: (open: boolean) => void
   onSelect: (option: DefaultValueOption) => void
   label?: string
   hideInput?: boolean
   closeOnSelect?: boolean
+  fetchAsyncData?: (s: string) => Promise<DefaultValueOption[]>
+  loadingAsync?: boolean
+  minSearchChars?: number
 }
 
 function ComboBoxList({
   options,
+  setOptions,
   selectedOptions,
   setOpen,
   onSelect,
   label,
   hideInput = false,
-  closeOnSelect = false
+  closeOnSelect = false,
+  fetchAsyncData,
+  loadingAsync,
+  minSearchChars = 2
 }: ComboBoxListProps): JSX.Element {
+  const debouncedFetch = debounce(async (input: string) => {
+    try {
+      if (fetchAsyncData) {
+        await fetchAsyncData(input)
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error)
+    }
+  }, 1000)
+
   return (
-      <Command>
-        {!hideInput && <CommandInput placeholder={label || ''} />}
+      <Command shouldFilter={fetchAsyncData && false}>
+        {!hideInput && (
+          <CommandInput
+            placeholder={label || ''}
+            onValueChange={(str: string) => {
+              if (fetchAsyncData) {
+                if (str.length >= minSearchChars) {
+                  debouncedFetch(str)
+                }
+                if (str.length < minSearchChars) {
+                  setOptions([])
+                }
+              }
+            }}
+        />)
+      }
         <CommandList>
-          <CommandEmpty>Ingenting hittades</CommandEmpty>
+          <CommandEmpty>{loadingAsync ? <div>Söker...</div> : 'Ingenting hittades'}</CommandEmpty>
           <CommandGroup>
             {options.map((option) => (
               <CommandItem
