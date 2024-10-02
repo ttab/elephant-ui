@@ -1,54 +1,16 @@
 'use client'
-import React, { type Dispatch, useCallback, useEffect, useState } from 'react'
-import { type LucideIcon } from 'lucide-react'
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-  CommandShortcut
-} from '@/components/ui/command'
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger
-} from '@/components/ui/popover'
-import {
-  Drawer,
-  DrawerContent,
-  DrawerTrigger
-} from '@/components/ui/drawer'
-import { Square, SquareCheck } from '@/components/icons'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
+import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
-import { debounce } from '@/lib/debounce'
+import type { SortableKeys, DefaultValueOption } from './comboboxTypes'
+import { ComboBoxList } from './comboboxList'
 
-export interface DefaultValueOption {
-  payload?: unknown
-  label: string
-  value: string
-  icon?: LucideIcon
-  avatar?: React.ReactNode
-  iconProps?: {
-    size?: number
-    fill?: string
-    color?: string
-    strokeWidth?: number
-    className?: string
-  }
-  color?: string
-  info?: string
-}
-
-type SortableKeys = 'label' | 'value'
-
-interface ComboBoxProps extends React.PropsWithChildren {
+interface ComboBoxBaseProps extends React.PropsWithChildren {
   size?: 'xs' | 'sm' | 'default' | 'lg' | 'icon'
   onOpenChange?: (isOpen: boolean) => void
-  options: DefaultValueOption[]
   placeholder?: string
   selectedOptions: DefaultValueOption[]
   onSelect: (option: DefaultValueOption) => void
@@ -59,9 +21,23 @@ interface ComboBoxProps extends React.PropsWithChildren {
   max?: number
   sortOrder?: SortableKeys
   modal?: boolean
-  fetch?: (query: string) => Promise<DefaultValueOption[]>
   minSearchChars?: number
 }
+
+interface ComboBoxControlledProps extends ComboBoxBaseProps {
+  options: DefaultValueOption[]
+  fetch?: never
+  fetchDebounce?: never
+}
+
+interface ComboBoxUncontrolledProps extends ComboBoxBaseProps {
+  options?: never
+  fetch: (query: string) => Promise<DefaultValueOption[]>
+  fetchDebounce?: number
+}
+
+type ComboBoxProps = ComboBoxControlledProps | ComboBoxUncontrolledProps
+export type { DefaultValueOption }
 
 export function ComboBox({
   size = 'default',
@@ -79,6 +55,7 @@ export function ComboBox({
   max,
   modal = false,
   fetch,
+  fetchDebounce,
   minSearchChars
 }: ComboBoxProps): JSX.Element {
   const [selected, setSelectedOptions] = useState<DefaultValueOption[]>(selectedOptions)
@@ -88,9 +65,12 @@ export function ComboBox({
   }, [selectedOptions])
 
   const [open, setOpen] = useState(false)
-  const [_options, setOptions] = useState(options)
+  const [_options, setOptions] = useState(options || [])
   const [loadingAsync, setloadingAsync] = useState(false)
   const isDesktop = useMediaQuery('(min-width: 768px)')
+  const maxSelectedValues = useMemo(() => {
+    return (!max || max < 0) ? 0 : max
+  }, [max])
 
   const selectedValues = selected.map(sel => sel.label)
   const optionsSort = (a: DefaultValueOption, b: DefaultValueOption, sortOrder: SortableKeys): number => {
@@ -107,7 +87,7 @@ export function ComboBox({
   }
 
   const handleOpenChange = (isOpen: boolean): void => {
-    if (isOpen) {
+    if (isOpen && options) {
       const sortedOptions = sortOrder
         ? options.sort((a, b) =>
           optionsSort(a, b, sortOrder))
@@ -124,79 +104,73 @@ export function ComboBox({
     : selected.length ? selected[0].label : undefined
 
   const handleSelect = (clickedOption: DefaultValueOption): void => {
-    if (max) {
-      if (max <= 0 || max >= options.length) {
-        max = options.length
+    const clickedIsAlreadySelected = selected.find(selOption => selOption.value === clickedOption.value)
+
+    if (clickedIsAlreadySelected) {
+      setSelectedOptions(selected.filter(selOption => selOption.label !== clickedOption.label))
+    }
+
+    if (!clickedIsAlreadySelected) {
+      if (maxSelectedValues === 1) {
+        setSelectedOptions([clickedOption])
+      } else if (!maxSelectedValues || selected.length < maxSelectedValues) {
+        setSelectedOptions([...selected, clickedOption])
+      } else {
+        return
       }
     }
-    const clickedIsAlreadySelected = selected.find(selOption => selOption.value === clickedOption.value)
-    let newSelected
-    if (clickedIsAlreadySelected) {
-      newSelected = selected.filter(selOption => selOption.label !== clickedOption.label)
-    }
-    if (!clickedIsAlreadySelected) {
-      if (max === 1) {
-        newSelected = [clickedOption]
-      } else if (!max || selected.length < max) {
-        newSelected = [...selected, clickedOption]
-      } else return
-    }
-    setSelectedOptions(newSelected || [])
+
     onSelect(clickedOption)
 
-    if (max === 1) {
+    if (maxSelectedValues === 1) {
       setOpen(false)
     }
   }
 
-  const fetchAsyncData = useCallback(async (query: string): Promise<DefaultValueOption[]> => {
+  const fetchAsyncData = useCallback(async (query: string) => {
     if (fetch) {
       setloadingAsync(true)
-      const asyncResults = await fetch(query)
+      setOptions(await fetch(query))
       setloadingAsync(false)
-      setOptions(asyncResults)
-      return asyncResults
-    } else {
-      setOptions(options)
-      return options
     }
-  }, [fetch, options])
+  }, [fetch])
 
   if (isDesktop) {
     return (
-        <Popover open={open} onOpenChange={handleOpenChange} modal={modal}>
-          <PopoverTrigger asChild>
-            <Button
-              size={size}
-              variant={variant || 'outline'}
-              className={cn(
-                'w-fit text-muted-foreground font-sans font-normal whitespace-nowrap p-2',
-                className
-              )
-              }
-            >
-              {children || (triggerLabel
-                ? <>{triggerLabel}</>
-                : <>{placeholder || ''}</>)
-              }
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className='min-w-[200px] w-fit p-0' align='start'>
-            <ComboBoxList
-              options={_options}
-              selectedOptions={selected}
-              setOpen={handleOpenChange}
-              onSelect={(clickedOption) => handleSelect(clickedOption)}
-              label={triggerLabel}
-              hideInput={hideInput}
-              closeOnSelect={closeOnSelect}
-              fetchAsyncData={fetchAsyncData}
-              loadingAsync={loadingAsync}
-              minSearchChars={minSearchChars}
-              setOptions={setOptions}
-            />
-          </PopoverContent>
-        </Popover>
+      <Popover open={open} onOpenChange={handleOpenChange} modal={modal}>
+        <PopoverTrigger asChild>
+          <Button
+            size={size}
+            variant={variant || 'outline'}
+            className={cn(
+              'w-fit text-muted-foreground font-sans font-normal whitespace-nowrap p-2',
+              className
+            )
+            }
+          >
+            {children || (triggerLabel
+              ? <>{triggerLabel}</>
+              : <>{placeholder || ''}</>)
+            }
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className='min-w-[200px] w-fit p-0' align='start'>
+          <ComboBoxList
+            options={_options}
+            selectedOptions={selected}
+            setOpen={handleOpenChange}
+            onSelect={(clickedOption) => handleSelect(clickedOption)}
+            label={triggerLabel}
+            hideInput={hideInput}
+            closeOnSelect={closeOnSelect}
+            fetchAsyncData={fetchAsyncData}
+            fetchDebounce={fetchDebounce}
+            loadingAsync={loadingAsync}
+            minSearchChars={minSearchChars}
+            setOptions={setOptions}
+          />
+        </PopoverContent>
+      </Popover>
     )
   }
 
@@ -220,6 +194,7 @@ export function ComboBox({
             hideInput={hideInput}
             closeOnSelect={closeOnSelect}
             fetchAsyncData={fetchAsyncData}
+            fetchDebounce={fetchDebounce}
             loadingAsync={loadingAsync}
             minSearchChars={minSearchChars}
             setOptions={setOptions}
@@ -227,117 +202,5 @@ export function ComboBox({
         </div>
       </DrawerContent>
     </Drawer>
-  )
-}
-
-const ComboBoxAvatar = ({ avatar }: { avatar: React.ReactNode }): React.ReactNode => {
-  return <div className='h-3 w-3'>{avatar}</div>
-}
-
-interface ComboBoxListProps {
-  options: DefaultValueOption[]
-  setOptions: Dispatch<React.SetStateAction<DefaultValueOption[]>>
-  selectedOptions: DefaultValueOption[]
-  setOpen: (open: boolean) => void
-  onSelect: (option: DefaultValueOption) => void
-  label?: string
-  hideInput?: boolean
-  closeOnSelect?: boolean
-  fetchAsyncData?: (s: string) => Promise<DefaultValueOption[]>
-  loadingAsync?: boolean
-  minSearchChars?: number
-}
-
-function ComboBoxList({
-  options,
-  setOptions,
-  selectedOptions,
-  setOpen,
-  onSelect,
-  label,
-  hideInput = false,
-  closeOnSelect = false,
-  fetchAsyncData,
-  loadingAsync,
-  minSearchChars = 2
-}: ComboBoxListProps): JSX.Element {
-  const debouncedFetch = debounce(async (input: string) => {
-    try {
-      if (fetchAsyncData) {
-        await fetchAsyncData(input)
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error)
-    }
-  }, 1000)
-
-  return (
-      <Command shouldFilter={fetchAsyncData && false}>
-        {!hideInput && (
-          <CommandInput
-            placeholder={label || ''}
-            onValueChange={(str: string) => {
-              if (fetchAsyncData) {
-                if (str.length >= minSearchChars) {
-                  debouncedFetch(str)
-                }
-                if (str.length < minSearchChars) {
-                  setOptions([])
-                }
-              }
-            }}
-        />)
-      }
-        <CommandList>
-          <CommandEmpty>{loadingAsync ? <div>Söker...</div> : 'Ingenting hittades'}</CommandEmpty>
-          <CommandGroup>
-            {options.map((option) => (
-              <CommandItem
-                className='group/checkbox'
-                key={option.value}
-                value={option.label}
-                onMouseDown={(e) => {
-                  if (!(e.target instanceof HTMLDivElement)) {
-                    return
-                  }
-                  if (!e.target.dataset.ischeckbox) {
-                    setTimeout(() => {
-                      setOpen(false)
-                    })
-                  }
-                }}
-                onSelect={(selectedLabel) => {
-                  const newSelectedOption = options.find((option) => option.label.toLocaleLowerCase() === selectedLabel)
-                  if (newSelectedOption) {
-                    onSelect(newSelectedOption)
-                  }
-                  if (closeOnSelect) {
-                    setOpen(false)
-                  }
-                }}
-              >
-                <div className='grid grid-flow-col auto-cols-auto items-center gap-2'>
-                  <div className='w-6 p-0.5' data-ischeckbox>
-                    {selectedOptions.find(o => o.label === option.label)
-                      ? <SquareCheck size={18} strokeWidth={1.75} className="mr-4 group-hover/checkbox:opacity-50" />
-                      : <Square size={18} strokeWidth={1.75} className="mr-4 opacity-0 group-hover/checkbox:opacity-50" />
-                    }
-                  </div>
-                {options.some(option => option?.color || option?.icon || option?.avatar) && (
-                  <div className='w-6 justify-self-center p-0.5'>
-                    {option?.color && (!option.icon && !option.avatar) && <div className={`items-center w-2.5 h-2.5 grow-0 shrink-0 rounded-full ${option.color}`} />}
-                    {option?.icon && (!option.avatar && !option.color) && <option.icon size={18} {...option.iconProps} />}
-                    {option?.avatar && (!option.icon && !option.color) && <ComboBoxAvatar avatar={option.avatar} />}
-                  </div>)}
-                  <div className='pr-0.5'>
-                      {option.label}
-                    <CommandShortcut>{option.info || ''}</CommandShortcut>
-                  </div>
-                </div>
-              </CommandItem>
-            ))}
-          </CommandGroup>
-        </CommandList>
-      </Command>
   )
 }

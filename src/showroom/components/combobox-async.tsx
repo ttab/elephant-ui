@@ -5,22 +5,18 @@ import {
 
 import { Header } from '../header'
 import { Code } from '../code'
-import { useState } from 'react'
 
 interface MockData {
   title: string
 }
 
 export function ComboBoxAsyncExample(): JSX.Element {
-  const [options, setOptions] = useState<DefaultValueOption[]>([])
-
   const fetchAsyncData = async (str: string): Promise<DefaultValueOption[]> => {
     const data = await fetch('https://jsonplaceholder.typicode.com/todos/')
       .then(async res => await res.json())
       .then(json => json)
     const newOptions: DefaultValueOption[] = data.map((d: MockData) => ({ label: d.title, value: d.title }))
       .filter((option: DefaultValueOption) => option.label.includes(str))
-    setOptions(newOptions)
     return newOptions
   }
 
@@ -30,7 +26,6 @@ export function ComboBoxAsyncExample(): JSX.Element {
       <ComboBox
         max={3}
         selectedOptions={[]}
-        options={options}
         placeholder='Add an option'
         onSelect={(option) => console.log(option)}
         fetch={fetchAsyncData}
