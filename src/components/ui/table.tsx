@@ -28,7 +28,7 @@ React.HTMLAttributes<HTMLTableSectionElement>
 >(({ className, ...props }, ref) => (
   <tbody
     ref={ref}
-    className={cn('[&_tr:last-child]:border-0', className)}
+    className={cn('[&_tr:last-child]:border-0 [&_tr:first-child]:border-t-0', className)}
     {...props}
   />
 ))
@@ -53,7 +53,7 @@ React.HTMLAttributes<HTMLTableRowElement>
   <tr
     ref={ref}
     className={cn(
-      'border-y transition-colors hover:bg-muted data-[state=selected]:bg-muted',
+      'border-b transition-colors hover:bg-muted data-[state=selected]:bg-muted',
       className
     )}
     {...props}
