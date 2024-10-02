@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/command'
 import { Square, SquareCheck } from '@/components/icons'
 import { debounce } from '@/lib/debounce'
-import { DefaultValueOption } from './comboboxTypes'
+import type { DefaultValueOption } from './comboboxTypes'
 
 interface ComboBoxListProps {
   options: DefaultValueOption[]

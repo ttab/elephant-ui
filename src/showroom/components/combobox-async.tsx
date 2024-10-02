@@ -17,7 +17,6 @@ export function ComboBoxAsyncExample(): JSX.Element {
       .then(json => json)
     const newOptions: DefaultValueOption[] = data.map((d: MockData) => ({ label: d.title, value: d.title }))
       .filter((option: DefaultValueOption) => option.label.includes(str))
-    // setOptions(newOptions)
     return newOptions
   }
 

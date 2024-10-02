@@ -37,7 +37,7 @@ interface ComboBoxUncontrolledProps extends ComboBoxBaseProps {
 }
 
 type ComboBoxProps = ComboBoxControlledProps | ComboBoxUncontrolledProps
-export { DefaultValueOption }
+export type { DefaultValueOption }
 
 export function ComboBox({
   size = 'default',
