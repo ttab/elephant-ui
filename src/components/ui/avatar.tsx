@@ -12,7 +12,7 @@ React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
   <AvatarPrimitive.Root
     ref={ref}
     className={cn(
-      'relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
+      'flex h-10 w-10 shrink-0 overflow-hidden rounded-full',
       className
     )}
     {...props}
