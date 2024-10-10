@@ -82,7 +82,7 @@ React.TdHTMLAttributes<HTMLTableCellElement>
 >(({ className, ...props }, ref) => (
   <td
     ref={ref}
-    className={cn('border-b p-2 align-middle [&:has([role=checkbox])]:pr-0', className)}
+    className={cn('p-2 align-middle [&:has([role=checkbox])]:pr-0', className)}
     {...props}
   />
 ))
