@@ -12,6 +12,7 @@ interface ComboBoxBaseProps extends React.PropsWithChildren {
   size?: 'xs' | 'sm' | 'default' | 'lg' | 'icon'
   onOpenChange?: (isOpen: boolean) => void
   placeholder?: string
+  validation?: boolean
   selectedOptions: DefaultValueOption[]
   onSelect: (option: DefaultValueOption) => void
   className?: string
@@ -45,6 +46,7 @@ export function ComboBox({
   onOpenChange,
   options,
   placeholder,
+  validation,
   onSelect,
   selectedOptions,
   className,
@@ -142,6 +144,8 @@ export function ComboBox({
           <Button
             size={size}
             variant={variant || 'outline'}
+            data-ele-placeholder={children || triggerLabel ? undefined : 'true'}
+            data-ele-validation={validation ? 'true' : undefined}
             className={cn(
               'w-fit text-muted-foreground font-sans font-normal whitespace-nowrap p-2',
               className
