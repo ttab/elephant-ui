@@ -16,7 +16,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
       showOutsideDays={showOutsideDays}
       className={cn('p-3', className)}
       classNames={{
-        months: 'relative flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0',
+        months: 'relative flex flex-col sm:flex-row',
         month: 'space-y-4',
         month_caption: 'flex justify-center pt-1 relative items-center',
         caption_label: 'text-sm font-medium',
@@ -25,10 +25,9 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         weekdays: 'flex',
         weekday: 'text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]',
         week: 'flex w-full mt-2',
-        // cell: 'h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
         day: cn(
           buttonVariants({ variant: 'ghost' }),
-          'h-9 w-9 p-0 font-normal aria-selected:opacity-100'
+          'h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20'
         ),
         range_end: 'day-range-end',
         selected:
@@ -43,17 +42,17 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
       }}
       components={{
         PreviousMonthButton: (props) => (
-          <Button {...props} size="xs" variant="outline" className={cn(
+          <Button {...props} size='xs' variant='outline' className={cn(
             buttonVariants({ variant: 'outline' }),
-            'h-6 w-6 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-1 left-1'
+            'h-6 w-6 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-1 left-1 z-10'
           )}>
             <ChevronLeft className='h-4 w-4'/>
           </Button>
         ),
         NextMonthButton: (props) => (
-          <Button {...props} size="xs" variant="outline" className={cn(
+          <Button {...props} size='xs' variant='outline' className={cn(
             buttonVariants({ variant: 'outline' }),
-            'h-6 w-6 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-1 right-1'
+            'h-6 w-6 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-1 right-1 z-10'
           )}>
             <ChevronRight className='h-4 w-4'/>
           </Button>
