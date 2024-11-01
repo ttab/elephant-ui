@@ -98,7 +98,10 @@ export function ComboBox({
       setOptions(sortedOptions)
     }
 
-    onOpenChange && onOpenChange(isOpen)
+    if (onOpenChange) {
+      onOpenChange(isOpen)
+    }
+
     setOpen(isOpen)
   }
   const triggerLabel = selected.length > 1
