@@ -26,3 +26,4 @@ dist-ssr
 flake.nix
 flake.lock
 .envrc
+.eslintcache
