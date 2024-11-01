@@ -3,13 +3,15 @@ import { Header } from '../header'
 import { Code } from '../code'
 
 export function SwitchExample(): JSX.Element {
-  return <>
-    <Header>Switch</Header>
+  return (
+    <>
+      <Header>Switch</Header>
 
-    <div>
-      <Switch checked />
-    </div>
+      <div>
+        <Switch checked />
+      </div>
 
-    <Code code={'<Switch checked />'} />
-  </>
+      <Code code='<Switch checked />' />
+    </>
+  )
 }

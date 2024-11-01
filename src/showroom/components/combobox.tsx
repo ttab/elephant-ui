@@ -11,26 +11,27 @@ export function ComboBoxExample(): JSX.Element {
     { value: 'Alejandro Davidovich Fokina', label: 'Alejandro Davidovich Fokina', icon: KanbanIcon },
     { value: 'serenawilliams', label: 'Serena Williams', color: 'bg-[#2314aa]' },
     { value: 'andymurray', label: 'Andy Murray' },
-    { value: 'petesampras', label: 'Pete Sampras', avatar: <div className='w-full h-full bg-gradient-to-r from-cyan-500 to-blue-500 ... rounded-full outline-dotted items-center'/> },
+    { value: 'petesampras', label: 'Pete Sampras', avatar: <div className='w-full h-full bg-gradient-to-r from-cyan-500 to-blue-500 ... rounded-full outline-dotted items-center' /> },
     { value: 'rogerfederer', label: 'Roger Federer', icon: KanbanIcon }
   ]
 
   const selectedOption = [options[0]]
 
-  return <>
-    <Header>ComboBox (max 3 selections)</Header>
-    <div>
-      <ComboBox
-        max={3}
-        sortOrder='label'
-        selectedOptions={selectedOption}
-        options={options}
-        placeholder='Add a player'
-        onSelect={(option) => console.log(option)}
-      >
-      </ComboBox>
-    </div>
-    <Code code={`const options = [
+  return (
+    <>
+      <Header>ComboBox (max 3 selections)</Header>
+      <div>
+        <ComboBox
+          max={3}
+          sortOrder='label'
+          selectedOptions={selectedOption}
+          options={options}
+          placeholder='Add a player'
+          onSelect={(option) => console.log(option)}
+        >
+        </ComboBox>
+      </div>
+      <Code code={`const options = [
   { value: 'Alejandro Davidovich Fokina', label: 'Alejandro Davidovich Fokina', icon: KanbanIcon },
   { value: 'serenawilliams', label: 'Serena Williams', color: 'bg-[#2314aa]' },
   { value: 'andymurray', label: 'Andy Murray' },
@@ -48,6 +49,7 @@ const selectedOption = [options[0]]
   onSelect={(option) => console.log(option)}
 >
 </ComboBox>`}
-    />
-  </>
+      />
+    </>
+  )
 }

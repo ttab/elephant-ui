@@ -23,29 +23,31 @@ import { ComboBoxExample } from './components/combobox'
 import { ComboBoxAsyncExample } from './components/combobox-async'
 
 export function App(): JSX.Element {
-  return <div className="grid grid-cols-2 gap-4 gap-y-8 max-w-[900px] m-10">
-    <TypographyExample />
-    <ButtonExample />
-    <InputExample />
-    <PopoverExample />
-    <AlertExample />
-    <SheetExample />
-    <CommandExample />
-    <ComboBoxExample />
-    <ComboBoxAsyncExample />
-    <DialogExample />
-    <DrawerExample />
-    <AvatarExample />
-    <DropdownMenuExample />
-    <SelectExample />
-    <SeparatorExample />
-    <BadgeExample />
-    <TooltipExample />
-    <TabsExample />
-    <CalendarExample />
-    <ScrollAreaExample />
-    <SwitchExample />
-    <TextareaExample />
-    <SkeletonExample />
-  </div >
+  return (
+    <div className='grid grid-cols-2 gap-4 gap-y-8 max-w-[900px] m-10'>
+      <TypographyExample />
+      <ButtonExample />
+      <InputExample />
+      <PopoverExample />
+      <AlertExample />
+      <SheetExample />
+      <CommandExample />
+      <ComboBoxExample />
+      <ComboBoxAsyncExample />
+      <DialogExample />
+      <DrawerExample />
+      <AvatarExample />
+      <DropdownMenuExample />
+      <SelectExample />
+      <SeparatorExample />
+      <BadgeExample />
+      <TooltipExample />
+      <TabsExample />
+      <CalendarExample />
+      <ScrollAreaExample />
+      <SwitchExample />
+      <TextareaExample />
+      <SkeletonExample />
+    </div>
+  )
 }

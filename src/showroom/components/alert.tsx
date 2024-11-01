@@ -4,24 +4,27 @@ import { Header } from '../header'
 import { Code } from '../code'
 
 export function AlertExample(): JSX.Element {
-  return <>
-    <Header>Alert</Header>
+  return (
+    <>
+      <Header>Alert</Header>
 
-    <div>
-      <Alert>
-        <Waves className="h-4 w-4" />
-        <AlertTitle>Alert!</AlertTitle>
-        <AlertDescription>Place content of alertment here!</AlertDescription>
-      </Alert>
-    </div>
+      <div>
+        <Alert>
+          <Waves className='h-4 w-4' />
+          <AlertTitle>Alert!</AlertTitle>
+          <AlertDescription>Place content of alertment here!</AlertDescription>
+        </Alert>
+      </div>
 
-    <Code code={`import { Waves } from "@ttab/elephant-ui/icons"
+      <Code code={`import { Waves } from "@ttab/elephant-ui/icons"
 <Alert>
   <Waves className="h-4 w-4" />
   <AlertTitle>Alert!</AlertTitle>
   <AlertDescription>
     Place content of alertment here!
   </AlertDescription>
-</Alert>`} />
-  </>
+</Alert>`}
+      />
+    </>
+  )
 }

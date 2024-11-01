@@ -15,33 +15,34 @@ import {
 } from '@/components/ui/sheet'
 
 export function SheetExample(): JSX.Element {
-  return <>
-    <Header>Sheet</Header>
+  return (
+    <>
+      <Header>Sheet</Header>
 
-    <div>
-      <Sheet>
-        <SheetTrigger asChild>
-          <Menu />
-        </SheetTrigger>
-        <SheetContent>
-          <SheetHeader>
-            <SheetTitle>Title</SheetTitle>
-            <SheetDescription>
-              Descriptiontext
-            </SheetDescription>
-          </SheetHeader>
-          <div className="grid gap-4 py-4">
-            Body
-          </div>
-          <SheetFooter>
-            <SheetClose asChild>
-              <Button type="submit">Close</Button>
-            </SheetClose>
-          </SheetFooter>
-        </SheetContent>
-      </Sheet>
-    </div>
-    <Code code={`import { Menu } from '@ttab/elephant-ui/icons'
+      <div>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Menu />
+          </SheetTrigger>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>Title</SheetTitle>
+              <SheetDescription>
+                Descriptiontext
+              </SheetDescription>
+            </SheetHeader>
+            <div className='grid gap-4 py-4'>
+              Body
+            </div>
+            <SheetFooter>
+              <SheetClose asChild>
+                <Button type='submit'>Close</Button>
+              </SheetClose>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+      </div>
+      <Code code={`import { Menu } from '@ttab/elephant-ui/icons'
 import { Button } from '@ttab/elephant-ui'
 <Sheet>
   <SheetTrigger asChild>
@@ -61,6 +62,8 @@ import { Button } from '@ttab/elephant-ui'
       </SheetClose>
     </SheetFooter>
   </SheetContent>
-</Sheet>`} />
-  </>
+</Sheet>`}
+      />
+    </>
+  )
 }
