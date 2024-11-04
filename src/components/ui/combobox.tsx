@@ -167,7 +167,9 @@ export function ComboBox({
             label={triggerLabel}
             hideInput={hideInput}
             closeOnSelect={closeOnSelect}
-            fetchAsyncData={fetchAsyncData}
+            fetchAsyncData={fetch
+              ? fetchAsyncData
+              : undefined}
             fetchDebounce={fetchDebounce}
             loadingAsync={loadingAsync}
             minSearchChars={minSearchChars}
