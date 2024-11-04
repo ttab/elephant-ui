@@ -52,6 +52,17 @@ export function ComboBoxList({
     }
   }, fetchDebounce)
 
+  const handleMouseUp = (e: React.MouseEvent): void => {
+    e.preventDefault()
+
+    if (e.target instanceof HTMLDivElement && !e.target.dataset.ischeckbox) {
+      setTimeout(() => {
+        setOpen(false)
+      })
+    }
+  }
+
+
   return (
     <Command shouldFilter={fetchAsyncData && false}>
       {!hideInput && (
@@ -80,16 +91,7 @@ export function ComboBoxList({
               className='group/checkbox'
               key={option.value}
               value={option.label}
-              onMouseDown={(e) => {
-                if (!(e.target instanceof HTMLDivElement)) {
-                  return
-                }
-                if (!e.target.dataset.ischeckbox) {
-                  setTimeout(() => {
-                    setOpen(false)
-                  })
-                }
-              }}
+              onMouseUp={handleMouseUp}
               onSelect={(selectedLabel) => {
                 const newSelectedOption = options.find((option) => option.label.toLocaleLowerCase() === selectedLabel)
                 if (newSelectedOption) {
