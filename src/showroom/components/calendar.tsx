@@ -8,7 +8,7 @@ export function CalendarExample(): JSX.Element {
   return <>
     <Header>Calendar</Header>
 
-    <div>
+    <div className='w-fit'>
       <Calendar
         mode="single"
         selected={date}
