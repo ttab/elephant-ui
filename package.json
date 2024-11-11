@@ -2,7 +2,7 @@
   "name": "@ttab/elephant-ui",
   "description": "UI package created around Shadcn/ui, primarily for the Elephant project.",
   "private": false,
-  "version": "0.5.6",
+  "version": "0.5.7",
   "license": "MIT",
   "type": "module",
   "files": [
@@ -57,8 +57,7 @@
     "@ttab/eslint-config-elephant": "^0.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "cmdk": "^0.2.1",
-    "date-fns": "^3.6.0",
+    "cmdk": "^1.0.4",
     "lucide-react": "^0.454.0",
     "react": "^18.3.1",
     "react-day-picker": "^9.2.1",
@@ -68,7 +67,7 @@
     "vaul": "^1.1.1"
   },
   "devDependencies": {
-    "@types/node": "^20.14.1",
+    "@types/node": "^22.8.5",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/react-syntax-highlighter": "^15.5.13",
