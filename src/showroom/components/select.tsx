@@ -9,22 +9,23 @@ import { Header } from '../header'
 import { Code } from '../code'
 
 export function SelectExample(): JSX.Element {
-  return <>
-    <Header>Select</Header>
+  return (
+    <>
+      <Header>Select</Header>
 
-    <div>
-      <Select>
-        <SelectTrigger className="w-[180px]">
-          <SelectValue placeholder="Theme" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="light">Light</SelectItem>
-          <SelectItem value="dark">Dark</SelectItem>
-          <SelectItem value="system">System</SelectItem>
-        </SelectContent>
-      </Select>
-    </div>
-    <Code code={`<Select>
+      <div>
+        <Select>
+          <SelectTrigger className='w-[180px]'>
+            <SelectValue placeholder='Theme' />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value='light'>Light</SelectItem>
+            <SelectItem value='dark'>Dark</SelectItem>
+            <SelectItem value='system'>System</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+      <Code code={`<Select>
   <SelectTrigger className="w-[180px]">
     <SelectValue placeholder="Theme" />
   </SelectTrigger>
@@ -33,6 +34,8 @@ export function SelectExample(): JSX.Element {
     <SelectItem value="dark">Dark</SelectItem>
     <SelectItem value="system">System</SelectItem>
   </SelectContent>
-</Select>`} />
-  </>
+</Select>`}
+      />
+    </>
+  )
 }

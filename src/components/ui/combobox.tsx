@@ -74,7 +74,7 @@ export function ComboBox({
     return (!max || max < 0) ? 0 : max
   }, [max])
 
-  const selectedValues = selected.map(sel => sel.label)
+  const selectedValues = selected.map((sel) => sel.label)
   const optionsSort = (a: DefaultValueOption, b: DefaultValueOption, sortOrder: SortableKeys): number => {
     // Default sort first by selected/not selected, second by label
     const aSelected = selectedValues.includes(a.label)
@@ -98,7 +98,10 @@ export function ComboBox({
       setOptions(sortedOptions)
     }
 
-    onOpenChange && onOpenChange(isOpen)
+    if (onOpenChange) {
+      onOpenChange(isOpen)
+    }
+
     setOpen(isOpen)
   }
   const triggerLabel = selected.length > 1
@@ -106,10 +109,10 @@ export function ComboBox({
     : selected.length ? selected[0].label : undefined
 
   const handleSelect = (clickedOption: DefaultValueOption): void => {
-    const clickedIsAlreadySelected = selected.find(selOption => selOption.value === clickedOption.value)
+    const clickedIsAlreadySelected = selected.find((selOption) => selOption.value === clickedOption.value)
 
     if (clickedIsAlreadySelected) {
-      setSelectedOptions(selected.filter(selOption => selOption.label !== clickedOption.label))
+      setSelectedOptions(selected.filter((selOption) => selOption.label !== clickedOption.label))
     }
 
     if (!clickedIsAlreadySelected) {
@@ -149,13 +152,11 @@ export function ComboBox({
             className={cn(
               'w-fit text-muted-foreground font-sans font-normal whitespace-nowrap p-2',
               className
-            )
-            }
+            )}
           >
             {children || (triggerLabel
               ? <>{triggerLabel}</>
-              : <>{placeholder || ''}</>)
-            }
+              : <>{placeholder || ''}</>)}
           </Button>
         </PopoverTrigger>
         <PopoverContent className='min-w-[200px] w-fit p-0' align='start'>
@@ -183,9 +184,12 @@ export function ComboBox({
   return (
     <Drawer open={open} onOpenChange={handleOpenChange}>
       <DrawerTrigger asChild>
-        <Button variant='outline' className={cn(
-          'justify-start px-2 font-sans font-normal text-muted-foreground whitespace-nowrap text-ellipsis'
-        )}>
+        <Button
+          variant='outline'
+          className={cn(
+            'justify-start px-2 font-sans font-normal text-muted-foreground whitespace-nowrap text-ellipsis'
+          )}
+        >
           {triggerLabel ? <>{triggerLabel}</> : <>{placeholder}</>}
         </Button>
       </DrawerTrigger>

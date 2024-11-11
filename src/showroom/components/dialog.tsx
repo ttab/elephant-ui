@@ -12,25 +12,26 @@ import { Code } from '../code'
 
 
 export function DialogExample(): JSX.Element {
-  return <>
-    <Header>Dialog</Header>
+  return (
+    <>
+      <Header>Dialog</Header>
 
-    <div>
-      <Dialog>
-        <DialogTrigger>Open</DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Are you absolutely sure?</DialogTitle>
-            <DialogDescription>
-              This action cannot be undone. This will permanently delete your account
-              and remove your data from our servers.
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+      <div>
+        <Dialog>
+          <DialogTrigger>Open</DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Are you absolutely sure?</DialogTitle>
+              <DialogDescription>
+                This action cannot be undone. This will permanently delete your account
+                and remove your data from our servers.
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
 
-    </div>
-    <Code code={`<Dialog>
+      </div>
+      <Code code={`<Dialog>
   <DialogTrigger>Open</DialogTrigger>
   <DialogContent>
     <DialogHeader>
@@ -42,6 +43,8 @@ export function DialogExample(): JSX.Element {
     </DialogHeader>
   </DialogContent>
 </Dialog>
-`} />
-  </>
+`}
+      />
+    </>
+  )
 }

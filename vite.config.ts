@@ -14,7 +14,7 @@ import tailwindConfig from './src/styles/preset'
 function resolveTailwindPreset(): Plugin {
   return {
     name: 'TailwindPresetResolver',
-    async generateBundle(this) {
+    generateBundle() {
       const resolvedTailwindConfig = JSON.stringify(resolveConfig(tailwindConfig), null, 2)
       const outputFile = 'styles/presetResolved.json'
       this.emitFile({ type: 'asset', fileName: outputFile, source: resolvedTailwindConfig })

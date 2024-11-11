@@ -42,19 +42,29 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
       }}
       components={{
         PreviousMonthButton: (props) => (
-          <Button {...props} size='xs' variant='outline' className={cn(
-            buttonVariants({ variant: 'outline' }),
-            'h-6 w-6 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-1 left-1 z-10'
-          )}>
-            <ChevronLeft className='h-4 w-4'/>
+          <Button
+            {...props}
+            size='xs'
+            variant='outline'
+            className={cn(
+              buttonVariants({ variant: 'outline' }),
+              'h-6 w-6 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-1 left-1 z-10'
+            )}
+          >
+            <ChevronLeft className='h-4 w-4' />
           </Button>
         ),
         NextMonthButton: (props) => (
-          <Button {...props} size='xs' variant='outline' className={cn(
-            buttonVariants({ variant: 'outline' }),
-            'h-6 w-6 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-1 right-1 z-10'
-          )}>
-            <ChevronRight className='h-4 w-4'/>
+          <Button
+            {...props}
+            size='xs'
+            variant='outline'
+            className={cn(
+              buttonVariants({ variant: 'outline' }),
+              'h-6 w-6 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-1 right-1 z-10'
+            )}
+          >
+            <ChevronRight className='h-4 w-4' />
           </Button>
         )
       }}
