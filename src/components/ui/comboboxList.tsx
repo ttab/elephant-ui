@@ -93,7 +93,7 @@ export function ComboBoxList({
               value={option.label}
               onMouseUp={handleMouseUp}
               onSelect={(selectedLabel) => {
-                const newSelectedOption = options.find((option) => option.label.toLocaleLowerCase() === selectedLabel)
+                const newSelectedOption = options.find((option) => option.label === selectedLabel)
                 if (newSelectedOption) {
                   onSelect(newSelectedOption)
                 }
