@@ -91,6 +91,25 @@ export default {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out'
+      },
+      boxShadow: {
+        '3xl': `0 -1px 0px hsl(0deg 0% 0% / 0.075),
+            0 1px 1px hsl(0deg 0% 0% / 0.075),
+            0 2px 2px hsl(0deg 0% 0% / 0.075),
+            0 4px 4px hsl(0deg 0% 0% / 0.075),
+            0 8px 8px hsl(0deg 0% 0% / 0.075),
+            0 16px 16px hsl(0deg 0% 0% / 0.075),
+            0 5px 10px 30px  hsl(0deg 0% 0% / 0.015)`
+      },
+      borderColor: {
+        gray: {
+          75: '#F5F5F7'
+        }
+      },
+      backgroundColor: {
+        gray: {
+          75: '#F5F5F7'
+        }
       }
     }
   },
