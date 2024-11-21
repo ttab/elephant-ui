@@ -34,6 +34,11 @@
     "lint": "eslint . --cache",
     "preview": "vite preview"
   },
+  "overrides": {
+    "vite": {
+      "rollup": "npm:@rollup/wasm-node"
+    }
+  },
   "peerDependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
