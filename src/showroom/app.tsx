@@ -21,7 +21,7 @@ import { TextareaExample } from './components/textarea'
 import { SkeletonExample } from './components/skeleton'
 import { ComboBoxExample } from './components/combobox'
 import { ComboBoxAsyncExample } from './components/combobox-async'
-import { ColoursExample } from './components/colours'
+import { ColorsExample } from './components/colors'
 
 export function App(): JSX.Element {
   return (
@@ -29,7 +29,7 @@ export function App(): JSX.Element {
       <div className='colspan-2'>
       </div>
 
-      <ColoursExample />
+      <ColorsExample />
       <TypographyExample />
       <ButtonExample />
       <InputExample />

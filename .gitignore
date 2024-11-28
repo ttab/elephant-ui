@@ -27,3 +27,4 @@ flake.nix
 flake.lock
 .envrc
 .eslintcache
+.npmrc

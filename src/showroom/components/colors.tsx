@@ -11,9 +11,9 @@ import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
-export function ColoursExample(): JSX.Element {
+export function ColorsExample(): JSX.Element {
   const [darkMode, setDarkMode] = useState(false)
 
   useEffect(() => {
@@ -75,6 +75,13 @@ export function ColoursExample(): JSX.Element {
 
       <div>
         <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Col b</TableHead>
+              <TableHead>Col c</TableHead>
+              <TableHead>Col a</TableHead>
+            </TableRow>
+          </TableHeader>
           <TableBody>
             <TableRow data-state='focused'>
               <TableCell>Key A1</TableCell>
@@ -104,40 +111,40 @@ export function ColoursExample(): JSX.Element {
 
       <div className='flex flex-row gap-6 w-full p-4 flex-wrap col-span-2'>
         <div className='flex flex-col gap-8 pb-8'>
-          <Colour cssVar='background' />
-          <Colour cssVar='foreground' />
+          <Color cssVar='background' />
+          <Color cssVar='foreground' />
         </div>
         <div className='flex flex-col gap-8 pb-8'>
-          <Colour cssVar='primary' />
-          <Colour cssVar='primary-foreground' />
-          <Colour cssVar='secondary' />
-          <Colour cssVar='secondary-foreground' />
+          <Color cssVar='primary' />
+          <Color cssVar='primary-foreground' />
+          <Color cssVar='secondary' />
+          <Color cssVar='secondary-foreground' />
         </div>
         <div className='flex flex-col gap-8 pb-8'>
-          <Colour cssVar='input' />
-          <Colour cssVar='ring' />
-          <Colour cssVar='border' />
+          <Color cssVar='input' />
+          <Color cssVar='ring' />
+          <Color cssVar='border' />
         </div>
         <div className='flex flex-col gap-8 pb-8'>
-          <Colour cssVar='destructive' />
-          <Colour cssVar='destructive-foreground' />
-          <Colour cssVar='muted' />
-          <Colour cssVar='muted-foreground' />
-          <Colour cssVar='accent' />
-          <Colour cssVar='accent-foreground' />
-          <Colour cssVar='accent2' />
-          <Colour cssVar='accent2-foreground' />
+          <Color cssVar='destructive' />
+          <Color cssVar='destructive-foreground' />
+          <Color cssVar='muted' />
+          <Color cssVar='muted-foreground' />
+          <Color cssVar='accent' />
+          <Color cssVar='accent-foreground' />
+          <Color cssVar='accent2' />
+          <Color cssVar='accent2-foreground' />
         </div>
         <div className='flex flex-col gap-8 pb-8'>
-          <Colour cssVar='popover' />
-          <Colour cssVar='popover-foreground' />
-          <Colour cssVar='card' />
-          <Colour cssVar='card-foreground' />
+          <Color cssVar='popover' />
+          <Color cssVar='popover-foreground' />
+          <Color cssVar='card' />
+          <Color cssVar='card-foreground' />
         </div>
         <div className='flex flex-col gap-8 pb-8'>
-          <Colour cssVar='table-bg' />
-          <Colour cssVar='table-bg-focused' />
-          <Colour cssVar='table-bg-selected' />
+          <Color cssVar='table-bg' />
+          <Color cssVar='table-bg-focused' />
+          <Color cssVar='table-bg-selected' />
         </div>
       </div>
     </>
@@ -145,7 +152,7 @@ export function ColoursExample(): JSX.Element {
 }
 
 
-function Colour({ cssVar }: {
+function Color({ cssVar }: {
   cssVar: string
 }): JSX.Element {
   return (
