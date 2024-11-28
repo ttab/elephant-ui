@@ -33,6 +33,10 @@
     --input: 240 5.9% 90%;
     --ring: 240 10% 3.9%;
 
+    --table-bg: 0, 0%, 100%;
+    --table-bg-focused: 224, 85%, 97%;
+    --table-bg-selected: 224, 85%, 84%;
+
     --radius: 0.5rem;
   }
 
@@ -67,6 +71,10 @@
     --border: 240 7% 25%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+
+    --table-bg: 240 15% 12%;
+    --table-bg-focused: 228, 27%, 98%, 0.05;
+    --table-bg-selected: 225, 67%, 87%, 0.3;
   }
 }
 

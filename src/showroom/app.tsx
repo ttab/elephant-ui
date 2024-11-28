@@ -21,10 +21,15 @@ import { TextareaExample } from './components/textarea'
 import { SkeletonExample } from './components/skeleton'
 import { ComboBoxExample } from './components/combobox'
 import { ComboBoxAsyncExample } from './components/combobox-async'
+import { ColoursExample } from './components/colours'
 
 export function App(): JSX.Element {
   return (
     <div className='grid grid-cols-2 gap-4 gap-y-8 max-w-[900px] m-10'>
+      <div className='colspan-2'>
+      </div>
+
+      <ColoursExample />
       <TypographyExample />
       <ButtonExample />
       <InputExample />
