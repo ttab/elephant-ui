@@ -71,6 +71,11 @@ export default {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
+        },
+        table: {
+          DEFAULT: 'hsl(var(--table-bg))',
+          focused: 'hsl(var(--table-bg-focused))',
+          selected: 'hsl(var(--table-bg-selected))'
         }
       },
       borderRadius: {
