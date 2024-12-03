@@ -17,7 +17,6 @@ interface ComboBoxBaseProps extends React.PropsWithChildren {
   onSelect: (option: DefaultValueOption) => void
   className?: string
   variant?: 'link' | 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | null | undefined
-  hideInput?: boolean
   closeOnSelect?: boolean
   max?: number
   sortOrder?: SortableKeys
@@ -51,7 +50,6 @@ export function ComboBox({
   selectedOptions,
   className,
   children,
-  hideInput,
   closeOnSelect = false,
   sortOrder,
   max,
@@ -153,20 +151,34 @@ export function ComboBox({
               'w-fit text-muted-foreground font-sans font-normal whitespace-nowrap p-2',
               className
             )}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setOpen(true)
+                e.stopPropagation()
+              }
+            }}
           >
             {children || (triggerLabel
               ? <>{triggerLabel}</>
               : <>{placeholder || ''}</>)}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className='min-w-[200px] w-fit p-0' align='start'>
+        <PopoverContent
+          className='min-w-[200px] w-fit p-0'
+          align='start'
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') {
+              e.stopPropagation()
+              setOpen(false)
+            }
+          }}
+        >
           <ComboBoxList
             options={_options}
             selectedOptions={selected}
             setOpen={handleOpenChange}
             onSelect={(clickedOption) => handleSelect(clickedOption)}
             label={triggerLabel}
-            hideInput={hideInput}
             closeOnSelect={closeOnSelect}
             fetchAsyncData={fetch
               ? fetchAsyncData
@@ -201,7 +213,6 @@ export function ComboBox({
             setOpen={handleOpenChange}
             onSelect={(clickedOption) => handleSelect(clickedOption)}
             label={triggerLabel}
-            hideInput={hideInput}
             closeOnSelect={closeOnSelect}
             fetchAsyncData={fetchAsyncData}
             fetchDebounce={fetchDebounce}
