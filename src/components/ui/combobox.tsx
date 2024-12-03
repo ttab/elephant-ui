@@ -153,13 +153,28 @@ export function ComboBox({
               'w-fit text-muted-foreground font-sans font-normal whitespace-nowrap p-2',
               className
             )}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                setOpen(true)
+                e.stopPropagation()
+              }
+            }}
           >
             {children || (triggerLabel
               ? <>{triggerLabel}</>
               : <>{placeholder || ''}</>)}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className='min-w-[200px] w-fit p-0' align='start'>
+        <PopoverContent
+          className='min-w-[200px] w-fit p-0'
+          align='start'
+          onKeyDown={(e) => {
+            if (e.key === 'Escape') {
+              e.stopPropagation()
+              setOpen(false)
+            }
+          }}
+        >
           <ComboBoxList
             options={_options}
             selectedOptions={selected}
