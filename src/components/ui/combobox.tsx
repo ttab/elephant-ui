@@ -17,7 +17,6 @@ interface ComboBoxBaseProps extends React.PropsWithChildren {
   onSelect: (option: DefaultValueOption) => void
   className?: string
   variant?: 'link' | 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | null | undefined
-  hideInput?: boolean
   closeOnSelect?: boolean
   max?: number
   sortOrder?: SortableKeys
@@ -51,7 +50,6 @@ export function ComboBox({
   selectedOptions,
   className,
   children,
-  hideInput,
   closeOnSelect = false,
   sortOrder,
   max,
@@ -181,7 +179,6 @@ export function ComboBox({
             setOpen={handleOpenChange}
             onSelect={(clickedOption) => handleSelect(clickedOption)}
             label={triggerLabel}
-            hideInput={hideInput}
             closeOnSelect={closeOnSelect}
             fetchAsyncData={fetch
               ? fetchAsyncData
@@ -216,7 +213,6 @@ export function ComboBox({
             setOpen={handleOpenChange}
             onSelect={(clickedOption) => handleSelect(clickedOption)}
             label={triggerLabel}
-            hideInput={hideInput}
             closeOnSelect={closeOnSelect}
             fetchAsyncData={fetchAsyncData}
             fetchDebounce={fetchDebounce}

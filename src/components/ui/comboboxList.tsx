@@ -20,7 +20,6 @@ interface ComboBoxListProps {
   setOpen: (open: boolean) => void
   onSelect: (option: DefaultValueOption) => void
   label?: string
-  hideInput?: boolean
   closeOnSelect?: boolean
   fetchAsyncData?: (s: string) => Promise<void>
   fetchDebounce?: number
@@ -35,7 +34,6 @@ export function ComboBoxList({
   setOpen,
   onSelect,
   label,
-  hideInput = false,
   closeOnSelect = false,
   fetchAsyncData,
   fetchDebounce = 400,
@@ -65,22 +63,20 @@ export function ComboBoxList({
 
   return (
     <Command shouldFilter={fetchAsyncData && false}>
-      {!hideInput && (
-        <CommandInput
-          placeholder={label || ''}
-          onValueChange={(str: string) => {
-            if (fetchAsyncData) {
-              if (str.length >= minSearchChars) {
-                debouncedFetch(str)
-              }
-
-              if (str.length < minSearchChars) {
-                setOptions([])
-              }
+      <CommandInput
+        placeholder={label || ''}
+        onValueChange={(str: string) => {
+          if (fetchAsyncData) {
+            if (str.length >= minSearchChars) {
+              debouncedFetch(str)
             }
-          }}
-        />
-      )}
+
+            if (str.length < minSearchChars) {
+              setOptions([])
+            }
+          }
+        }}
+      />
 
       <CommandList>
         <CommandEmpty>{loadingAsync ? <div>Söker...</div> : 'Ingenting hittades'}</CommandEmpty>
