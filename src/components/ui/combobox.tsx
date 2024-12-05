@@ -150,7 +150,7 @@ export function ComboBox({
             data-ele-placeholder={children || triggerLabel ? undefined : 'true'}
             data-ele-validation={validation ? 'true' : undefined}
             className={cn(
-              'w-fit text-muted-foreground font-sans font-normal whitespace-nowrap p-2',
+              'w-fit font-sans font-normal whitespace-nowrap p-2',
               className
             )}
           >
@@ -187,7 +187,7 @@ export function ComboBox({
         <Button
           variant='outline'
           className={cn(
-            'justify-start px-2 font-sans font-normal text-muted-foreground whitespace-nowrap text-ellipsis'
+            'justify-start px-2 font-sans font-normal whitespace-nowrap text-ellipsis'
           )}
         >
           {triggerLabel ? <>{triggerLabel}</> : <>{placeholder}</>}
