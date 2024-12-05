@@ -156,7 +156,15 @@ export function ComboBox({
           >
             {children || (triggerLabel
               ? <>{triggerLabel}</>
-              : <span className='text-muted-foreground'>{placeholder || ''}</span>)}
+              : (
+                  <span
+                    className='text-muted-foreground'
+                    data-ele-placeholder='true'
+                    data-ele-validation={validation ? 'true' : undefined}
+                  >
+                    {placeholder || ''}
+                  </span>
+                ))}
           </Button>
         </PopoverTrigger>
         <PopoverContent className='min-w-[200px] w-fit p-0' align='start'>
