@@ -40,7 +40,7 @@
     }
   },
   "peerDependencies": {
-    "react": "^18.3.1",
+    "react": "^19.0.0",
     "react-dom": "^18.3.1"
   },
   "dependencies": {
@@ -64,7 +64,7 @@
     "clsx": "^2.1.1",
     "cmdk": "^1.0.4",
     "lucide-react": "^0.468.0",
-    "react": "^18.3.1",
+    "react": "^19.0.0",
     "react-day-picker": "^9.4.1",
     "react-dom": "^18.3.1",
     "tailwind-merge": "^2.5.5",
@@ -73,7 +73,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.1",
-    "@types/react": "^18.3.12",
+    "@types/react": "^19.0.0",
     "@types/react-dom": "^18.3.1",
     "@types/react-syntax-highlighter": "^15.5.13",
     "@vitejs/plugin-react": "^4.3.4",
