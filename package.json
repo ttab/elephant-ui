@@ -10,19 +10,19 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.es.js",
-      "require": "./dist/index.cjs.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.cjs.js"
     },
     "./icons": {
+      "types": "./dist/components/icons/index.d.ts",
       "import": "./dist/icons.es.js",
-      "require": "./dist/icons.cjs.js",
-      "types": "./dist/components/icons/index.d.ts"
+      "require": "./dist/icons.cjs.js"
     },
     "./utils": {
+      "types": "./dist/lib/utils.d.ts",
       "import": "./dist/utils.es.js",
-      "require": "./dist/utils.cjs.js",
-      "types": "./dist/lib/utils.d.ts"
+      "require": "./dist/utils.cjs.js"
     },
     "./styles/*": "./dist/styles/*"
   },
