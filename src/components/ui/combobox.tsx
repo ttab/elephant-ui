@@ -159,10 +159,10 @@ export function ComboBox({
             }}
           >
             {children || (triggerLabel
-              ? <>{triggerLabel}</>
+              ? <span className='truncate'>{triggerLabel}</span>
               : (
                   <span
-                    className='text-muted-foreground'
+                    className='text-muted-foreground truncate'
                     data-ele-placeholder='true'
                     data-ele-validation={validation ? 'true' : undefined}
                   >
