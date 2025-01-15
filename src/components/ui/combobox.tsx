@@ -172,7 +172,7 @@ export function ComboBox({
           </Button>
         </PopoverTrigger>
         <PopoverContent
-          className='min-w-[200px] w-fit p-0'
+          className='min-w-[200px] w-fit p-0 max-w-[400px]'
           align='start'
           onKeyDown={(e) => {
             if (e.key === 'Escape') {
