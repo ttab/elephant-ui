@@ -80,6 +80,31 @@ export default {
           DEFAULT: 'hsl(var(--table-bg))',
           focused: 'hsl(var(--table-bg-focused))',
           selected: 'hsl(var(--table-bg-selected))'
+        },
+        done: {
+          DEFAULT: 'hsl(var(--done))',
+          background: 'hsl(var(--done-background))',
+          border: 'hsl(var(--done-border))'
+        },
+        approved: {
+          DEFAULT: 'hsl(var(--approved))',
+          background: 'hsl(var(--approved-background))',
+          border: 'hsl(var(--approved-border))'
+        },
+        usable: {
+          DEFAULT: 'hsl(var(--usable))',
+          background: 'hsl(var(--usable-background))',
+          border: 'hsl(var(--usable-border))'
+        },
+        withheld: {
+          DEFAULT: 'hsl(var(--withheld))',
+          background: 'hsl(var(--withheld-background))',
+          border: 'hsl(var(--withheld-border))'
+        },
+        cancelled: {
+          DEFAULT: 'hsl(var(--cancelled))',
+          background: 'hsl(var(--cancelled-background))',
+          border: 'hsl(var(--cancelled-border))'
         }
       },
       borderRadius: {

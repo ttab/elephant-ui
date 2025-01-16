@@ -38,6 +38,31 @@
     --table-bg-selected: 224, 85%, 84%;
 
     --radius: 0.5rem;
+
+    /* Blue */
+    --usable: 218, 91%, 75%;
+    --usable-background: 218, 91%, 95%;
+    --usable-border: 218, 91%, 90%;
+
+    /* Green */
+    --approved: 126, 26%, 55%;
+    --approved-background: 126, 26%, 95%;
+    --approved-border: 126, 27%, 90%;
+
+    /* Yellow */
+    --done: 52, 91%, 70%;
+    --done-background: 52, 91%, 95%;
+    --done-border: 52, 91%, 90%;
+
+    /* Turquoise */
+    --withheld: 186, 71%, 54%;
+    --withheld-background: 186, 71%, 95%;
+    --withheld-border: 186, 71%, 87%;
+
+    /* Red */
+    --cancelled: 0, 84%, 60%;
+    --cancelled-background: 0, 84%, 92%;
+    --cancelled-border: 0, 84%, 87%;
   }
 
   .dark {
@@ -75,6 +100,31 @@
     --table-bg: 240 15% 12%;
     --table-bg-focused: 228, 27%, 98%, 0.05;
     --table-bg-selected: 225, 67%, 87%, 0.3;
+
+    /* Blue */
+    --usable: 218, 91%, 75%;
+    --usable-background: var(--background);
+    --usable-border: 218, 91%, 90%;
+
+    /* Green */
+    --approved: 126, 26%, 55%;
+    --approved-background: var(--background);
+    --approved-border: 126, 27%, 90%;
+
+    /* Yellow */
+    --done: 52, 91%, 70%;
+    --done-background: var(--background);
+    --done-border: 52, 91%, 90%;
+
+    /* Turquoise */
+    --withheld: 186, 71%, 54%;
+    --withheld-background: var(--background);
+    --withheld-border: 186, 71%, 87%;
+
+    /* Red */
+    --cancelled: 0, 84%, 60%;
+    --cancelled-background: var(--background);
+    --cancelled-border: 0, 84%, 87%;
   }
 }
 
