@@ -55,15 +55,14 @@
     --done-border: 52, 91%, 90%;
 
     /* Turquoise */
-    --withheld:  186, 71%, 54%;
+    --withheld: 186, 71%, 54%;
     --withheld-background: 186, 71%, 95%;
     --withheld-border: 186, 71%, 87%;
 
-
     /* Red */
-    --cancelled:0, 84%, 60%;
-    --cancelled-background:0, 84%, 92%;
-    --cancelled-border: 0, 84%, 87%
+    --cancelled: 0, 84%, 60%;
+    --cancelled-background: 0, 84%, 92%;
+    --cancelled-border: 0, 84%, 87%;
   }
 
   .dark {
@@ -118,15 +117,14 @@
     --done-border: 52, 91%, 90%;
 
     /* Turquoise */
-    --withheld:  186, 71%, 54%;
+    --withheld: 186, 71%, 54%;
     --withheld-background: var(--background);
     --withheld-border: 186, 71%, 87%;
 
-
     /* Red */
-    --cancelled:0, 84%, 60%;
+    --cancelled: 0, 84%, 60%;
     --cancelled-background: var(--background);
-    --cancelled-border: 0, 84%, 87%
+    --cancelled-border: 0, 84%, 87%;
   }
 }
 
