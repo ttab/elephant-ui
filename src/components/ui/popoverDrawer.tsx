@@ -9,13 +9,15 @@ interface PopoverDrawerProps extends React.PropsWithChildren {
   triggerLabel: string
   open?: boolean
   setOpen: React.Dispatch<boolean>
+  modal?: boolean
 }
 
 export function PopoverDrawer({
   triggerLabel,
   children,
   open,
-  setOpen
+  setOpen,
+  modal
 }: PopoverDrawerProps): JSX.Element {
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
@@ -25,7 +27,7 @@ export function PopoverDrawer({
 
   if (isDesktop) {
     return (
-      <Popover open={open} onOpenChange={handleOpenChange}>
+      <Popover open={open} onOpenChange={handleOpenChange} modal={modal}>
         <PopoverTrigger asChild>
           <Button
             variant='outline'
@@ -51,7 +53,7 @@ export function PopoverDrawer({
             }
           }}
         >
-          {React.cloneElement(children as React.ReactElement, { setOpen })}
+          {React.cloneElement(children as React.ReactElement)}
         </PopoverContent>
       </Popover>
     )
@@ -73,9 +75,9 @@ export function PopoverDrawer({
           {triggerLabel}
         </Button>
       </DrawerTrigger>
-      <DrawerContent className='min-h-fit h-screen'>
+      <DrawerContent>
         <div className='mt-4 border-t'>
-          {React.cloneElement(children as React.ReactElement, { setOpen })}
+          {React.cloneElement(children as React.ReactElement)}
         </div>
       </DrawerContent>
     </Drawer>
