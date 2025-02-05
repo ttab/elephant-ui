@@ -31,7 +31,6 @@ export function PopoverDrawer({
             variant='outline'
             size='xs'
             className='w-fit font-sans font-normal whitespace-nowrap p-2'
-            onClick={() => setOpen(!open)}
             onKeyDown={(event) => {
               if (event.key !== 'Escape') {
                 event?.stopPropagation()
@@ -65,7 +64,6 @@ export function PopoverDrawer({
           variant='outline'
           size='xs'
           className='justify-start px-2 font-sans font-normal whitespace-nowrap text-ellipsis'
-          onClick={() => setOpen(!open)}
           onKeyDown={(event) => {
             if (event.key !== 'Escape') {
               event?.stopPropagation()
