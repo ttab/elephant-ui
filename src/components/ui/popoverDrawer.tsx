@@ -9,15 +9,13 @@ interface PopoverDrawerProps extends React.PropsWithChildren {
   triggerLabel: string
   open?: boolean
   setOpen: React.Dispatch<boolean>
-  asChild?: boolean
 }
 
 export function PopoverDrawer({
   triggerLabel,
   children,
   open,
-  setOpen,
-  asChild
+  setOpen
 }: PopoverDrawerProps): JSX.Element {
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
