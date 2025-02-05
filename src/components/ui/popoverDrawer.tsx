@@ -42,8 +42,8 @@ export function PopoverDrawer({
         </PopoverTrigger>
         <PopoverContent
           className='min-w-[200px] w-fit p-0 max-w-[400px]'
-          asChild={asChild}
-          align='start'
+          align='center'
+          side='right'
           onKeyDown={(e) => {
             if (e.key === 'Escape') {
               e.stopPropagation()
@@ -73,7 +73,7 @@ export function PopoverDrawer({
           {triggerLabel}
         </Button>
       </DrawerTrigger>
-      <DrawerContent asChild={asChild}>
+      <DrawerContent className='min-h-fit h-screen'>
         <div className='mt-4 border-t'>
           {React.cloneElement(children as React.ReactElement, { setOpen })}
         </div>
