@@ -22,6 +22,8 @@ import { SkeletonExample } from './components/skeleton'
 import { ComboBoxExample } from './components/combobox'
 import { ComboBoxAsyncExample } from './components/combobox-async'
 import { ColorsExample } from './components/colors'
+import { ToggleExample } from './components/toggle'
+import { ToggleGroupExample } from './components/toggle-group'
 
 export function App(): JSX.Element {
   return (
@@ -53,6 +55,8 @@ export function App(): JSX.Element {
       <SwitchExample />
       <TextareaExample />
       <SkeletonExample />
+      <ToggleExample />
+      <ToggleGroupExample />
     </div>
   )
 }

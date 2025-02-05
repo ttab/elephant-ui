@@ -108,5 +108,11 @@ export { Textarea } from '@/components/ui/textarea'
 export { Skeleton } from '@/components/ui/skeleton'
 export { ComboBox } from '@/components/ui/combobox'
 export { useMediaQuery } from './hooks/useMediaQuery'
+export {
+  ToggleGroupItem,
+  ToggleGroup
+} from '@/components/ui/toggle-group'
+export { Toggle } from '@/components/ui/toggle'
+
 export { type DefaultValueOption } from '@/components/ui/combobox'
 export type * as CalendarTypes from 'react-day-picker'
