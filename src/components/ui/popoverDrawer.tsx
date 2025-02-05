@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
+import { Drawer, DrawerContent, DrawerTrigger, DrawerTitle, DrawerDescription } from '@/components/ui/drawer'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { Button } from './button'
 
@@ -61,6 +61,8 @@ export function PopoverDrawer({
 
   return (
     <Drawer open={open} onOpenChange={handleOpenChange}>
+      <DrawerTitle />
+      <DrawerDescription />
       <DrawerTrigger asChild>
         <Button
           variant='outline'
