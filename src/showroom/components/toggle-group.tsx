@@ -1,4 +1,4 @@
-import { ToggleGroup, ToggleGroupItem } from '@radix-ui/react-toggle-group'
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { Code } from '../code'
 import { Bold, Italic, Underline } from 'lucide-react'
 import { Header } from '../header'

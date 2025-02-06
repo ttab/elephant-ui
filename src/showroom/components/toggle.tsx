@@ -1,7 +1,7 @@
-import { Toggle } from '@radix-ui/react-toggle'
 import { Code } from '../code'
 import { Bold } from 'lucide-react'
 import { Header } from '../header'
+import { Toggle } from '@/components/ui/toggle'
 
 export const ToggleExample = (): JSX.Element => {
   return (
