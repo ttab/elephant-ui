@@ -1,3 +1,5 @@
+export { PopoverDrawer } from './components/ui/popoverDrawer'
+
 export { Button, type ButtonProps } from '@/components/ui/button'
 export { default as buttonVariants } from '@/components/ui/buttonVariants'
 export { Input } from '@/components/ui/input'
