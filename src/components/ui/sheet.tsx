@@ -64,6 +64,11 @@ SheetContentProps & { defaultClose?: boolean }
     <SheetOverlay />
     <SheetPrimitive.Content
       autoFocus
+      onKeyDown={(event) => {
+        if (event.key !== 'Escape') {
+          event.stopPropagation()
+        }
+      }}
       ref={ref}
       className={cn(sheetVariants({ side }), className)}
       {...props}
