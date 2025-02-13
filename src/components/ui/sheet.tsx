@@ -63,6 +63,7 @@ SheetContentProps & { defaultClose?: boolean }
   <SheetPortal container={container}>
     <SheetOverlay />
     <SheetPrimitive.Content
+      autoFocus
       ref={ref}
       className={cn(sheetVariants({ side }), className)}
       {...props}
