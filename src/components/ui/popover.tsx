@@ -11,8 +11,8 @@ const PopoverTrigger = PopoverPrimitive.Trigger
 
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
->(({ className, align = 'center', sideOffset = 4, ...props }, ref): JSX.Element => (
+  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content> & { allowPropagationForKeys?: string[] }
+>(({ className, align = 'center', sideOffset = 4, allowPropagationForKeys, ...props }, ref): JSX.Element => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
       ref={ref}
@@ -20,8 +20,12 @@ const PopoverContent = React.forwardRef<
       align={align}
       sideOffset={sideOffset}
       onKeyDown={(event) => {
-        if (event.key !== 'Escape') {
-          event.stopPropagation()
+        if (allowPropagationForKeys?.length) {
+          for (const key of allowPropagationForKeys) {
+            if (event.key !== key) {
+              event.stopPropagation()
+            }
+          }
         }
       }}
       className={cn(

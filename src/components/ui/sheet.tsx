@@ -58,15 +58,19 @@ interface SheetContentProps
 
 const SheetContent = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Content>,
-SheetContentProps & { defaultClose?: boolean }
->(({ side = 'right', className, children, defaultClose = false, container, ...props }, ref) => (
+SheetContentProps & { defaultClose?: boolean, allowPropagationForKeys?: string[] }
+>(({ side = 'right', className, children, defaultClose = false, allowPropagationForKeys, container, ...props }, ref) => (
   <SheetPortal container={container}>
     <SheetOverlay />
     <SheetPrimitive.Content
       autoFocus
       onKeyDown={(event) => {
-        if (event.key !== 'Escape') {
-          event.stopPropagation()
+        if (allowPropagationForKeys?.length) {
+          for (const key of allowPropagationForKeys) {
+            if (event.key !== key) {
+              event.stopPropagation()
+            }
+          }
         }
       }}
       ref={ref}
