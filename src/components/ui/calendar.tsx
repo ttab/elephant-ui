@@ -14,6 +14,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
+      autoFocus
       className={cn('p-3', className)}
       classNames={{
         months: 'relative flex flex-col sm:flex-row',
