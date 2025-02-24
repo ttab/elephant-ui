@@ -118,3 +118,4 @@ export { Toggle } from '@/components/ui/toggle'
 
 export { type DefaultValueOption } from '@/components/ui/combobox'
 export type * as CalendarTypes from 'react-day-picker'
+export { Toaster } from '@/components/ui/sonner'
