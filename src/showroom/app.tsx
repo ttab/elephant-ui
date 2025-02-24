@@ -25,6 +25,7 @@ import { ColorsExample } from './components/colors'
 import { ToggleExample } from './components/toggle'
 import { ToggleGroupExample } from './components/toggle-group'
 import { SonnerExample } from './components/sonner'
+import { Toaster } from '@/components/ui/sonner'
 
 export function App(): JSX.Element {
   return (
@@ -59,6 +60,8 @@ export function App(): JSX.Element {
       <ToggleExample />
       <ToggleGroupExample />
       <SonnerExample />
+
+      <Toaster />
     </div>
   )
 }
