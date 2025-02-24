@@ -24,6 +24,7 @@ import { ComboBoxAsyncExample } from './components/combobox-async'
 import { ColorsExample } from './components/colors'
 import { ToggleExample } from './components/toggle'
 import { ToggleGroupExample } from './components/toggle-group'
+import { SonnerExample } from './components/sonner'
 
 export function App(): JSX.Element {
   return (
@@ -57,6 +58,7 @@ export function App(): JSX.Element {
       <SkeletonExample />
       <ToggleExample />
       <ToggleGroupExample />
+      <SonnerExample />
     </div>
   )
 }
