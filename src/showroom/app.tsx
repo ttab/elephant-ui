@@ -1,6 +1,7 @@
 import { AlertExample } from './components/alert'
 import { ButtonExample } from './components/button'
 import { InputExample } from './components/input'
+import { InputWithLabelExample } from './components/input-with-label'
 import { PopoverExample } from './components/popover'
 import { SheetExample } from './components/sheet'
 import { CommandExample } from './components/command'
@@ -37,6 +38,7 @@ export function App(): JSX.Element {
       <TypographyExample />
       <ButtonExample />
       <InputExample />
+      <InputWithLabelExample />
       <PopoverExample />
       <AlertExample />
       <SheetExample />
