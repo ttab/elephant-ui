@@ -86,7 +86,7 @@ export function ComboBoxList({
             <CommandItem
               className='group/checkbox'
               key={option.value}
-              value={option.label}
+              value={option.value}
               onMouseUp={handleMouseUp}
               onSelect={(selectedLabel) => {
                 const newSelectedOption = options.find((option) => option.label === selectedLabel)
