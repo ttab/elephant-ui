@@ -64,7 +64,7 @@
     "@ttab/eslint-config-elephant": "^0.0.6",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "cmdk": "^1.0.4",
+    "cmdk": "^1.1.1",
     "lucide-react": "^0.488.0",
     "next-themes": "^0.4.6",
     "react": "^18.3.1",
