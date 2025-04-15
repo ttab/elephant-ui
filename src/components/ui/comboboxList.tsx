@@ -88,8 +88,8 @@ export function ComboBoxList({
               key={option.value}
               value={option.value}
               onMouseUp={handleMouseUp}
-              onSelect={(selectedLabel) => {
-                const newSelectedOption = options.find((option) => option.label === selectedLabel)
+              onSelect={(value) => {
+                const newSelectedOption = options.find((option) => option.value === value)
                 if (newSelectedOption) {
                   onSelect(newSelectedOption)
                 }
