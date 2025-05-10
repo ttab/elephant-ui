@@ -105,6 +105,11 @@ export default {
           DEFAULT: 'hsl(var(--cancelled))',
           background: 'hsl(var(--cancelled-background))',
           border: 'hsl(var(--cancelled-border))'
+        },
+        unpublished: {
+          DEFAULT: 'hsl(var(--unpublished))',
+          background: 'hsl(var(--unpublished-background))',
+          border: 'hsl(var(--unpublished-border))'
         }
       },
       borderRadius: {

@@ -63,6 +63,11 @@
     --cancelled: 0, 84%, 60%;
     --cancelled-background: 0, 84%, 92%;
     --cancelled-border: 0, 84%, 87%;
+
+    /* Orange */
+    --unpublished: 29, 100%, 43%;
+    --unpublished-background: 29, 100%, 75%;
+    --unpublished-border: 29, 100%, 70%;
   }
 
   .dark {
@@ -125,6 +130,11 @@
     --cancelled: 0, 84%, 60%;
     --cancelled-background: var(--background);
     --cancelled-border: 0, 84%, 87%;
+
+    /* Orange */
+    --unpublished: 29, 100%, 43%;
+    --unpublished-background: var(--background);
+    --unpublished-border: 29, 100%, 43%;
   }
 }
 
