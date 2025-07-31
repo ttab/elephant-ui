@@ -17,6 +17,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
       autoFocus
       className={cn('p-3', className)}
       classNames={{
+        day_button: 'w-full h-full',
         months: 'relative flex flex-col sm:flex-row',
         month: 'space-y-4',
         month_caption: 'flex justify-center pt-1 relative items-center',
