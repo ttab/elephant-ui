@@ -1,12 +1,5 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "./inter.css";
-
-@source "../../";
-@source "../../node_modules/@ttab/elephant-ui/dist/**/*.{js,jsx,ts,tsx}";
-@source "../node_modules/@ttab/elephant-ui/dist/**/*.{js,jsx,ts,tsx}";
-@source "../../node_modules/@ttab/textbit-plugins/dist/**/*.es.js";
-@source "../node_modules/@ttab/textbit-plugins/dist/**/*.es.js";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -15,7 +8,7 @@
   margin-inline: auto;
 }
 
-@theme inline {
+@theme {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -70,22 +63,6 @@
   --color-cancelled: var(--cancelled);
   --color-cancelled-background: var(--cancelled-background);
   --color-cancelled-border: var(--cancelled-border);
-  --breakpoint-sm: var(--breakpoint-sm);
-  --breakpoint-md: var(--breakpoint-md);
-  --breakpoint-lg: var(--breakpoint-lg);
-  --breakpoint-xl: var(--breakpoint-xl);
-  --breakpoint-2xl: var(--breakpoint-2xl);
-  --breakpoint-fhd: var(--breakpoint-fhd);
-  --breakpoint-qhd: var(--breakpoint-qhd);
-  --breakpoint-uhd: var(--breakpoint-uhd);
-  --container-sm: var(--container-sm);
-  --container-md: var(--container-md);
-  --container-lg: var(--container-lg);
-  --container-xl: var(--container-xl);
-  --container-2xl: var(--container-2xl);
-  --container-fhd: var(--container-fhd);
-  --container-qhd: var(--container-qhd);
-  --container-uhd: var(--container-uhd);
   --shadow-3xl: 0 -1px 0px hsl(0deg 0% 0% / 0.075),
     0 1px 1px hsl(0deg 0% 0% / 0.075),
     0 2px 2px hsl(0deg 0% 0% / 0.075),
@@ -97,6 +74,10 @@
   --animation-accordion-up: 'accordion-up 0.2s ease-out';
   --input: var(--input);
   --font-sans: 'Inter', sans-serif;
+  /* Breakpoints */
+  --breakpoint-fhd: 120rem;
+  --breakpoint-qhd: 160rem;
+  --breakpoint-uhd: 240rem;
 }
 
 :root {
@@ -159,23 +140,7 @@
   --sidebar-accent-foreground: oklch(20.5% 0 0);
   --sidebar-border: oklch(92.2% 0 0);
   --sidebar-ring: oklch(70.8% 0 0);
-  /* Breakpoints */
-  --breakpoint-sm: '640px';
-  --breakpoint-md: '768px';
-  --breakpoint-lg: '1024px';
-  --breakpoint-xl: '1280px';
-  --breakpoint-2xl: '1536px';
-  --breakpoint-fhd: '1920px';
-  --breakpoint-qhd: '2560px';
-  --breakpoint-uhd: '3840px';
-  --container-sm: '640px';
-  --container-md: '768px';
-  --container-lg: '1024px';
-  --container-xl: '1280px';
-  --container-2xl: '1536px';
-  --container-fhd: '1920px';
-  --container-qhd: '2560px';
-  --container-uhd: '3840px';
+  --font-sans: 'Inter', sans-serif;
 }
 
 .dark {

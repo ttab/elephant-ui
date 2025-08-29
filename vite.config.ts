@@ -20,11 +20,7 @@ export default defineConfig({
           dest: './styles'
         },
         {
-          src: './src/styles/inter.css',
-          dest: './styles'
-        },
-        {
-          src: 'node_modules/@fontsource/inter/files/inter-latin-{300,400,500,600,700,800}-normal.{woff,woff2}',
+          src: './node_modules/@fontsource/inter/files/inter-latin-{300,400,500,600,700,800}-normal.{woff,woff2}',
           dest: './styles'
         }
       ]
@@ -51,7 +47,6 @@ export default defineConfig({
         ...Object.keys(peerDependencies),
         ...Object.keys(dependencies)],
       output: {
-        preserveModules: true,
         exports: 'named'
       }
     },

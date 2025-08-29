@@ -155,13 +155,15 @@ export function ColorsExample(): JSX.Element {
 function Color({ cssVar }: {
   cssVar: string
 }): JSX.Element {
+  const bgColor = getComputedStyle(document.documentElement).getPropertyValue(`--${cssVar}`)
+
   return (
     <div className='text-center'>
       <div
         className='w-28 h-16 border-4 shadow-3xl'
         style={{
-          backgroundColor: `hsl(var(--${cssVar}))`,
-          borderColor: `hsl(var(--${cssVar}))`
+          backgroundColor: bgColor,
+          borderColor: bgColor
         }}
       >
       </div>
