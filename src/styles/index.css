@@ -63,6 +63,9 @@
   --color-cancelled: var(--cancelled);
   --color-cancelled-background: var(--cancelled-background);
   --color-cancelled-border: var(--cancelled-border);
+  --color-unpublished: var(--unpublished);
+  --color-unpublished-background: var(--unpublished-background);
+  --color-unpublished-border: var(--unpublished-border);
   --shadow-3xl: 0 -1px 0px hsl(0deg 0% 0% / 0.075),
     0 1px 1px hsl(0deg 0% 0% / 0.075),
     0 2px 2px hsl(0deg 0% 0% / 0.075),
@@ -126,6 +129,10 @@
   --cancelled: oklch(63.58% 0.2088 25.41);
   --cancelled-background: oklch(91.45% 0.0391 17.89);
   --cancelled-border: oklch(86.4% 0.0644 18.48);
+  /* Orange */
+  --unpublished: oklch(64.8% 0.42 51.56);
+  --unpublished-background: oklch(84.6% 0.2725 63.256);
+  --unpublished-border: oklch(81.9% 0.3225 62.483);
   /* new undefined */
   --chart-1: oklch(64.6% 0.222 41.116);
   --chart-2: oklch(60% 0.118 184.704);
@@ -188,6 +195,10 @@
   --cancelled: oklch(63.58% 0.2088 25.41);
   --cancelled-background: var(--background);
   --cancelled-border: oklch(86.4% 0.0644 18.48);
+  /* Orange */
+  --unpublished: oklch(64.78% 0.1676 51.56);
+  --unpublished-background: var(--background);
+  --unpublished-border: oklch(81.9% 0.3225 62.483);
   /* New undefined */
   --chart-1: oklch(48.8% 0.243 264.376);
   --chart-2: oklch(69.6% 0.17 162.48);

@@ -147,6 +147,40 @@ export function ColorsExample(): JSX.Element {
           <Color cssVar='table-bg-selected' />
         </div>
       </div>
+
+      <Header>Status colors</Header>
+      <div className='flex flex-col gap-6 w-full p-4 flex-wrap col-span-2'>
+        <div className='flex flex-row gap-8 pb-8'>
+          <Color cssVar='usable' />
+          <Color cssVar='usable-background' />
+          <Color cssVar='usable-border' />
+        </div>
+        <div className='flex flex-row gap-8 pb-8'>
+          <Color cssVar='approved' />
+          <Color cssVar='approved-background' />
+          <Color cssVar='approved-border' />
+        </div>
+        <div className='flex flex-row gap-8 pb-8'>
+          <Color cssVar='done' />
+          <Color cssVar='done-background' />
+          <Color cssVar='done-border' />
+        </div>
+        <div className='flex flex-row gap-8 pb-8'>
+          <Color cssVar='withheld' />
+          <Color cssVar='withheld-background' />
+          <Color cssVar='withheld-border' />
+        </div>
+        <div className='flex flex-row gap-8 pb-8'>
+          <Color cssVar='cancelled' />
+          <Color cssVar='cancelled-background' />
+          <Color cssVar='cancelled-border' />
+        </div>
+        <div className='flex flex-row gap-8 pb-8'>
+          <Color cssVar='unpublished' />
+          <Color cssVar='unpublished-background' />
+          <Color cssVar='unpublished-border' />
+        </div>
+      </div>
     </>
   )
 }
