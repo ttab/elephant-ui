@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Waves } from 'lucide-react'
+import { WavesIcon } from 'lucide-react'
 import { Header } from '../header'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import {
@@ -36,7 +36,7 @@ export function ColorsExample(): JSX.Element {
       <div>
 
         <Alert className='shadow-3xl border-none'>
-          <Waves className='h-4 w-4' />
+          <WavesIcon className='h-4 w-4' />
           <AlertTitle>Alert!</AlertTitle>
 
           <AlertDescription className='flex flex-col gap-6'>

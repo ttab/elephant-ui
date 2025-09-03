@@ -184,7 +184,7 @@
   --approved-background: var(--background);
   --approved-border: oklch(93% 0.0211 147.63);
   /* Yellow */
-  --done: oklch(oklch(91.62% 0.1424 100.94));
+  --done: oklch(91.62% 0.1424 100.94);
   --done-background: var(--background);
   --done-border: oklch(97.05% 0.0534 100.43);
   /* Turquoise */

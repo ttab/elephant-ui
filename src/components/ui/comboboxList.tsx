@@ -9,7 +9,7 @@ import {
   CommandList,
   CommandShortcut
 } from '@/components/ui/command'
-import { Square, SquareCheck } from '@/components/icons'
+import { SquareIcon, SquareCheckIcon } from '@/components/icons'
 import { debounce } from '@/lib/debounce'
 import type { DefaultValueOption } from './comboboxTypes'
 
@@ -102,8 +102,8 @@ export function ComboBoxList({
               <div className='grid grid-flow-col auto-cols-auto items-center gap-2'>
                 <div className='w-6 p-0.5' data-ischeckbox>
                   {selectedOptions.find((o) => o.value === option.value)
-                    ? <SquareCheck size={18} strokeWidth={1.75} className='mr-4 group-hover/checkbox:opacity-50' />
-                    : <Square size={18} strokeWidth={1.75} className='mr-4 opacity-0 group-hover/checkbox:opacity-50' />}
+                    ? <SquareCheckIcon size={18} strokeWidth={1.75} className='mr-4 group-hover/checkbox:opacity-50' />
+                    : <SquareIcon size={18} strokeWidth={1.75} className='mr-4 opacity-0 group-hover/checkbox:opacity-50' />}
                 </div>
                 {options.some((option) => option?.color || option?.icon || option?.avatar) && (
                   <div className='w-6 justify-self-center p-0.5'>

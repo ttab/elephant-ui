@@ -22,7 +22,13 @@ export default defineConfig({
         {
           src: './node_modules/@fontsource/inter/files/inter-latin-{300,400,500,600,700,800}-normal.{woff,woff2}',
           dest: './styles'
+        },
+        {
+          src: 'src/types/lucide-react.d.ts',
+          dest: 'components/icons',
+          rename: 'index.d.ts'
         }
+
       ]
     })
   ],

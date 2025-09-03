@@ -1,6 +1,6 @@
 'use client'
 
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import * as React from 'react'
 import { DayPicker } from 'react-day-picker'
 import { Button } from '@/components/ui/button'
@@ -53,7 +53,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
               'h-6 w-6 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-1 left-1 z-10'
             )}
           >
-            <ChevronLeft className='h-4 w-4' />
+            <ChevronLeftIcon className='h-4 w-4' />
           </Button>
         ),
         NextMonthButton: (props) => (
@@ -66,7 +66,7 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
               'h-6 w-6 bg-transparent p-0 opacity-50 hover:opacity-100 absolute top-1 right-1 z-10'
             )}
           >
-            <ChevronRight className='h-4 w-4' />
+            <ChevronRightIcon className='h-4 w-4' />
           </Button>
         )
       }}

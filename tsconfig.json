@@ -41,8 +41,7 @@
   },
   "include": [
     "./src/**/*",
-    "postcss.config.js",
-    "tailwind.config.ts",
+    "./src/types/**/*",
     "vite.config.ts"
   ]
 }
