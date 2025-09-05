@@ -2,7 +2,7 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
 
 import { App } from './app'
-import '../styles/index.css'
+import './index.css'
 
 const root = document.getElementById('root')
 

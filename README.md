@@ -1,6 +1,7 @@
 # ElephantUI
 
 ## Usage
+
 See contents of the directory `src/components/ui` for available components.
 
 See [shadcn/UI documentation](https://ui.shadcn.com/docs/components/) for usage of available components — or when necessary the local showroom possibilities as described below.
@@ -8,38 +9,62 @@ See [shadcn/UI documentation](https://ui.shadcn.com/docs/components/) for usage 
 Install in your project using `npm i @ttab/elephant-ui`
 
 ## Build styles
+
 In the project in which you are using `elephant-ui` add the following:
 
-`tailwind.config.ts`
+`vite.config.ts`
+
 ```js
-import preset from '@ttab/elephant-ui/styles/preset'
-export default {
-  presets: [preset],
-  content: [
-    './src/**/*.{html,tsx}',
-    './node_modules/@ttab/elephant-ui/dist/src/components/ui/*.js'
-  ],
-  theme: {
-    extend: {}
-  },
-  plugins: []
-} satisfies Config
-
+    plugins: [
+      viteStaticCopy({
+        targets: [
+          {
+            src: './node_modules/@ttab/elephant-ui/dist/styles/**/*.{woff,woff2}',
+            dest: './assets'
+          }
+        ]
+      }),
+      react(),
+      tailwindcss()
+    ],
 ```
-This will add the needed preset from `elephant-ui` and add the needed paths to the `content` array.
 
-`input.css`
+Vite plugin `tailwindcss()` will handle the build of the tailwind styles. With HMR during development.
+
+`<projext>/index.css`
+
 ```css
-@import '@ttab/elephant-ui/dist/styles/layout-base.css';
+@import "tailwindcss";
+@import '@ttab/elephant-ui/styles/index.css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Define other packages from which classes should be included in the final CSS */
+@source "../node_modules/@ttab/elephant-ui";
+@source "../node_modules/@ttab/textbit";
+
+/* Define fonts and paths */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 300;
+  src: url(/elephant/assets/inter-latin-300-normal.woff2) format('woff2'), url(/elephant/assets/inter-latin-300-normal.woff) format('woff');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+```
+
+`<project>/App.tsx` or equivalent entry point
+
+```js
+import './index.css'
 
 ```
-This will import the needed base styles from `elephant-ui` and add the needed `tailwind` directives.
+
+This will import the needed base styles from `elephant-ui` and prepare for the tailwind build.
+
+See complete usage in `elephant-chrome` repo.
 
 ## Import
+
 ```typescript
 // Components
 import { Button } from '@ttab/elephant-ui'
@@ -48,10 +73,13 @@ import { Waves } from '@ttab/elephant-ui/icons'
 // Utils
 import { cn } from '@ttab/elephant-ui/lib/utils'
 ```
+
 ## Icons
+
 Icons are from [lucide-react](https://lucide.dev/icons/).
 
 ## Adding additional components
+
 See available components at [shadcn/UI documentation](https://ui.shadcn.com/docs/components/).
 
 1. Use for example `npx shadcn-ui@latest add accordion` to add an accordion.

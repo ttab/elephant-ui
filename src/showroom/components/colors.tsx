@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Waves } from 'lucide-react'
+import { WavesIcon } from 'lucide-react'
 import { Header } from '../header'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import {
@@ -36,7 +36,7 @@ export function ColorsExample(): JSX.Element {
       <div>
 
         <Alert className='shadow-3xl border-none'>
-          <Waves className='h-4 w-4' />
+          <WavesIcon className='h-4 w-4' />
           <AlertTitle>Alert!</AlertTitle>
 
           <AlertDescription className='flex flex-col gap-6'>
@@ -147,6 +147,40 @@ export function ColorsExample(): JSX.Element {
           <Color cssVar='table-bg-selected' />
         </div>
       </div>
+
+      <Header>Status colors</Header>
+      <div className='flex flex-col gap-6 w-full p-4 flex-wrap col-span-2'>
+        <div className='flex flex-row gap-8 pb-8'>
+          <Color cssVar='usable' />
+          <Color cssVar='usable-background' />
+          <Color cssVar='usable-border' />
+        </div>
+        <div className='flex flex-row gap-8 pb-8'>
+          <Color cssVar='approved' />
+          <Color cssVar='approved-background' />
+          <Color cssVar='approved-border' />
+        </div>
+        <div className='flex flex-row gap-8 pb-8'>
+          <Color cssVar='done' />
+          <Color cssVar='done-background' />
+          <Color cssVar='done-border' />
+        </div>
+        <div className='flex flex-row gap-8 pb-8'>
+          <Color cssVar='withheld' />
+          <Color cssVar='withheld-background' />
+          <Color cssVar='withheld-border' />
+        </div>
+        <div className='flex flex-row gap-8 pb-8'>
+          <Color cssVar='cancelled' />
+          <Color cssVar='cancelled-background' />
+          <Color cssVar='cancelled-border' />
+        </div>
+        <div className='flex flex-row gap-8 pb-8'>
+          <Color cssVar='unpublished' />
+          <Color cssVar='unpublished-background' />
+          <Color cssVar='unpublished-border' />
+        </div>
+      </div>
     </>
   )
 }
@@ -155,13 +189,15 @@ export function ColorsExample(): JSX.Element {
 function Color({ cssVar }: {
   cssVar: string
 }): JSX.Element {
+  const bgColor = getComputedStyle(document.documentElement).getPropertyValue(`--${cssVar}`)
+
   return (
     <div className='text-center'>
       <div
         className='w-28 h-16 border-4 shadow-3xl'
         style={{
-          backgroundColor: `hsl(var(--${cssVar}))`,
-          borderColor: `hsl(var(--${cssVar}))`
+          backgroundColor: bgColor,
+          borderColor: bgColor
         }}
       >
       </div>

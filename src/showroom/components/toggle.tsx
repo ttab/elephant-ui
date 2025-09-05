@@ -1,5 +1,5 @@
 import { Code } from '../code'
-import { Bold } from 'lucide-react'
+import { BoldIcon } from 'lucide-react'
 import { Header } from '../header'
 import { Toggle } from '@/components/ui/toggle'
 
@@ -9,7 +9,7 @@ export const ToggleExample = (): JSX.Element => {
       <Header>Toggle</Header>
       <div>
         <Toggle aria-label='Toggle bold'>
-          <Bold className='h-4 w-4' />
+          <BoldIcon className='h-4 w-4' />
         </Toggle>
       </div>
       <Code code={`<Toggle aria-label='Toggle bold'>

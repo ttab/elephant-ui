@@ -1,4 +1,4 @@
-import { Mail } from 'lucide-react'
+import { MailIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Header } from '../header'
 import { Code } from '../code'
@@ -42,7 +42,7 @@ export function ButtonExample(): JSX.Element {
 
       <div>
         <Button>
-          <Mail className='mr-2 h-4 w-4' />
+          <MailIcon className='mr-2 h-4 w-4' />
           {' '}
           Login&nbsp;with&nbsp;email&nbsp;icon
         </Button>
