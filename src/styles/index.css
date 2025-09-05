@@ -8,7 +8,7 @@
   margin-inline: auto;
 }
 
-@theme {
+@theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -77,10 +77,6 @@
   --animation-accordion-up: 'accordion-up 0.2s ease-out';
   --input: var(--input);
   --font-sans: 'Inter', sans-serif;
-  /* Breakpoints */
-  --breakpoint-fhd: 120rem;
-  --breakpoint-qhd: 160rem;
-  --breakpoint-uhd: 240rem;
 }
 
 :root {
@@ -148,6 +144,9 @@
   --sidebar-border: oklch(92.2% 0 0);
   --sidebar-ring: oklch(70.8% 0 0);
   --font-sans: 'Inter', sans-serif;
+  --breakpoint-fhd: 120rem;
+  --breakpoint-qhd: 160rem;
+  --breakpoint-uhd: 240rem;
 }
 
 .dark {
