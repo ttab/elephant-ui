@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Header } from '../header'
 import { Code } from '../code'
-import { Menu } from 'lucide-react'
+import { MenuIcon } from 'lucide-react'
 
 import {
   Sheet,
@@ -22,7 +22,7 @@ export function SheetExample(): JSX.Element {
       <div>
         <Sheet>
           <SheetTrigger asChild>
-            <Menu />
+            <MenuIcon />
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
