@@ -89,8 +89,7 @@ export function ComboBox({
   const handleOpenChange = (isOpen: boolean): void => {
     if (isOpen && options) {
       const sortedOptions = sortOrder
-        ? options.sort((a, b) =>
-          optionsSort(a, b, sortOrder))
+        ? options.sort((a, b) => optionsSort(a, b, sortOrder))
         : options
 
       setOptions(sortedOptions)
