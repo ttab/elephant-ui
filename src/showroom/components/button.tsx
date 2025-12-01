@@ -2,8 +2,9 @@ import { MailIcon } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
-export function ButtonExample(): JSX.Element {
+export function ButtonExample(): React.JSX.Element {
   return (
     <>
       <Header>Button</Header>

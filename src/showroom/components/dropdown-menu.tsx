@@ -8,9 +8,10 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
 
-export function DropdownMenuExample(): JSX.Element {
+export function DropdownMenuExample(): React.JSX.Element {
   return (
     <>
       <Header>DropdownMenu</Header>

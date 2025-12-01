@@ -1,7 +1,8 @@
+import React from 'react'
 import { Header } from '../header'
 import { Code } from '../code'
 
-export function TypographyExample(): JSX.Element {
+export function TypographyExample(): React.JSX.Element {
   const exampleString = 'å ä æ ö ø Þ ß Å Ä Æ Ö Ø þ'
 
   return (

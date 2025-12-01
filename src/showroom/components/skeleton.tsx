@@ -1,7 +1,8 @@
 import { Skeleton } from '@/components/ui/skeleton'
 import { Code } from '../code'
+import React from 'react'
 
-export function SkeletonExample(): JSX.Element {
+export function SkeletonExample(): React.JSX.Element {
   return (
     <>
       <div className='flex items-center space-x-4'>

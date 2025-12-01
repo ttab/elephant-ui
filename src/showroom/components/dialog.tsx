@@ -9,9 +9,10 @@ import {
 
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
 
-export function DialogExample(): JSX.Element {
+export function DialogExample(): React.JSX.Element {
   return (
     <>
       <Header>Dialog</Header>

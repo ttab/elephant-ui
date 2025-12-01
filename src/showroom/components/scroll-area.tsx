@@ -1,8 +1,9 @@
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
-export function ScrollAreaExample(): JSX.Element {
+export function ScrollAreaExample(): React.JSX.Element {
   return (
     <>
       <Header>ScrollArea</Header>

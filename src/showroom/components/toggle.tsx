@@ -1,9 +1,10 @@
+import React from 'react'
 import { Code } from '../code'
 import { BoldIcon } from 'lucide-react'
 import { Header } from '../header'
 import { Toggle } from '@/components/ui/toggle'
 
-export const ToggleExample = (): JSX.Element => {
+export const ToggleExample = (): React.JSX.Element => {
   return (
     <>
       <Header>Toggle</Header>

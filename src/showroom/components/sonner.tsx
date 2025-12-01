@@ -2,8 +2,9 @@ import { toast } from 'sonner'
 import { Header } from '../header'
 import { Code } from '../code'
 import { Button } from '@/components/ui/button'
+import React from 'react'
 
-export function SonnerExample(): JSX.Element {
+export function SonnerExample(): React.JSX.Element {
   return (
     <>
       <Header>Sonner</Header>

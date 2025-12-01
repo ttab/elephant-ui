@@ -18,7 +18,7 @@ export function PopoverDrawer({
   open,
   setOpen,
   modal
-}: PopoverDrawerProps): JSX.Element {
+}: PopoverDrawerProps): React.JSX.Element {
   const isDesktop = useMediaQuery('(min-width: 768px)')
 
   const handleOpenChange = (isOpen: boolean): void => {

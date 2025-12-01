@@ -1,8 +1,9 @@
 import { Textarea } from '@/components/ui/textarea'
 import { Code } from '../code'
 import { Header } from '../header'
+import React from 'react'
 
-export function TextareaExample(): JSX.Element {
+export function TextareaExample(): React.JSX.Element {
   return (
     <>
       <Header>Textarea</Header>

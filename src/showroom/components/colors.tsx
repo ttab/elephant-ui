@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { WavesIcon } from 'lucide-react'
 import { Header } from '../header'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
@@ -13,7 +13,7 @@ import { Switch } from '@/components/ui/switch'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 
-export function ColorsExample(): JSX.Element {
+export function ColorsExample(): React.JSX.Element {
   const [darkMode, setDarkMode] = useState(false)
 
   useEffect(() => {
@@ -188,7 +188,7 @@ export function ColorsExample(): JSX.Element {
 
 function Color({ cssVar }: {
   cssVar: string
-}): JSX.Element {
+}): React.JSX.Element {
   const bgColor = getComputedStyle(document.documentElement).getPropertyValue(`--${cssVar}`)
 
   return (

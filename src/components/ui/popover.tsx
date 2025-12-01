@@ -12,7 +12,7 @@ const PopoverTrigger = PopoverPrimitive.Trigger
 const PopoverContent = React.forwardRef<
   React.ElementRef<typeof PopoverPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content> & { allowPropagationForKeys?: string[] }
->(({ className, align = 'center', sideOffset = 4, allowPropagationForKeys, ...props }, ref): JSX.Element => (
+>(({ className, align = 'center', sideOffset = 4, allowPropagationForKeys, ...props }, ref): React.JSX.Element => (
   <PopoverPrimitive.Portal>
     <PopoverPrimitive.Content
       ref={ref}

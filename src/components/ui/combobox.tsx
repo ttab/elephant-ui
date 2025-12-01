@@ -57,7 +57,7 @@ export function ComboBox({
   fetch,
   fetchDebounce,
   minSearchChars
-}: ComboBoxProps): JSX.Element {
+}: ComboBoxProps): React.JSX.Element {
   const [selected, setSelectedOptions] = useState<DefaultValueOption[]>(selectedOptions)
 
   useEffect(() => {

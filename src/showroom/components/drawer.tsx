@@ -11,9 +11,10 @@ import {
 import { Header } from '../header'
 import { Code } from '../code'
 import { Button } from '@/components/ui/button'
+import React from 'react'
 
 
-export function DrawerExample(): JSX.Element {
+export function DrawerExample(): React.JSX.Element {
   return (
     <>
       <Header>Drawer</Header>

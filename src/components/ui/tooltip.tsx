@@ -25,7 +25,7 @@ const TooltipContent = React.forwardRef<
 ))
 TooltipContent.displayName = TooltipPrimitive.Content.displayName
 
-const Tooltip = ({ content, children }: TooltipProps): JSX.Element => (
+const Tooltip = ({ content, children }: TooltipProps): React.JSX.Element => (
   <TooltipPrimitive.Provider>
     <TooltipPrimitive.Root>
       <TooltipPrimitive.Trigger asChild>
