@@ -27,8 +27,9 @@ import { ToggleExample } from './components/toggle'
 import { ToggleGroupExample } from './components/toggle-group'
 import { SonnerExample } from './components/sonner'
 import { Toaster } from '@/components/ui/sonner'
+import React from 'react'
 
-export function App(): JSX.Element {
+export function App(): React.JSX.Element {
   return (
     <div className='grid grid-cols-2 gap-4 gap-y-8 max-w-[900px] m-10'>
       <div className='colspan-2'>

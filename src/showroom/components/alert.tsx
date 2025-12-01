@@ -2,8 +2,9 @@ import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
 import { WavesIcon } from 'lucide-react'
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
-export function AlertExample(): JSX.Element {
+export function AlertExample(): React.JSX.Element {
   return (
     <>
       <Header>Alert</Header>

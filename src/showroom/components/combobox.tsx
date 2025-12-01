@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   ComboBox
 } from '@/components/ui/combobox'
@@ -6,7 +7,7 @@ import { Header } from '../header'
 import { Code } from '../code'
 import { KanbanIcon } from 'lucide-react'
 
-export function ComboBoxExample(): JSX.Element {
+export function ComboBoxExample(): React.JSX.Element {
   const options = [
     { value: 'Alejandro Davidovich Fokina', label: 'Alejandro Davidovich Fokina', icon: KanbanIcon },
     { value: 'serenawilliams', label: 'Serena Williams', color: 'bg-[#2314aa]' },

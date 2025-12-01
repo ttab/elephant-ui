@@ -7,8 +7,9 @@ import {
 } from '@/components/ui/select'
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
-export function SelectExample(): JSX.Element {
+export function SelectExample(): React.JSX.Element {
   return (
     <>
       <Header>Select</Header>

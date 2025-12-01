@@ -1,8 +1,9 @@
 import { Input } from '@/components/ui/input'
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
-export function InputExample(): JSX.Element {
+export function InputExample(): React.JSX.Element {
   return (
     <>
       <Header>Input</Header>

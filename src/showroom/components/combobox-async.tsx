@@ -1,3 +1,4 @@
+import React from 'react'
 import {
   ComboBox,
   type DefaultValueOption
@@ -10,7 +11,7 @@ interface MockData {
   title: string
 }
 
-export function ComboBoxAsyncExample(): JSX.Element {
+export function ComboBoxAsyncExample(): React.JSX.Element {
   const fetchAsyncData = async (str: string): Promise<DefaultValueOption[]> => {
     const data = await fetch('https://jsonplaceholder.typicode.com/todos/')
       .then(async (res) => await res.json())

@@ -39,7 +39,7 @@ export function ComboBoxList({
   fetchDebounce = 400,
   loadingAsync,
   minSearchChars = 2
-}: ComboBoxListProps): JSX.Element {
+}: ComboBoxListProps): React.JSX.Element {
   const debouncedFetch = debounce(async (input: string) => {
     try {
       if (fetchAsyncData) {
@@ -105,7 +105,7 @@ export function ComboBoxList({
                     ? <SquareCheckIcon size={18} strokeWidth={1.75} className='mr-4 group-hover/checkbox:opacity-50' />
                     : <SquareIcon size={18} strokeWidth={1.75} className='mr-4 opacity-0 group-hover/checkbox:opacity-50' />}
                 </div>
-                {options.some((option) => option?.color || option?.icon || option?.avatar) && (
+                {options.some((option) => !!option?.color || !!option?.icon || !!option?.avatar) && (
                   <div className='w-6 justify-self-center p-0.5'>
                     {option?.color && (!option.icon && !option.avatar) && <div className={`items-center w-2.5 h-2.5 grow-0 shrink-0 rounded-full ${option.color}`} />}
                     {option?.icon && (!option.avatar && !option.color) && <option.icon size={18} {...option.iconProps} />}
