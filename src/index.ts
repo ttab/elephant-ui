@@ -71,7 +71,8 @@ export {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
+  SelectGroup
 } from '@/components/ui/select'
 export {
   Badge
