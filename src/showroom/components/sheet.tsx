@@ -14,7 +14,9 @@ import {
   SheetTrigger
 } from '@/components/ui/sheet'
 
-export function SheetExample(): JSX.Element {
+import React from 'react'
+
+export function SheetExample(): React.JSX.Element {
   return (
     <>
       <Header>Sheet</Header>

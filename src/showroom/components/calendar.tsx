@@ -2,8 +2,9 @@ import { useState } from 'react'
 import { Calendar } from '@/components/ui/calendar'
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
-export function CalendarExample(): JSX.Element {
+export function CalendarExample(): React.JSX.Element {
   const [date, setDate] = useState<Date | undefined>(new Date())
   return (
     <>

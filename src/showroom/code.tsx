@@ -1,9 +1,10 @@
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter'
 import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx'
 import prism from 'react-syntax-highlighter/dist/esm/styles/prism/prism'
+import React from 'react'
 
 SyntaxHighlighter.registerLanguage('jsx', jsx)
-export function Code({ code }: { code: string | string[] }): JSX.Element {
+export function Code({ code }: { code: string | string[] }): React.JSX.Element {
   return (
     <div className='whitespace-pre-line font-mono text-xs text-indigo-600 dark:text-indigo-200'>
       <SyntaxHighlighter

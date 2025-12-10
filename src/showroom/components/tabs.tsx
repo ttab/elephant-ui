@@ -1,8 +1,9 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
-export function TabsExample(): JSX.Element {
+export function TabsExample(): React.JSX.Element {
   return (
     <>
       <Header>Tabs</Header>

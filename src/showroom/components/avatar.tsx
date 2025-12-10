@@ -5,8 +5,9 @@ import {
 } from '@/components/ui/avatar'
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
-export function AvatarExample(): JSX.Element {
+export function AvatarExample(): React.JSX.Element {
   return (
     <>
       <Header>Avatar</Header>

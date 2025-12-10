@@ -18,8 +18,9 @@ import {
 } from 'lucide-react'
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
-export function CommandExample(): JSX.Element {
+export function CommandExample(): React.JSX.Element {
   return (
     <>
       <Header>Command</Header>
@@ -128,4 +129,3 @@ import {
     </>
   )
 }
-

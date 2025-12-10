@@ -1,8 +1,9 @@
 import { Badge } from '@/components/ui/badge'
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
-export function BadgeExample(): JSX.Element {
+export function BadgeExample(): React.JSX.Element {
   return (
     <>
       <Header>Badge</Header>

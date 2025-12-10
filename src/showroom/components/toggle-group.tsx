@@ -1,9 +1,10 @@
+import React from 'react'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { Code } from '../code'
 import { BoldIcon, ItalicIcon, UnderlineIcon } from 'lucide-react'
 import { Header } from '../header'
 
-export const ToggleGroupExample = (): JSX.Element => {
+export const ToggleGroupExample = (): React.JSX.Element => {
   return (
     <>
       <Header>Toggle Group</Header>

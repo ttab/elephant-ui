@@ -1,8 +1,9 @@
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
 import { Header } from '../header'
 import { Code } from '../code'
+import React from 'react'
 
-export function PopoverExample(): JSX.Element {
+export function PopoverExample(): React.JSX.Element {
   return (
     <>
       <Header>Popover</Header>

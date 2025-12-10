@@ -23,7 +23,7 @@ const Command = React.forwardRef<
 ))
 Command.displayName = CommandPrimitive.displayName
 
-const CommandDialog = ({ children, ...props }: DialogProps): JSX.Element => {
+const CommandDialog = ({ children, ...props }: DialogProps): React.JSX.Element => {
   return (
     <Dialog {...props}>
       <DialogContent className='overflow-hidden p-0 shadow-lg'>
@@ -128,7 +128,7 @@ CommandItem.displayName = CommandPrimitive.Item.displayName
 const CommandShortcut = ({
   className,
   ...props
-}: React.HTMLAttributes<HTMLSpanElement>): JSX.Element => {
+}: React.HTMLAttributes<HTMLSpanElement>): React.JSX.Element => {
   return (
     <span
       className={cn(
