@@ -1,6 +1,7 @@
 export { PopoverDrawer } from './components/ui/popoverDrawer'
 
 export { Button, type ButtonProps } from '@/components/ui/button'
+export { ButtonGroup, ButtonGroupSeparator } from '@/components/ui/buttonGroup'
 export { default as buttonVariants } from '@/components/ui/buttonVariants'
 export { Input } from '@/components/ui/input'
 export { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert'
