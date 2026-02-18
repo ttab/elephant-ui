@@ -1,7 +1,7 @@
 'use client'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
@@ -89,8 +89,7 @@ export function ComboBox({
   const handleOpenChange = (isOpen: boolean): void => {
     if (isOpen && options) {
       const sortedOptions = sortOrder
-        ? options.sort((a, b) =>
-            optionsSort(a, b, sortOrder))
+        ? options.sort((a, b) => optionsSort(a, b, sortOrder))
         : options
 
       setOptions(sortedOptions)
@@ -203,6 +202,8 @@ export function ComboBox({
 
   return (
     <Drawer open={open} onOpenChange={handleOpenChange}>
+      <DrawerTitle className='sr-only'>{placeholder || ''}</DrawerTitle>
+
       <DrawerTrigger asChild>
         <Button
           variant='outline'
