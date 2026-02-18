@@ -32,12 +32,20 @@ interface ComboBoxControlledProps extends ComboBoxBaseProps {
   options: DefaultValueOption[]
   fetch?: never
   fetchDebounce?: never
+  translationStrings?: Partial<{
+    searching: string
+    nothingFound: string
+  }>
 }
 
 interface ComboBoxUncontrolledProps extends ComboBoxBaseProps {
   options?: never
   fetch: (query: string) => Promise<DefaultValueOption[]>
   fetchDebounce?: number
+  translationStrings?: Partial<{
+    searching: string
+    nothingFound: string
+  }>
 }
 
 type ComboBoxProps = ComboBoxControlledProps | ComboBoxUncontrolledProps
