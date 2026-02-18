@@ -25,6 +25,10 @@ interface ComboBoxListProps {
   fetchDebounce?: number
   loadingAsync?: boolean
   minSearchChars?: number
+  translationStrings?: Partial<{
+    searching: string
+    nothingFound: string
+  }>
 }
 
 export function ComboBoxList({
@@ -38,7 +42,11 @@ export function ComboBoxList({
   fetchAsyncData,
   fetchDebounce = 400,
   loadingAsync,
-  minSearchChars = 2
+  minSearchChars = 2,
+  translationStrings = {
+    searching: 'Searching...',
+    nothingFound: 'Nothing found'
+  }
 }: ComboBoxListProps): React.JSX.Element {
   const debouncedFetch = debounce(async (input: string) => {
     try {
@@ -79,7 +87,7 @@ export function ComboBoxList({
       />
 
       <CommandList>
-        <CommandEmpty>{loadingAsync ? <div>Söker...</div> : 'Ingenting hittades'}</CommandEmpty>
+        <CommandEmpty>{loadingAsync ? <div>{translationStrings.searching}</div> : translationStrings.nothingFound}</CommandEmpty>
 
         <CommandGroup>
           {options.map((option) => (

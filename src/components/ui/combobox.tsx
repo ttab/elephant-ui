@@ -22,6 +22,10 @@ interface ComboBoxBaseProps extends React.PropsWithChildren {
   sortOrder?: SortableKeys
   modal?: boolean
   minSearchChars?: number
+  translationStrings?: Partial<{
+    searching: string
+    nothingFound: string
+  }>
 }
 
 interface ComboBoxControlledProps extends ComboBoxBaseProps {
@@ -56,7 +60,8 @@ export function ComboBox({
   modal = false,
   fetch,
   fetchDebounce,
-  minSearchChars
+  minSearchChars,
+  translationStrings
 }: ComboBoxProps): React.JSX.Element {
   const [selected, setSelectedOptions] = useState<DefaultValueOption[]>(selectedOptions)
 
@@ -195,6 +200,7 @@ export function ComboBox({
             loadingAsync={loadingAsync}
             minSearchChars={minSearchChars}
             setOptions={setOptions}
+            translationStrings={translationStrings}
           />
         </PopoverContent>
       </Popover>
@@ -227,6 +233,7 @@ export function ComboBox({
             loadingAsync={loadingAsync}
             minSearchChars={minSearchChars}
             setOptions={setOptions}
+            translationStrings={translationStrings}
           />
         </div>
       </DrawerContent>
