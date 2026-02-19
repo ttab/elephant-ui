@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { Button } from './button'
 import type { SortableKeys, DefaultValueOption } from './comboboxTypes'
 import { ComboBoxList } from './comboboxList'
+import type { ComboboxTranslations } from 'src/types/translation'
 
 interface ComboBoxBaseProps extends React.PropsWithChildren {
   size?: 'xs' | 'sm' | 'default' | 'lg' | 'icon'
@@ -22,30 +23,21 @@ interface ComboBoxBaseProps extends React.PropsWithChildren {
   sortOrder?: SortableKeys
   modal?: boolean
   minSearchChars?: number
-  translationStrings?: Partial<{
-    searching: string
-    nothingFound: string
-  }>
+  translationStrings?: ComboboxTranslations
 }
 
 interface ComboBoxControlledProps extends ComboBoxBaseProps {
   options: DefaultValueOption[]
   fetch?: never
   fetchDebounce?: never
-  translationStrings?: Partial<{
-    searching: string
-    nothingFound: string
-  }>
+  translationStrings?: ComboboxTranslations
 }
 
 interface ComboBoxUncontrolledProps extends ComboBoxBaseProps {
   options?: never
   fetch: (query: string) => Promise<DefaultValueOption[]>
   fetchDebounce?: number
-  translationStrings?: Partial<{
-    searching: string
-    nothingFound: string
-  }>
+  translationStrings?: ComboboxTranslations
 }
 
 type ComboBoxProps = ComboBoxControlledProps | ComboBoxUncontrolledProps

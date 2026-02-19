@@ -12,6 +12,7 @@ import {
 import { SquareIcon, SquareCheckIcon } from '@/components/icons'
 import { debounce } from '@/lib/debounce'
 import type { DefaultValueOption } from './comboboxTypes'
+import type { ComboboxTranslations } from 'src/types/translation'
 
 interface ComboBoxListProps {
   options: DefaultValueOption[]
@@ -25,10 +26,7 @@ interface ComboBoxListProps {
   fetchDebounce?: number
   loadingAsync?: boolean
   minSearchChars?: number
-  translationStrings?: Partial<{
-    searching: string
-    nothingFound: string
-  }>
+  translationStrings?: ComboboxTranslations
 }
 
 export function ComboBoxList({
@@ -43,10 +41,7 @@ export function ComboBoxList({
   fetchDebounce = 400,
   loadingAsync,
   minSearchChars = 2,
-  translationStrings = {
-    searching: 'Searching...',
-    nothingFound: 'Nothing found'
-  }
+  translationStrings
 }: ComboBoxListProps): React.JSX.Element {
   const debouncedFetch = debounce(async (input: string) => {
     try {
@@ -87,7 +82,7 @@ export function ComboBoxList({
       />
 
       <CommandList>
-        <CommandEmpty>{loadingAsync ? <div>{translationStrings.searching}</div> : translationStrings.nothingFound}</CommandEmpty>
+        <CommandEmpty>{loadingAsync ? <div>{translationStrings?.searching ?? 'Searching...'}</div> : translationStrings?.nothingFound ?? 'Nothing found'}</CommandEmpty>
 
         <CommandGroup>
           {options.map((option) => (
