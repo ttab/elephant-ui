@@ -17,7 +17,8 @@ export default [
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        projectService: false,
+        project: './tsconfig.json',
         tsconfigRootDir: __dirname
       }
     }
