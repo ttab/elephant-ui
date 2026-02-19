@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { Button } from './button'
 import type { SortableKeys, DefaultValueOption } from './comboboxTypes'
 import { ComboBoxList } from './comboboxList'
+import type { ComboboxTranslations } from 'src/types/translation'
 
 interface ComboBoxBaseProps extends React.PropsWithChildren {
   size?: 'xs' | 'sm' | 'default' | 'lg' | 'icon'
@@ -22,18 +23,21 @@ interface ComboBoxBaseProps extends React.PropsWithChildren {
   sortOrder?: SortableKeys
   modal?: boolean
   minSearchChars?: number
+  translationStrings?: ComboboxTranslations
 }
 
 interface ComboBoxControlledProps extends ComboBoxBaseProps {
   options: DefaultValueOption[]
   fetch?: never
   fetchDebounce?: never
+  translationStrings?: ComboboxTranslations
 }
 
 interface ComboBoxUncontrolledProps extends ComboBoxBaseProps {
   options?: never
   fetch: (query: string) => Promise<DefaultValueOption[]>
   fetchDebounce?: number
+  translationStrings?: ComboboxTranslations
 }
 
 type ComboBoxProps = ComboBoxControlledProps | ComboBoxUncontrolledProps
@@ -56,7 +60,8 @@ export function ComboBox({
   modal = false,
   fetch,
   fetchDebounce,
-  minSearchChars
+  minSearchChars,
+  translationStrings
 }: ComboBoxProps): React.JSX.Element {
   const [selected, setSelectedOptions] = useState<DefaultValueOption[]>(selectedOptions)
 
@@ -195,6 +200,7 @@ export function ComboBox({
             loadingAsync={loadingAsync}
             minSearchChars={minSearchChars}
             setOptions={setOptions}
+            translationStrings={translationStrings}
           />
         </PopoverContent>
       </Popover>
@@ -227,6 +233,7 @@ export function ComboBox({
             loadingAsync={loadingAsync}
             minSearchChars={minSearchChars}
             setOptions={setOptions}
+            translationStrings={translationStrings}
           />
         </div>
       </DrawerContent>
