@@ -1,7 +1,7 @@
 'use client'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover'
-import { Drawer, DrawerContent, DrawerTrigger } from '@/components/ui/drawer'
+import { Drawer, DrawerContent, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 import { cn } from '@/lib/utils'
 import { Button } from './button'
@@ -220,6 +220,7 @@ export function ComboBox({
         </Button>
       </DrawerTrigger>
       <DrawerContent>
+        <DrawerTitle className='sr-only'>Välj alternativ</DrawerTitle>
         <div className='mt-4 border-t'>
           <ComboBoxList
             options={_options}
