@@ -65,7 +65,15 @@ export function ComboBoxList({
 
 
   return (
-    <Command shouldFilter={fetchAsyncData && false}>
+    <Command
+      shouldFilter={!fetchAsyncData}
+      filter={!fetchAsyncData
+        ? (_value, search, keywords) => {
+            const s = search.toLowerCase()
+            return keywords?.some((kw) => kw.toLowerCase().includes(s)) ? 1 : 0
+          }
+        : undefined}
+    >
       <CommandInput
         placeholder={label || ''}
         onValueChange={(str: string) => {
