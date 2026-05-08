@@ -229,7 +229,9 @@ export function ComboBox({
             onSelect={(clickedOption) => handleSelect(clickedOption)}
             label={triggerLabel}
             closeOnSelect={closeOnSelect}
-            fetchAsyncData={fetchAsyncData}
+            fetchAsyncData={fetch
+              ? fetchAsyncData
+              : undefined}
             fetchDebounce={fetchDebounce}
             loadingAsync={loadingAsync}
             minSearchChars={minSearchChars}
