@@ -33,9 +33,11 @@ const Tooltip = ({ content, children }: TooltipProps): React.JSX.Element => (
           {children}
         </span>
       </TooltipPrimitive.Trigger>
-      <TooltipContent>
-        {content}
-      </TooltipContent>
+      <TooltipPrimitive.Portal>
+        <TooltipContent>
+          {content}
+        </TooltipContent>
+      </TooltipPrimitive.Portal>
     </TooltipPrimitive.Root>
   </TooltipPrimitive.Provider>
 )
