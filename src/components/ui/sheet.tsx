@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import * as SheetPrimitive from '@radix-ui/react-dialog'
+import { Dialog as SheetPrimitive } from '@base-ui/react/dialog'
 import { Button } from './button'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { XIcon } from 'lucide-react'
@@ -10,38 +10,92 @@ import { cn } from '@/lib/utils'
 
 const Sheet = SheetPrimitive.Root
 
-const SheetTrigger = SheetPrimitive.Trigger
-
-const SheetClose = SheetPrimitive.Close
-
 const SheetPortal = SheetPrimitive.Portal
 
+type AsChildProps = { asChild?: boolean }
+
+function rendersNativeButton(element: React.ReactElement): boolean | undefined {
+  if (typeof element.type === 'string') {
+    return element.type === 'button'
+  }
+  const displayName = (element.type as { displayName?: string })?.displayName
+  if (displayName === 'Button') return true
+  return undefined
+}
+
+function resolveAsChildProps<R>(
+  asChild: boolean | undefined,
+  children: React.ReactNode,
+  render: R,
+  nativeButton: boolean | undefined
+): { render: R | React.ReactElement; nativeButton?: boolean } {
+  const validChild = asChild && React.isValidElement(children)
+    ? children as React.ReactElement<Record<string, unknown>>
+    : undefined
+  const result: { render: R | React.ReactElement; nativeButton?: boolean } = {
+    render: validChild ?? render
+  }
+  if (nativeButton !== undefined) {
+    result.nativeButton = nativeButton
+  } else if (validChild) {
+    result.nativeButton = rendersNativeButton(validChild)
+  }
+  return result
+}
+
+const SheetTrigger = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Trigger> & AsChildProps
+>(({ asChild, children, render, nativeButton, ...props }, ref) => {
+  const resolved = resolveAsChildProps(asChild, children, render, nativeButton)
+  return (
+    <SheetPrimitive.Trigger ref={ref} {...props} {...resolved}>
+      {asChild ? undefined : children}
+    </SheetPrimitive.Trigger>
+  )
+})
+SheetTrigger.displayName = 'SheetTrigger'
+
+const SheetClose = React.forwardRef<
+  HTMLButtonElement,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Close> & AsChildProps
+>(({ asChild, children, render, nativeButton, ...props }, ref) => {
+  const resolved = resolveAsChildProps(asChild, children, render, nativeButton)
+  return (
+    <SheetPrimitive.Close ref={ref} {...props} {...resolved}>
+      {asChild ? undefined : children}
+    </SheetPrimitive.Close>
+  )
+})
+SheetClose.displayName = 'SheetClose'
+
 const SheetOverlay = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Overlay>
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Backdrop>
 >(({ className, ...props }, ref) => (
-  <SheetPrimitive.Overlay
+  <SheetPrimitive.Backdrop
     className={cn(
-      'fixed inset-0 z-50 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0',
+      'fixed inset-0 z-50 transition-opacity duration-200',
+      'data-[starting-style]:opacity-0 data-[ending-style]:opacity-0',
       className
     )}
     {...props}
     ref={ref}
   />
 ))
-SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
+SheetOverlay.displayName = 'SheetOverlay'
 
 const sheetVariants = cva(
-  'fixed z-50 gap-4 bg-background p-6 shadow-2xl transition data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-150 data-[state=open]:duration-200',
+  'fixed z-50 gap-4 bg-background p-6 shadow-2xl transition-transform duration-200 ease-in-out',
   {
     variants: {
       side: {
-        top: 'inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top',
+        top: 'inset-x-0 top-0 border-b data-[starting-style]:-translate-y-full data-[ending-style]:-translate-y-full',
         bottom:
-          'inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom',
-        left: 'inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm',
+          'inset-x-0 bottom-0 border-t data-[starting-style]:translate-y-full data-[ending-style]:translate-y-full',
+        left: 'inset-y-0 left-0 h-full w-3/4 border-r data-[starting-style]:-translate-x-full data-[ending-style]:-translate-x-full sm:max-w-sm',
         right:
-          'inset-y-0 right-0 h-full w-3/4  border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm'
+          'inset-y-0 right-0 h-full w-3/4 border-l data-[starting-style]:translate-x-full data-[ending-style]:translate-x-full sm:max-w-sm'
       }
     },
     defaultVariants: {
@@ -51,47 +105,83 @@ const sheetVariants = cva(
 )
 
 interface SheetContentProps
-  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
+  extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Popup>,
   VariantProps<typeof sheetVariants> {
   container?: HTMLElement | null
+  defaultClose?: boolean
+  allowPropagationForKeys?: string[]
+  /**
+   * Radix-compat: accepted but the handler isn't called. Passing any value
+   * suppresses default focus restoration (equivalent to calling event.preventDefault()
+   * in Radix). Use Base UI's `finalFocus` prop for fine-grained control.
+   */
+  onCloseAutoFocus?: (event: Event) => void
+  /** Radix-compat: see onCloseAutoFocus. Maps to `initialFocus={false}`. */
+  onOpenAutoFocus?: (event: Event) => void
+  /** Radix-compat: accepted but no-op. */
+  onEscapeKeyDown?: (event: KeyboardEvent) => void
+  /** Radix-compat: accepted but no-op. */
+  onPointerDownOutside?: (event: PointerEvent) => void
+  /** Radix-compat: accepted but no-op. */
+  onInteractOutside?: (event: Event) => void
 }
 
-const SheetContent = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Content>,
-SheetContentProps & { defaultClose?: boolean, allowPropagationForKeys?: string[] }
->(({ side = 'right', className, children, defaultClose = false, allowPropagationForKeys, container, ...props }, ref) => (
-  <SheetPortal container={container}>
-    <SheetOverlay />
-    <SheetPrimitive.Content
-      autoFocus
-      onKeyDown={(event) => {
-        if (allowPropagationForKeys?.length) {
-          for (const key of allowPropagationForKeys) {
-            if (event.key !== key) {
-              event.stopPropagation()
+const SheetContent = React.forwardRef<HTMLDivElement, SheetContentProps>(
+  ({
+    side = 'right',
+    className,
+    children,
+    defaultClose = false,
+    allowPropagationForKeys,
+    container,
+    onKeyDown,
+    onCloseAutoFocus,
+    onOpenAutoFocus,
+    onEscapeKeyDown: _onEscapeKeyDown,
+    onPointerDownOutside: _onPointerDownOutside,
+    onInteractOutside: _onInteractOutside,
+    finalFocus,
+    initialFocus,
+    ...props
+  }, ref) => (
+    <SheetPortal container={container}>
+      <SheetOverlay />
+      <SheetPrimitive.Popup
+        onKeyDown={(event) => {
+          if (allowPropagationForKeys?.length) {
+            for (const key of allowPropagationForKeys) {
+              if (event.key !== key) {
+                event.stopPropagation()
+              }
             }
           }
-        }
-      }}
-      ref={ref}
-      className={cn(sheetVariants({ side }), className)}
-      {...props}
-    >
-      {children}
+          onKeyDown?.(event)
+        }}
+        finalFocus={onCloseAutoFocus !== undefined ? false : finalFocus}
+        initialFocus={onOpenAutoFocus !== undefined ? false : initialFocus}
+        ref={ref}
+        className={cn(sheetVariants({ side }), className)}
+        {...props}
+      >
+        {children}
 
-      {defaultClose
-        && (
-          <SheetPrimitive.Close className='absolute right-2 top-2 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary'>
-            <Button variant='ghost' className='w-9 px-0'>
-              <XIcon />
-            </Button>
-            <span className='sr-only'>Close</span>
-          </SheetPrimitive.Close>
-        )}
-    </SheetPrimitive.Content>
-  </SheetPortal>
-))
-SheetContent.displayName = SheetPrimitive.Content.displayName
+        {defaultClose
+          && (
+            <SheetPrimitive.Close
+              className='absolute right-2 top-2 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none'
+              render={(
+                <Button variant='ghost' className='w-9 px-0'>
+                  <XIcon />
+                  <span className='sr-only'>Close</span>
+                </Button>
+              )}
+            />
+          )}
+      </SheetPrimitive.Popup>
+    </SheetPortal>
+  )
+)
+SheetContent.displayName = 'SheetContent'
 
 const SheetHeader = ({
   className,
@@ -122,7 +212,7 @@ const SheetFooter = ({
 SheetFooter.displayName = 'SheetFooter'
 
 const SheetTitle = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Title>,
+  HTMLHeadingElement,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Title
@@ -131,10 +221,10 @@ const SheetTitle = React.forwardRef<
     {...props}
   />
 ))
-SheetTitle.displayName = SheetPrimitive.Title.displayName
+SheetTitle.displayName = 'SheetTitle'
 
 const SheetDescription = React.forwardRef<
-  React.ElementRef<typeof SheetPrimitive.Description>,
+  HTMLParagraphElement,
   React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Description
@@ -143,7 +233,7 @@ const SheetDescription = React.forwardRef<
     {...props}
   />
 ))
-SheetDescription.displayName = SheetPrimitive.Description.displayName
+SheetDescription.displayName = 'SheetDescription'
 
 export {
   Sheet,
