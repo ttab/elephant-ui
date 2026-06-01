@@ -1,5 +1,5 @@
 'use client'
-import React, { type Dispatch } from 'react'
+import React, { type Dispatch, useEffect, useRef } from 'react'
 import {
   Command,
   CommandEmpty,
@@ -43,6 +43,15 @@ export function ComboBoxList({
   minSearchChars = 2,
   translationStrings
 }: ComboBoxListProps): React.JSX.Element {
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => {
+      inputRef.current?.focus()
+    })
+    return () => cancelAnimationFrame(id)
+  }, [])
+
   const debouncedFetch = debounce(async (input: string) => {
     try {
       if (fetchAsyncData) {
@@ -75,6 +84,8 @@ export function ComboBoxList({
         : undefined}
     >
       <CommandInput
+        ref={inputRef}
+        autoFocus
         placeholder={label || ''}
         onValueChange={(str: string) => {
           if (fetchAsyncData) {

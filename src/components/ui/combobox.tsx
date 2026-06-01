@@ -158,7 +158,6 @@ export function ComboBox({
             )}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
-                setOpen(true)
                 e.stopPropagation()
               }
             }}
