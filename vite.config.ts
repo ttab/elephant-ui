@@ -54,9 +54,13 @@ export default defineConfig({
       name: 'ElephantUI'
     },
     rollupOptions: {
-      external: [
-        ...Object.keys(peerDependencies),
-        ...Object.keys(dependencies)],
+      external: (id) => {
+        const externals = [
+          ...Object.keys(peerDependencies),
+          ...Object.keys(dependencies)
+        ]
+        return externals.some((name) => id === name || id.startsWith(`${name}/`))
+      },
       output: {
         exports: 'named'
       }
