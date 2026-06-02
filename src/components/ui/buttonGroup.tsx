@@ -39,18 +39,18 @@ function ButtonGroup({
 
 function ButtonGroupText({
   className,
-  asChild = false,
+  render,
   children,
   ...props
 }: React.ComponentProps<'div'> & {
-  asChild?: boolean
+  render?: useRender.RenderProp
 }) {
   const computedClass = cn(
     'bg-muted flex items-center gap-2 rounded-md border px-4 text-sm font-medium shadow-xs [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4',
     className
   )
   return useRender({
-    render: asChild && React.isValidElement(children) ? children : undefined,
+    render,
     props: { className: computedClass, children, ...props } as Record<string, unknown>,
     defaultTagName: 'div'
   })
