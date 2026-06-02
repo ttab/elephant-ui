@@ -7,49 +7,7 @@ import { cn } from '@/lib/utils'
 
 const Popover = PopoverPrimitive.Root
 
-type PopoverTriggerProps = React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Trigger> & {
-  /**
-   * Legacy Radix-style escape hatch: when true, the trigger renders into the single child element
-   * (translated to Base UI's `render` prop under the hood).
-   */
-  asChild?: boolean
-}
-
-function rendersNativeButton(element: React.ReactElement): boolean | undefined {
-  // Native HTML element: definitive.
-  if (typeof element.type === 'string') {
-    return element.type === 'button'
-  }
-  // Recognize our own <Button> via displayName (it renders a native <button>).
-  // For other components we return undefined so Base UI's default (true) applies;
-  // consumers wrapping a non-button (e.g. <Link>, custom <a>) should pass
-  // nativeButton={false} explicitly.
-  const displayName = (element.type as { displayName?: string })?.displayName
-  if (displayName === 'Button') return true
-  return undefined
-}
-
-const PopoverTrigger = React.forwardRef<HTMLButtonElement, PopoverTriggerProps>(
-  ({ asChild, children, render, nativeButton, ...props }, ref) => {
-    const validChild = asChild && React.isValidElement(children)
-      ? children as React.ReactElement<Record<string, unknown>>
-      : undefined
-    const resolvedRender = validChild ?? render
-    const resolvedNativeButton = nativeButton ?? (validChild ? rendersNativeButton(validChild) : undefined)
-
-    return (
-      <PopoverPrimitive.Trigger
-        ref={ref}
-        render={resolvedRender}
-        nativeButton={resolvedNativeButton}
-        {...props}
-      >
-        {asChild ? undefined : children}
-      </PopoverPrimitive.Trigger>
-    )
-  }
-)
-PopoverTrigger.displayName = 'PopoverTrigger'
+const PopoverTrigger = PopoverPrimitive.Trigger
 
 type PopoverPositionerProps = React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Positioner>
 

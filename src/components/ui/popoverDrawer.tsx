@@ -28,20 +28,22 @@ export function PopoverDrawer({
   if (isDesktop) {
     return (
       <Popover open={open} onOpenChange={handleOpenChange} modal={modal}>
-        <PopoverTrigger asChild>
-          <Button
-            variant='outline'
-            size='xs'
-            className='w-fit font-sans font-normal whitespace-nowrap p-2'
-            onKeyDown={(event) => {
-              if (event.key !== 'Escape') {
-                event?.stopPropagation()
-              }
-            }}
-          >
-            {triggerLabel}
-          </Button>
-        </PopoverTrigger>
+        <PopoverTrigger
+          render={(
+            <Button
+              variant='outline'
+              size='xs'
+              className='w-fit font-sans font-normal whitespace-nowrap p-2'
+              onKeyDown={(event) => {
+                if (event.key !== 'Escape') {
+                  event?.stopPropagation()
+                }
+              }}
+            >
+              {triggerLabel}
+            </Button>
+          )}
+        />
         <PopoverContent
           className='min-w-[200px] w-fit p-0 max-w-[400px]'
           align='center'

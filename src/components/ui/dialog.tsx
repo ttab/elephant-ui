@@ -10,50 +10,9 @@ const Dialog = DialogPrimitive.Root
 
 const DialogPortal = DialogPrimitive.Portal
 
-type AsChildProps = { asChild?: boolean }
+const DialogTrigger = DialogPrimitive.Trigger
 
-function rendersNativeButton(element: React.ReactElement): boolean | undefined {
-  if (typeof element.type === 'string') {
-    return element.type === 'button'
-  }
-  const displayName = (element.type as { displayName?: string })?.displayName
-  if (displayName === 'Button') return true
-  return undefined
-}
-
-const DialogTrigger = React.forwardRef<
-  HTMLButtonElement,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Trigger> & AsChildProps
->(({ asChild, children, render, nativeButton, ...props }, ref) => {
-  const validChild = asChild && React.isValidElement(children)
-    ? children as React.ReactElement<Record<string, unknown>>
-    : undefined
-  const resolvedRender = validChild ?? render
-  const resolvedNativeButton = nativeButton ?? (validChild ? rendersNativeButton(validChild) : undefined)
-  return (
-    <DialogPrimitive.Trigger ref={ref} render={resolvedRender} nativeButton={resolvedNativeButton} {...props}>
-      {asChild ? undefined : children}
-    </DialogPrimitive.Trigger>
-  )
-})
-DialogTrigger.displayName = 'DialogTrigger'
-
-const DialogClose = React.forwardRef<
-  HTMLButtonElement,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Close> & AsChildProps
->(({ asChild, children, render, nativeButton, ...props }, ref) => {
-  const validChild = asChild && React.isValidElement(children)
-    ? children as React.ReactElement<Record<string, unknown>>
-    : undefined
-  const resolvedRender = validChild ?? render
-  const resolvedNativeButton = nativeButton ?? (validChild ? rendersNativeButton(validChild) : undefined)
-  return (
-    <DialogPrimitive.Close ref={ref} render={resolvedRender} nativeButton={resolvedNativeButton} {...props}>
-      {asChild ? undefined : children}
-    </DialogPrimitive.Close>
-  )
-})
-DialogClose.displayName = 'DialogClose'
+const DialogClose = DialogPrimitive.Close
 
 const DialogOverlay = React.forwardRef<
   HTMLDivElement,

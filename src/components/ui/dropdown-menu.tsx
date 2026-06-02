@@ -8,39 +8,7 @@ import { cn } from '@/lib/utils'
 
 const DropdownMenu = MenuPrimitive.Root
 
-type DropdownMenuTriggerProps = React.ComponentPropsWithoutRef<typeof MenuPrimitive.Trigger> & {
-  asChild?: boolean
-}
-
-function rendersNativeButton(element: React.ReactElement): boolean | undefined {
-  if (typeof element.type === 'string') {
-    return element.type === 'button'
-  }
-  const displayName = (element.type as { displayName?: string })?.displayName
-  if (displayName === 'Button') return true
-  return undefined
-}
-
-const DropdownMenuTrigger = React.forwardRef<HTMLButtonElement, DropdownMenuTriggerProps>(
-  ({ asChild, children, render, nativeButton, ...props }, ref) => {
-    const validChild = asChild && React.isValidElement(children)
-      ? children as React.ReactElement<Record<string, unknown>>
-      : undefined
-    const resolvedRender = validChild ?? render
-    const resolvedNativeButton = nativeButton ?? (validChild ? rendersNativeButton(validChild) : undefined)
-    return (
-      <MenuPrimitive.Trigger
-        ref={ref}
-        render={resolvedRender}
-        nativeButton={resolvedNativeButton}
-        {...props}
-      >
-        {asChild ? undefined : children}
-      </MenuPrimitive.Trigger>
-    )
-  }
-)
-DropdownMenuTrigger.displayName = 'DropdownMenuTrigger'
+const DropdownMenuTrigger = MenuPrimitive.Trigger
 
 const DropdownMenuGroup = MenuPrimitive.Group
 

@@ -12,62 +12,9 @@ const Sheet = SheetPrimitive.Root
 
 const SheetPortal = SheetPrimitive.Portal
 
-type AsChildProps = { asChild?: boolean }
+const SheetTrigger = SheetPrimitive.Trigger
 
-function rendersNativeButton(element: React.ReactElement): boolean | undefined {
-  if (typeof element.type === 'string') {
-    return element.type === 'button'
-  }
-  const displayName = (element.type as { displayName?: string })?.displayName
-  if (displayName === 'Button') return true
-  return undefined
-}
-
-function resolveAsChildProps<R>(
-  asChild: boolean | undefined,
-  children: React.ReactNode,
-  render: R,
-  nativeButton: boolean | undefined
-): { render: R | React.ReactElement; nativeButton?: boolean } {
-  const validChild = asChild && React.isValidElement(children)
-    ? children as React.ReactElement<Record<string, unknown>>
-    : undefined
-  const result: { render: R | React.ReactElement; nativeButton?: boolean } = {
-    render: validChild ?? render
-  }
-  if (nativeButton !== undefined) {
-    result.nativeButton = nativeButton
-  } else if (validChild) {
-    result.nativeButton = rendersNativeButton(validChild)
-  }
-  return result
-}
-
-const SheetTrigger = React.forwardRef<
-  HTMLButtonElement,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Trigger> & AsChildProps
->(({ asChild, children, render, nativeButton, ...props }, ref) => {
-  const resolved = resolveAsChildProps(asChild, children, render, nativeButton)
-  return (
-    <SheetPrimitive.Trigger ref={ref} {...props} {...resolved}>
-      {asChild ? undefined : children}
-    </SheetPrimitive.Trigger>
-  )
-})
-SheetTrigger.displayName = 'SheetTrigger'
-
-const SheetClose = React.forwardRef<
-  HTMLButtonElement,
-  React.ComponentPropsWithoutRef<typeof SheetPrimitive.Close> & AsChildProps
->(({ asChild, children, render, nativeButton, ...props }, ref) => {
-  const resolved = resolveAsChildProps(asChild, children, render, nativeButton)
-  return (
-    <SheetPrimitive.Close ref={ref} {...props} {...resolved}>
-      {asChild ? undefined : children}
-    </SheetPrimitive.Close>
-  )
-})
-SheetClose.displayName = 'SheetClose'
+const SheetClose = SheetPrimitive.Close
 
 const SheetOverlay = React.forwardRef<
   HTMLDivElement,
