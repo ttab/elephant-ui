@@ -136,11 +136,14 @@ export function ComboBox({
   }
 
   const fetchAsyncData = useCallback(async (query: string) => {
-    if (fetch) {
-      setloadingAsync(true)
-      setOptions(await fetch(query))
-      setloadingAsync(false)
+    /* v8 ignore start -- defensive: callback only passed down when `fetch` is set */
+    if (!fetch) {
+      return
     }
+    /* v8 ignore stop */
+    setloadingAsync(true)
+    setOptions(await fetch(query))
+    setloadingAsync(false)
   }, [fetch])
 
   if (isDesktop) {

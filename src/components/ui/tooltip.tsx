@@ -7,6 +7,8 @@ import { cn } from '@/lib/utils'
 
 interface TooltipProps extends React.PropsWithChildren {
   content: React.ReactNode
+  defaultOpen?: boolean
+  open?: boolean
 }
 
 const TooltipContent = React.forwardRef<
@@ -14,7 +16,7 @@ const TooltipContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Popup>
   & { sideOffset?: number, side?: 'top' | 'right' | 'bottom' | 'left' }
 >(({ className, sideOffset = 4, side, ...props }, ref) => (
-  <TooltipPrimitive.Positioner sideOffset={sideOffset} side={side} className={cn('z-[9999999999]', typeof className === 'string' ? className : undefined)}>
+  <TooltipPrimitive.Positioner sideOffset={sideOffset} side={side} className={cn('z-[9999999999]', /* v8 ignore next -- defensive: Base UI accepts function className but wrapper only forwards strings */ typeof className === 'string' ? className : undefined)}>
     <TooltipPrimitive.Popup
       ref={ref}
       className={cn(
@@ -29,9 +31,9 @@ const TooltipContent = React.forwardRef<
 ))
 TooltipContent.displayName = 'TooltipContent'
 
-const Tooltip = ({ content, children }: TooltipProps): React.JSX.Element => (
+const Tooltip = ({ content, children, defaultOpen, open }: TooltipProps): React.JSX.Element => (
   <TooltipPrimitive.Provider>
-    <TooltipPrimitive.Root>
+    <TooltipPrimitive.Root defaultOpen={defaultOpen} open={open}>
       <TooltipPrimitive.Trigger render={<span>{children}</span>} />
       <TooltipPrimitive.Portal>
         <TooltipContent>

@@ -15,6 +15,10 @@ type SelectProps = Omit<
   onValueChange?: (value: string) => void
 }
 
+type RegisterLabel = (value: string, label: React.ReactNode) => void
+const SelectLabelRegisterContext = React.createContext<RegisterLabel | null>(null)
+const SelectLabelsContext = React.createContext<Map<string, React.ReactNode>>(new Map())
+
 const Select = ({ value, defaultValue, onValueChange, children, ...props }: SelectProps) => {
   const translatedHandler = React.useMemo(() => {
     if (!onValueChange) {
@@ -23,21 +27,61 @@ const Select = ({ value, defaultValue, onValueChange, children, ...props }: Sele
     return (next: unknown) => onValueChange(String(next))
   }, [onValueChange])
 
+  const [labels, setLabels] = React.useState<Map<string, React.ReactNode>>(() => new Map())
+  const register = React.useCallback<RegisterLabel>((itemValue, label) => {
+    setLabels((prev) => {
+      if (prev.get(itemValue) === label) {
+        return prev
+      }
+      const next = new Map(prev)
+      next.set(itemValue, label)
+      return next
+    })
+  }, [])
+
   return (
-    <SelectPrimitive.Root
-      {...(value !== undefined && { value })}
-      {...(defaultValue !== undefined && { defaultValue })}
-      {...(translatedHandler && { onValueChange: translatedHandler })}
-      {...props}
-    >
-      {children}
-    </SelectPrimitive.Root>
+    <SelectLabelRegisterContext.Provider value={register}>
+      <SelectLabelsContext.Provider value={labels}>
+        <SelectPrimitive.Root
+          {...(value !== undefined && { value })}
+          {...(defaultValue !== undefined && { defaultValue })}
+          {...(translatedHandler && { onValueChange: translatedHandler })}
+          {...props}
+        >
+          {children}
+        </SelectPrimitive.Root>
+      </SelectLabelsContext.Provider>
+    </SelectLabelRegisterContext.Provider>
   )
 }
 
 const SelectGroup = SelectPrimitive.Group
 
-const SelectValue = SelectPrimitive.Value
+type SelectValueProps = React.ComponentPropsWithoutRef<typeof SelectPrimitive.Value>
+const SelectValue = React.forwardRef<HTMLSpanElement, SelectValueProps>(
+  ({ placeholder, children, ...props }, ref) => {
+    const labels = React.useContext(SelectLabelsContext)
+    if (children !== undefined) {
+      return (
+        <SelectPrimitive.Value ref={ref} placeholder={placeholder} {...props}>
+          {children}
+        </SelectPrimitive.Value>
+      )
+    }
+    return (
+      <SelectPrimitive.Value ref={ref} placeholder={placeholder} {...props}>
+        {(current: unknown) => {
+          if (typeof current !== 'string' || current === '') {
+            return placeholder
+          }
+          const label = labels.get(current)
+          return label ?? current
+        }}
+      </SelectPrimitive.Value>
+    )
+  }
+)
+SelectValue.displayName = 'SelectValue'
 
 const SelectTrigger = React.forwardRef<
   HTMLButtonElement,
@@ -148,24 +192,35 @@ SelectLabel.displayName = 'SelectLabel'
 const SelectItem = React.forwardRef<
   HTMLDivElement,
   React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
->(({ className, children, ...props }, ref) => (
-  <SelectPrimitive.Item
-    ref={ref}
-    className={cn(
-      'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
-      className
-    )}
-    {...props}
-  >
-    <span className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
-      <SelectPrimitive.ItemIndicator>
-        <CheckIcon className='h-4 w-4' />
-      </SelectPrimitive.ItemIndicator>
-    </span>
+>(({ className, children, ...props }, ref) => {
+  const register = React.useContext(SelectLabelRegisterContext)
+  const typedProps = props as { value?: string }
+  const stringValue = typeof typedProps.value === 'string' ? typedProps.value : null
+  React.useEffect(() => {
+    if (register && stringValue !== null) {
+      register(stringValue, children)
+    }
+  }, [register, stringValue, children])
 
-    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-  </SelectPrimitive.Item>
-))
+  return (
+    <SelectPrimitive.Item
+      ref={ref}
+      className={cn(
+        'relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[highlighted]:bg-accent data-[highlighted]:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+        className
+      )}
+      {...props}
+    >
+      <span className='absolute left-2 flex h-3.5 w-3.5 items-center justify-center'>
+        <SelectPrimitive.ItemIndicator>
+          <CheckIcon className='h-4 w-4' />
+        </SelectPrimitive.ItemIndicator>
+      </span>
+
+      <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
+    </SelectPrimitive.Item>
+  )
+})
 SelectItem.displayName = 'SelectItem'
 
 const SelectSeparator = React.forwardRef<

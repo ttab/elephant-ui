@@ -10,7 +10,8 @@ export default defineConfig({
   plugins: [
     react(),
     dts({
-      include: ['./src/**/*']
+      include: ['./src/**/*'],
+      exclude: ['./src/**/*.test.ts', './src/**/*.test.tsx', './src/test/**']
     }),
     tailwindcss(),
     viteStaticCopy({
