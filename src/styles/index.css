@@ -3,6 +3,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+body {
+  position: relative;
+}
+
 @utility container {
   padding-inline: 2rem;
   margin-inline: auto;

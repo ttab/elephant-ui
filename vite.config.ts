@@ -10,23 +10,26 @@ export default defineConfig({
   plugins: [
     react(),
     dts({
-      include: ['./src/**/*']
+      include: ['./src/**/*'],
+      exclude: ['./src/**/*.test.ts', './src/**/*.test.tsx', './src/test/**']
     }),
     tailwindcss(),
     viteStaticCopy({
       targets: [
         {
           src: './src/styles/index.css',
-          dest: './styles'
+          dest: './styles',
+          rename: { stripBase: true }
         },
         {
           src: './node_modules/@fontsource/inter/files/inter-latin-{300,400,500,600,700,800}-normal.{woff,woff2}',
-          dest: './styles'
+          dest: './styles',
+          rename: { stripBase: true }
         },
         {
           src: 'src/types/lucide-react.d.ts',
           dest: 'components/icons',
-          rename: 'index.d.ts'
+          rename: { stripBase: true, name: 'index.d.ts' }
         }
 
       ]
@@ -54,9 +57,13 @@ export default defineConfig({
       name: 'ElephantUI'
     },
     rollupOptions: {
-      external: [
-        ...Object.keys(peerDependencies),
-        ...Object.keys(dependencies)],
+      external: (id) => {
+        const externals = [
+          ...Object.keys(peerDependencies),
+          ...Object.keys(dependencies)
+        ]
+        return externals.some((name) => id === name || id.startsWith(`${name}/`))
+      },
       output: {
         exports: 'named'
       }

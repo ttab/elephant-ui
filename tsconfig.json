@@ -22,16 +22,15 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": ".",
     "paths": {
       "@/components/*": [
-        "src/components/*"
+        "./src/components/*"
       ],
       "@/lib/*": [
-        "src/lib/*"
+        "./src/lib/*"
       ],
       "@/hooks/*": [
-        "src/hooks/*"
+        "./src/hooks/*"
       ]
     },
     /* Output */
@@ -42,6 +41,9 @@
   "include": [
     "./src/**/*",
     "./src/types/**/*",
-    "vite.config.ts"
+    "./__tests__/**/*",
+    "vite.config.ts",
+    "vitest.config.ts",
+    "setupTests.ts"
   ]
 }

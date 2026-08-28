@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import { Button } from './button'
 import type { SortableKeys, DefaultValueOption } from './comboboxTypes'
 import { ComboBoxList } from './comboboxList'
-import type { ComboboxTranslations } from 'src/types/translation'
+import type { ComboboxTranslations } from '../../types/translation'
 
 interface ComboBoxBaseProps extends React.PropsWithChildren {
   size?: 'xs' | 'sm' | 'default' | 'lg' | 'icon'
@@ -136,46 +136,50 @@ export function ComboBox({
   }
 
   const fetchAsyncData = useCallback(async (query: string) => {
-    if (fetch) {
-      setloadingAsync(true)
-      setOptions(await fetch(query))
-      setloadingAsync(false)
+    /* v8 ignore start -- defensive: callback only passed down when `fetch` is set */
+    if (!fetch) {
+      return
     }
+    /* v8 ignore stop */
+    setloadingAsync(true)
+    setOptions(await fetch(query))
+    setloadingAsync(false)
   }, [fetch])
 
   if (isDesktop) {
     return (
       <Popover open={open} onOpenChange={handleOpenChange} modal={modal}>
-        <PopoverTrigger asChild>
-          <Button
-            size={size}
-            variant={variant || 'outline'}
-            data-ele-placeholder={children || triggerLabel ? undefined : 'true'}
-            data-ele-validation={validation ? 'true' : undefined}
-            className={cn(
-              'w-fit font-sans font-normal whitespace-nowrap p-2',
-              className
-            )}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                setOpen(true)
-                e.stopPropagation()
-              }
-            }}
-          >
-            {children || (triggerLabel
-              ? <span className='truncate'>{triggerLabel}</span>
-              : (
-                  <span
-                    className='text-muted-foreground truncate'
-                    data-ele-placeholder='true'
-                    data-ele-validation={validation ? 'true' : undefined}
-                  >
-                    {placeholder || ''}
-                  </span>
-                ))}
-          </Button>
-        </PopoverTrigger>
+        <PopoverTrigger
+          render={(
+            <Button
+              size={size}
+              variant={variant || 'outline'}
+              data-ele-placeholder={children || triggerLabel ? undefined : 'true'}
+              data-ele-validation={validation ? 'true' : undefined}
+              className={cn(
+                'w-fit font-sans font-normal whitespace-nowrap p-2',
+                className
+              )}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.stopPropagation()
+                }
+              }}
+            >
+              {children || (triggerLabel
+                ? <span className='truncate'>{triggerLabel}</span>
+                : (
+                    <span
+                      className='text-muted-foreground truncate'
+                      data-ele-placeholder='true'
+                      data-ele-validation={validation ? 'true' : undefined}
+                    >
+                      {placeholder || ''}
+                    </span>
+                  ))}
+            </Button>
+          )}
+        />
         <PopoverContent
           className='min-w-[200px] w-fit p-0 max-w-[400px]'
           align='start'

@@ -5,6 +5,22 @@ import { Drawer as DrawerPrimitive } from 'vaul'
 
 import { cn } from '@/lib/utils'
 
+// The vaul primitives are typed as @radix-ui/react-dialog components. Without
+// explicit annotations tsc has to name those types by path when emitting
+// declarations (TS2742), which only resolves if radix is a direct dependency.
+type OverlayRef = React.ComponentRef<typeof DrawerPrimitive.Overlay>
+type OverlayProps = React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>
+type ContentRef = React.ComponentRef<typeof DrawerPrimitive.Content>
+type ContentProps = React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>
+type TitleRef = React.ComponentRef<typeof DrawerPrimitive.Title>
+type TitleProps = React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>
+type DescriptionRef = React.ComponentRef<typeof DrawerPrimitive.Description>
+type DescriptionProps = React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>
+
+type ForwardRef<Ref, Props> = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<Props> & React.RefAttributes<Ref>
+>
+
 const Drawer = ({
   shouldScaleBackground = true,
   ...props
@@ -16,13 +32,15 @@ const Drawer = ({
 )
 Drawer.displayName = 'Drawer'
 
-const DrawerTrigger = DrawerPrimitive.Trigger
+const DrawerTrigger: typeof DrawerPrimitive.Trigger = DrawerPrimitive.Trigger
 
 const DrawerPortal = DrawerPrimitive.Portal
 
-const DrawerClose = DrawerPrimitive.Close
+const DrawerClose: typeof DrawerPrimitive.Close = DrawerPrimitive.Close
 
-const DrawerOverlay = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.Overlay>, React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Overlay>>(({ className, ...props }, ref) => (
+const DrawerOverlay: ForwardRef<OverlayRef, OverlayProps> = React.forwardRef<
+  OverlayRef, OverlayProps
+>(({ className, ...props }, ref) => (
   <DrawerPrimitive.Overlay
     ref={ref}
     className={cn('fixed inset-0 z-50 bg-black/10', className)}
@@ -31,7 +49,9 @@ const DrawerOverlay = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.O
 ))
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName
 
-const DrawerContent = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.Content>, React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Content>>(({ className, children, ...props }, ref) => (
+const DrawerContent: ForwardRef<ContentRef, ContentProps> = React.forwardRef<
+  ContentRef, ContentProps
+>(({ className, children, ...props }, ref) => (
   <DrawerPortal>
     <DrawerOverlay />
     <DrawerPrimitive.Content
@@ -72,7 +92,9 @@ const DrawerFooter = ({
 )
 DrawerFooter.displayName = 'DrawerFooter'
 
-const DrawerTitle = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.Title>, React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Title>>(({ className, ...props }, ref) => (
+const DrawerTitle: ForwardRef<TitleRef, TitleProps> = React.forwardRef<
+  TitleRef, TitleProps
+>(({ className, ...props }, ref) => (
   <DrawerPrimitive.Title
     ref={ref}
     className={cn(
@@ -84,7 +106,9 @@ const DrawerTitle = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.Tit
 ))
 DrawerTitle.displayName = DrawerPrimitive.Title.displayName
 
-const DrawerDescription = React.forwardRef<React.ElementRef<typeof DrawerPrimitive.Description>, React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>>(({ className, ...props }, ref) => (
+const DrawerDescription: ForwardRef<DescriptionRef, DescriptionProps> = React.forwardRef<
+  DescriptionRef, DescriptionProps
+>(({ className, ...props }, ref) => (
   <DrawerPrimitive.Description
     ref={ref}
     className={cn('text-sm text-muted-foreground', className)}

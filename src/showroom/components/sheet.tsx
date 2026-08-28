@@ -23,9 +23,7 @@ export function SheetExample(): React.JSX.Element {
 
       <div>
         <Sheet>
-          <SheetTrigger asChild>
-            <MenuIcon />
-          </SheetTrigger>
+          <SheetTrigger render={<MenuIcon />} />
           <SheetContent>
             <SheetHeader>
               <SheetTitle>Title</SheetTitle>
@@ -37,9 +35,7 @@ export function SheetExample(): React.JSX.Element {
               Body
             </div>
             <SheetFooter>
-              <SheetClose asChild>
-                <Button type='submit'>Close</Button>
-              </SheetClose>
+              <SheetClose render={<Button type='submit'>Close</Button>} />
             </SheetFooter>
           </SheetContent>
         </Sheet>
@@ -47,9 +43,7 @@ export function SheetExample(): React.JSX.Element {
       <Code code={`import { Menu } from '@ttab/elephant-ui/icons'
 import { Button } from '@ttab/elephant-ui'
 <Sheet>
-  <SheetTrigger asChild>
-    <Menu />
-  </SheetTrigger>
+  <SheetTrigger render={<Menu />} />
   <SheetContent>
     <SheetHeader>
       <SheetTitle>Title</SheetTitle>
@@ -59,9 +53,7 @@ import { Button } from '@ttab/elephant-ui'
     </SheetHeader>
       Body
     <SheetFooter>
-      <SheetClose asChild>
-        <Button type="submit">Close</Button>
-      </SheetClose>
+      <SheetClose render={<Button type="submit">Close</Button>} />
     </SheetFooter>
   </SheetContent>
 </Sheet>`}

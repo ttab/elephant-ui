@@ -1,68 +1,83 @@
 'use client'
 
 import * as React from 'react'
-import * as DialogPrimitive from '@radix-ui/react-dialog'
+import { Dialog as DialogPrimitive } from '@base-ui/react/dialog'
 import { XIcon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
 const Dialog = DialogPrimitive.Root
 
-const DialogTrigger = DialogPrimitive.Trigger
-
 const DialogPortal = DialogPrimitive.Portal
+
+const DialogTrigger = DialogPrimitive.Trigger
 
 const DialogClose = DialogPrimitive.Close
 
 const DialogOverlay = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
+  HTMLDivElement,
+  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Backdrop>
 >(({ className, ...props }, ref) => (
-  <DialogPrimitive.Overlay
+  <DialogPrimitive.Backdrop
     ref={ref}
     className={cn(
       'fixed inset-0 z-50 bg-black/10',
+      'transition-opacity duration-200',
+      'data-[ending-style]:opacity-0',
       className
     )}
     {...props}
   />
 ))
-DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
+DialogOverlay.displayName = 'DialogOverlay'
 
-const DialogContent = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
+type DialogContentProps = React.ComponentPropsWithoutRef<typeof DialogPrimitive.Popup>
+  & {
     onOpenChangeProvided?: boolean
-  }>(({ className, children, onOpenChangeProvided = false, ...props }, ref) => (
-  <DialogPortal>
-    <DialogOverlay />
-    <DialogPrimitive.Content
-      autoFocus
-      onKeyDown={(event) => {
-        if (event.key !== 'Escape') {
-          event.stopPropagation()
-        }
-      }}
-      ref={ref}
-      className={cn(
-        'fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg xl:h-auto overflow-y-auto max-h-[92dvh] translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg sm:rounded-lg md:w-full focus-visible:outline-none',
-        className
-      )}
-      {...props}
-    >
-      {children}
+  }
 
-      {onOpenChangeProvided
-        && (
-          <DialogPrimitive.Close className='absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground'>
-            <XIcon className='h-4 w-4' />
-            <span className='sr-only'>Close</span>
-          </DialogPrimitive.Close>
+const DialogContent = React.forwardRef<HTMLDivElement, DialogContentProps>(
+  ({
+    className,
+    children,
+    onOpenChangeProvided = false,
+    onKeyDown,
+    ...props
+  }, ref) => (
+    <DialogPortal>
+      <DialogOverlay />
+      <DialogPrimitive.Popup
+        onKeyDown={(event) => {
+          if (event.key !== 'Escape') {
+            event.stopPropagation()
+          }
+          onKeyDown?.(event)
+        }}
+        ref={ref}
+        className={cn(
+          'fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg xl:h-auto overflow-y-auto max-h-[92dvh] translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg sm:rounded-lg md:w-full focus-visible:outline-none',
+          'transition-[scale,opacity] duration-200',
+          'data-[ending-style]:opacity-0 data-[ending-style]:scale-95',
+          className
         )}
-    </DialogPrimitive.Content>
-  </DialogPortal>
-))
-DialogContent.displayName = DialogPrimitive.Content.displayName
+        {...props}
+      >
+        {children}
+
+        {onOpenChangeProvided
+          && (
+            <DialogPrimitive.Close
+              data-testid='dialog-close'
+              className='absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none'
+            >
+              <XIcon className='h-4 w-4' />
+            </DialogPrimitive.Close>
+          )}
+      </DialogPrimitive.Popup>
+    </DialogPortal>
+  )
+)
+DialogContent.displayName = 'DialogContent'
 
 const DialogHeader = ({
   className,
@@ -93,7 +108,7 @@ const DialogFooter = ({
 DialogFooter.displayName = 'DialogFooter'
 
 const DialogTitle = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Title>,
+  HTMLHeadingElement,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Title
@@ -105,10 +120,10 @@ const DialogTitle = React.forwardRef<
     {...props}
   />
 ))
-DialogTitle.displayName = DialogPrimitive.Title.displayName
+DialogTitle.displayName = 'DialogTitle'
 
 const DialogDescription = React.forwardRef<
-  React.ElementRef<typeof DialogPrimitive.Description>,
+  HTMLParagraphElement,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
@@ -117,7 +132,7 @@ const DialogDescription = React.forwardRef<
     {...props}
   />
 ))
-DialogDescription.displayName = DialogPrimitive.Description.displayName
+DialogDescription.displayName = 'DialogDescription'
 
 export {
   Dialog,
