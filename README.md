@@ -1,12 +1,26 @@
 # ElephantUI
 
+## Install
+
+Published to GitHub Packages, not npmjs, so the `@ttab` scope needs mapping. GitHub
+Packages requires a token even for public packages, so an install without one fails
+with a 401. In `.npmrc`:
+
+```
+@ttab:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+```
+
+```sh
+npm install @ttab/elephant-ui
+```
+
+
 ## Usage
 
 See contents of the directory `src/components/ui` for available components.
 
 See [shadcn/UI documentation](https://ui.shadcn.com/docs/components/) for usage of available components — or when necessary the local showroom possibilities as described below.
-
-Install in your project using `npm i @ttab/elephant-ui`
 
 ## Build styles
 

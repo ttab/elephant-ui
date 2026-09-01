@@ -15,7 +15,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const computedClass = cn(buttonVariants({ variant, size, className }))
     return useRender({
       render,
-      props: { className: computedClass, children, ...props } as Record<string, unknown>,
+      props: { className: computedClass, children, ...props },
       ref,
       defaultTagName: 'button'
     })

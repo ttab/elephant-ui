@@ -1,6 +1,6 @@
 # @ttab/elephant-ui
 
-## 2.0.0-beta.0
+## 2.0.0-beta.2
 
 ### Major Changes
 
@@ -14,3 +14,7 @@
   - `@ttab/elephant-ui/icons` re-exports lucide-react wholesale, so its 0.x to 1.x upgrade reaches consumers directly. Icons renamed or dropped in lucide 1.x are renamed or missing here.
   - Radix prop and ref types no longer appear in the public types. Anything that imported them through this package needs the Base UI equivalent.
   - The `react` and `react-dom` peer floor is now `^19.2.8`.
+
+### Patch Changes
+
+- Moves the package's repository link on GitHub Packages to the monorepo. The manifest already names it; a publish is what makes the registry act on it, and publish permission follows that link.

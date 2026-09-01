@@ -4,14 +4,12 @@ import { act, renderHook } from '@testing-library/react'
 import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 describe('useMediaQuery', () => {
-  const originalMatchMedia = window.matchMedia
-
   afterEach(() => {
-    window.matchMedia = originalMatchMedia
+    vi.restoreAllMocks()
   })
 
   it('returns true when the query matches', () => {
-    window.matchMedia = (query: string): MediaQueryList => ({
+    vi.spyOn(window, 'matchMedia').mockImplementation((query: string): MediaQueryList => ({
       matches: true,
       media: query,
       onchange: null,
@@ -20,14 +18,14 @@ describe('useMediaQuery', () => {
       addEventListener: () => {},
       removeEventListener: () => {},
       dispatchEvent: () => false
-    })
+    }))
 
     const { result } = renderHook(() => useMediaQuery('(min-width: 768px)'))
     expect(result.current).toBe(true)
   })
 
   it('returns false when the query does not match', () => {
-    window.matchMedia = (query: string): MediaQueryList => ({
+    vi.spyOn(window, 'matchMedia').mockImplementation((query: string): MediaQueryList => ({
       matches: false,
       media: query,
       onchange: null,
@@ -36,7 +34,7 @@ describe('useMediaQuery', () => {
       addEventListener: () => {},
       removeEventListener: () => {},
       dispatchEvent: () => false
-    })
+    }))
 
     const { result } = renderHook(() => useMediaQuery('(min-width: 9999px)'))
     expect(result.current).toBe(false)
@@ -47,7 +45,7 @@ describe('useMediaQuery', () => {
     const removed = vi.fn()
     let currentMatches = false
 
-    window.matchMedia = (query: string): MediaQueryList => ({
+    vi.spyOn(window, 'matchMedia').mockImplementation((query: string): MediaQueryList => ({
       get matches() {
         return currentMatches
       },
@@ -60,7 +58,7 @@ describe('useMediaQuery', () => {
       },
       removeEventListener: removed,
       dispatchEvent: () => false
-    })
+    }))
 
     const { result, unmount } = renderHook(() => useMediaQuery('(min-width: 768px)'))
     expect(result.current).toBe(false)

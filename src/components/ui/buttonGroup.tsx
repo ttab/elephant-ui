@@ -51,7 +51,7 @@ function ButtonGroupText({
   )
   return useRender({
     render,
-    props: { className: computedClass, children, ...props } as Record<string, unknown>,
+    props: { className: computedClass, children, ...props },
     defaultTagName: 'div'
   })
 }

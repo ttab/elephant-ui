@@ -36,7 +36,7 @@ class IntersectionObserverPolyfill {
 }
 
 if (typeof globalThis.ResizeObserver === 'undefined') {
-  globalThis.ResizeObserver = ResizeObserverPolyfill as unknown as typeof ResizeObserver
+  globalThis.ResizeObserver = ResizeObserverPolyfill
 }
 if (typeof globalThis.IntersectionObserver === 'undefined') {
   globalThis.IntersectionObserver = IntersectionObserverPolyfill as unknown as typeof IntersectionObserver

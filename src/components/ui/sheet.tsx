@@ -96,6 +96,8 @@ const SheetContent = React.forwardRef<HTMLDivElement, SheetContentProps>(
               render={(
                 <Button variant='ghost' className='w-9 px-0'>
                   <XIcon />
+                  {/* TODO: take this label as a prop, or say here why it stays hardcoded */}
+                  {/* eslint-disable-next-line i18next/no-literal-string */}
                   <span className='sr-only'>Close</span>
                 </Button>
               )}

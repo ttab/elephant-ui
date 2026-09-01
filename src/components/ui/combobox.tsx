@@ -224,6 +224,8 @@ export function ComboBox({
         </Button>
       </DrawerTrigger>
       <DrawerContent>
+        {/* TODO: take this label as a prop, or say here why it stays hardcoded */}
+        {/* eslint-disable-next-line i18next/no-literal-string */}
         <DrawerTitle className='sr-only'>Välj alternativ</DrawerTitle>
         <div className='mt-4 border-t'>
           <ComboBoxList

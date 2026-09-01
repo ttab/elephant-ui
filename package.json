@@ -2,7 +2,11 @@
   "name": "@ttab/elephant-ui",
   "description": "UI package created around Shadcn/ui, primarily for the Elephant project.",
   "private": false,
-  "version": "2.0.0-beta.0",
+  "version": "2.0.0-beta.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ttab/elephant-ui"
+  },
   "license": "MIT",
   "type": "module",
   "publishConfig": {
@@ -34,7 +38,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "typecheck": "tsc --noEmit",
-    "lint": "echo \"lint disabled during monorepo migration - re-enable: eslint . --cache\"",
+    "lint": "eslint . --cache --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
