@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
-import { peerDependencies, dependencies } from './package.json'
+import pkg from './package.json' with { type: 'json' }
 import react from '@vitejs/plugin-react'
 import dts from 'vite-plugin-dts'
 import { viteStaticCopy } from 'vite-plugin-static-copy'
@@ -37,7 +37,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, './src')
+      '@': resolve(import.meta.dirname, './src')
     },
     dedupe: [
       'react',
@@ -48,9 +48,9 @@ export default defineConfig({
   build: {
     lib: {
       entry: {
-        index: resolve(__dirname, './src/index.ts'),
-        icons: resolve(__dirname, './src/components/icons/index.ts'),
-        utils: resolve(__dirname, './src/lib/utils.ts')
+        index: resolve(import.meta.dirname, './src/index.ts'),
+        icons: resolve(import.meta.dirname, './src/components/icons/index.ts'),
+        utils: resolve(import.meta.dirname, './src/lib/utils.ts')
       },
       formats: ['es', 'cjs'],
       fileName: (format, entryName) => `${entryName}.${format}.js`,
@@ -59,8 +59,8 @@ export default defineConfig({
     rollupOptions: {
       external: (id) => {
         const externals = [
-          ...Object.keys(peerDependencies),
-          ...Object.keys(dependencies)
+          ...Object.keys(pkg.peerDependencies),
+          ...Object.keys(pkg.dependencies)
         ]
         return externals.some((name) => id === name || id.startsWith(`${name}/`))
       },
