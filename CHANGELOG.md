@@ -1,5 +1,18 @@
 # @ttab/elephant-ui
 
+## 2.1.1
+
+### Patch Changes
+
+- dependencies updates:
+    - Updated dependency [`@base-ui/react@^1.9.0` ↗︎](https://www.npmjs.com/package/@base-ui/react/v/1.9.0) (from `^1.5.0`, in `dependencies`)
+
+- dependencies updates:
+    - Updated dependency [`lucide-react@^1.66.0` ↗︎](https://www.npmjs.com/package/lucide-react/v/1.66.0) (from `^1.33.0`, in `dependencies`)
+
+- dependencies updates:
+    - Updated dependency [`tailwind-merge@^3.7.0` ↗︎](https://www.npmjs.com/package/tailwind-merge/v/3.7.0) (from `^3.3.1`, in `dependencies`)
+
 ## 2.1.0
 
 ### Minor Changes
